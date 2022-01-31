@@ -4,8 +4,7 @@ import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'Home',
     component: Login
@@ -18,6 +17,33 @@ const routes = [
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
+  {
+    path: '/dashboard',
+    // name: 'Dashboard',
+    component: () => import('../views/Dashboard.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Dashboard',
+        component: () => import('../views/Default.vue'),
+      },
+      {
+        path: 'compliances',
+        name: 'Compliances',
+        component: () => import('../components/CompliancesList.vue'),
+      },
+      {
+        path: 'comply/:id',
+        name: 'Comply',
+        component: () => import('../views/ComplyForm.vue'),
+      },
+    ]
+  },
+  // {
+  //   path: '/compliances',
+  //   name: 'Compliances',
+  //   component:  () => import('../views/Dashboard.vue')
+  // },
 ]
 
 const router = new VueRouter({

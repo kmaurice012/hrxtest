@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <div class="login-form " style="margin-left: 60%; width: 320px">
+      <div class="login-form" style="margin-left: 60%; width: 320px">
         <span class="image1"
           ><img
             src="../assets/img/eboard.png"
@@ -72,13 +72,16 @@
               />
             </div>
           </div>
-          <div class="form-group mb-6 d-flex mr-6">
-            <v-btn color="success" class="mr-4" @click="validateLogin">
+          <div>
+          <div class="form-group mb-8 mr-12">
+            <v-btn color="red" class="mr-2" @click="validateLogin">
               Log In
             </v-btn>
-            <v-btn color="error" class="mr-4" @click="forgotPassword">
-                Forgot Password
-            </v-btn>
+          </div>
+
+          <div class=" form-group mb-8 mr-12">
+            <v-title class="text-center"> Forgot Password </v-title>
+          </div>
           </div>
         </form>
       </div>
@@ -251,121 +254,122 @@ export default {
     };
   },
   methods: {
-      validateLogin() {
-          return true;
-      }
-  }
+    validateLogin() {
+      this.$router.push("/dashboard");
+      return true;
+    },
+  },
 };
 </script>
 
 <style scoped>
-    .success-message {
-    color: green;
-    }
+.success-message {
+  color: green;
+}
 
-    body,
-    html {
-    height: 100%;
-    margin: 0;
-    font: 400 15px/1.8 "Lato", sans-serif;
-    color: #777;
-    position: relative;
-    }
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+  position: relative;
+}
 
-    .caption {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    text-align: center;
-    color: #000;
-    }
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
 
-    .quote {
-    position: absolute;
-    left: 0;
-    top: 34%;
-    width: 50%;
-    color: #fff;
-    margin-left: 11%;
-    margin-right: 2%;
-    font-size: 28px;
-    font-family: Arial, Helvetica, sans-serif;
-    }
+.quote {
+  position: absolute;
+  left: 0;
+  top: 34%;
+  width: 50%;
+  color: #fff;
+  margin-left: 11%;
+  margin-right: 2%;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-    .footer-text {
-    position: absolute;
-    left: 63%;
-    top: 75%;
-    width: auto;
-    color: #fff;
-    margin-left: 3%;
-    font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 2px;
-    }
+.footer-text {
+  position: absolute;
+  left: 63%;
+  top: 75%;
+  width: auto;
+  color: #fff;
+  margin-left: 3%;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 2px;
+}
 
-    .caption span.border {
-    background-color: #111;
-    color: #fff;
-    padding: 18px;
-    font-size: 25px;
-    letter-spacing: 10px;
-    }
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
 
-    h3 {
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    font: 20px "Lato", sans-serif;
-    color: #111;
-    }
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
 
-    .login-form {
-    position: absolute;
-    height: auto;
-    background: #f5f5f5;
-    border-radius: 5px;
-    top: 29%;
-    }
+.login-form {
+  position: absolute;
+  height: auto;
+  background: #f5f5f5;
+  border-radius: 5px;
+  top: 29%;
+}
 
-    .login-form h4 {
-    text-align: center;
-    }
+.login-form h4 {
+  text-align: center;
+}
 
-    .login-form .form-group {
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 7%;
-    }
+.login-form .form-group {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 7%;
+}
 
-    .login-form .form-group .btn {
-    float: right;
-    width: 100%;
-    }
+.login-form .form-group .btn {
+  float: right;
+  width: 100%;
+}
 
-    .login-form .fa-paper-plane {
-    width: 18px;
-    }
+.login-form .fa-paper-plane {
+  width: 18px;
+}
 
-    .login-form .fa-lock {
-    width: 18px;
-    }
+.login-form .fa-lock {
+  width: 18px;
+}
 
-    .login-form .forgot {
-    float: right;
-    color: red;
-    margin-right: 30%;
-    margin-top: 3%;
-    margin-bottom: 2%;
-    text-align: center;
-    }
+.login-form .forgot {
+  float: right;
+  color: red;
+  margin-right: 30%;
+  margin-top: 3%;
+  margin-bottom: 2%;
+  text-align: center;
+}
 
-    .input-group-addon {
-    background: #cacfd2;
-    width: 25px;
-    padding-top: 4px;
-    text-align: center;
-    border-top-left-radius: 7px;
-    border-bottom-left-radius: 7px;
-    }
+.input-group-addon {
+  background: #cacfd2;
+  width: 25px;
+  padding-top: 4px;
+  text-align: center;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
 </style>
