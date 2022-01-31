@@ -12,7 +12,7 @@
 
 <script>
 // @ is an alias to /src
-import NavDrawer from "../components/NavDrawer.vue";
+import NavDrawer from "../components/user/NavDrawer.vue";
 // import Footer from "../components/Footer.vue";
 // import Calendar from "../components/Calendar.vue";
 

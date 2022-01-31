@@ -36,7 +36,7 @@
         <v-spacer></v-spacer>
         <img
           style="height: 75%; width: auto; padding-top: 5px"
-          src="../assets/img/eboard_Logo_new@2x.png"
+          src="../../assets/img/eboard_Logo_new@2x.png"
         />
         <v-spacer></v-spacer>
         <v-menu
@@ -110,8 +110,18 @@
           </template>
 
           <v-list>
-            <v-list-item v-for="(item, i) in companies" :key="i">
-              <v-list-item-title>{{ item.name }}</v-list-item-title>
+            <v-list-item  >
+              <v-list-item-title>Options</v-list-item-title>
+            </v-list-item>
+          </v-list>
+          <v-list>
+            <v-list-item >
+              <v-list-item-title>Change Password</v-list-item-title>
+            </v-list-item>
+          </v-list>
+          <v-list>
+            <v-list-item  @click="logout()">
+              <v-list-item-title>Logout</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -168,7 +178,7 @@ export default {
     menuItems: [
       {
         name: "Dashboard",
-        route: "/dashboard",
+        route: "/admin/dashboard",
         icon: "mdi-home",
         color: "blue"
       },
@@ -189,7 +199,17 @@ export default {
       {name: "STL Vision",},
       {name: "STL South Africa",},
     ],
+    userOptions: [
+      {name: "Options", action:""},
+      {name: "Change Password", action:""},
+      {name: "Logout", action: 'logout()'},
+    ],
   }),
+  methods: {
+    logout() {
+      this.$router.push('/')
+    }
+  }
 };
 </script>
 

@@ -2,14 +2,6 @@
   <v-card class="ma-4">
     <v-data-table :headers="headers" :items="compliances" :loading="loading">
       <template v-slot:[`item.actions`]="{ item }">
-        <!-- <v-tooltip left>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" icon color="blue darken-2">
-              <v-icon large @click="editItem(item)">mdi-information</v-icon>
-            </v-btn>
-          </template>
-          <span>View Compliance</span>
-        </v-tooltip> -->
             <v-btn
               v-bind="attrs"
               v-on="on"
@@ -109,7 +101,7 @@ export default {
     showCompliance(type,id) {
       localStorage.setItem("compliance_type", type)
       localStorage.setItem("compliance_id_form", id)
-      this.$router.push(`/dashboard/compliances`);
+      this.$router.push(`/user/dashboard/compliances`);
       return true;
     },
   },

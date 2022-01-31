@@ -1,7 +1,17 @@
 <template>
   <v-container>
     <v-card-title primary-title class="text-h4 green--text">
-      {{complianceType}}
+      {{ complianceType }}
+
+      <v-spacer></v-spacer>
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn v-bind="attrs" v-on="on" class="cursor-pointer" large icon color="red">
+            <v-icon @click="openReports()"> mdi-file-chart</v-icon></v-btn
+          >
+        </template>
+        <span>View Reports</span>
+      </v-tooltip>
     </v-card-title>
     <v-data-table
       :headers="headers"
@@ -16,7 +26,9 @@
           v-bind="attrs"
           v-on="on"
           :color="item.color + ' white--text'"
-          @click="item.status === 'Not Complied' ?  complyForm(item.period) :null"
+          @click="
+            item.status === 'Not Complied' ? complyForm(item.period) : null
+          "
         >
           <p class="ma-4">{{ item.status }}</p>
         </v-btn>
@@ -26,7 +38,7 @@
           {{ item.file
           }}<v-icon
             class="mt-2 mb-2"
-            v-bind:color="item.file_type == 'mdi-file-pdf-box' ? 'red' : 'blue' "
+            v-bind:color="item.file_type == 'mdi-file-pdf-box' ? 'red' : 'blue'"
             large
             >{{ item.file_type }}</v-icon
           >
@@ -167,7 +179,7 @@ export default {
       },
     ],
     complianceType: "",
-    complianceId: ""
+    complianceId: "",
   }),
   methods: {
     getComplianceType() {
@@ -176,13 +188,17 @@ export default {
       console.log(this.complianceType);
     },
     complyForm(period) {
-      localStorage.setItem("compliance_period", period)
-      this.$router.push(`/dashboard/comply/`+this.complianceId);
+      localStorage.setItem("compliance_period", period);
+      this.$router.push(`/user/dashboard/comply/` + this.complianceId);
       return true;
+    },
+
+    openReports() {
+      this.$router.push(`/user/dashboard/user-report`);
     }
   },
   mounted() {
-    this.getComplianceType()
-  }
+    this.getComplianceType();
+  },
 };
 </script>

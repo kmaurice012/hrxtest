@@ -73,15 +73,15 @@
             </div>
           </div>
           <div>
-          <div class="form-group mb-8 mr-12">
-            <v-btn color="red" class="mr-2" @click="validateLogin">
-              Log In
-            </v-btn>
-          </div>
+            <div class="form-group mb-8 mr-12">
+              <v-btn color="red" class="mr-2" @click="validateLogin">
+                Log In
+              </v-btn>
+            </div>
 
-          <div class=" form-group mb-8 mr-12">
-            <v-title class="text-center"> Forgot Password </v-title>
-          </div>
+            <div class="form-group mb-8 mr-12">
+              <v-title class="text-center"> Forgot Password </v-title>
+            </div>
           </div>
         </form>
       </div>
@@ -255,7 +255,11 @@ export default {
   },
   methods: {
     validateLogin() {
-      this.$router.push("/dashboard");
+      if (this.input.username == "user") {
+        this.$router.push("/user/dashboard");
+      } else {
+        this.$router.push("/admin/dashboard");
+      }
       return true;
     },
   },

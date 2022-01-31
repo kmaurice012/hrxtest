@@ -18,24 +18,56 @@ const routes = [{
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
   {
-    path: '/dashboard',
+    path: '/user/dashboard',
     // name: 'Dashboard',
-    component: () => import('../views/Dashboard.vue'),
+    component: () => import('../views/UserDashboard.vue'),
     children: [
       {
         path: '',
         name: 'Dashboard',
-        component: () => import('../views/Default.vue'),
+        component: () => import('../components/user/Default.vue'),
       },
       {
         path: 'compliances',
-        name: 'Compliances',
-        component: () => import('../components/CompliancesList.vue'),
+        name: 'User Compliances',
+        component: () => import('../components/user/CompliancesList.vue'),
       },
       {
         path: 'comply/:id',
-        name: 'Comply',
-        component: () => import('../views/ComplyForm.vue'),
+        name: 'User Comply',
+        component: () => import('../components/user/ComplyForm.vue'),
+      },
+      {
+        path: 'user-report',
+        name: 'User Reports',
+        component: () => import('../components/user/UserReports.vue'),
+      },
+    ]
+  },
+  {
+    path: '/admin/dashboard',
+    // name: 'Dashboard',
+    component: () => import('../views/AdminDashboard.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Dashboard',
+        component: () => import('../components/admin/Default.vue'),
+      },
+      {
+        path: 'compliances',
+        name: 'Admin Compliances',
+        component: () => import('../components/admin/CompliancesList.vue'),
+      },
+      {
+        path: 'comply/:id',
+        name: 'Admin Verify Compliance',
+        component: () => import('../components/admin/VerifyForm.vue'),
+      },
+      {
+        path: 'user-report',
+        name: 'Admin Reports',
+        component: () => import('../components/admin/UserReports.vue'),
       },
     ]
   },

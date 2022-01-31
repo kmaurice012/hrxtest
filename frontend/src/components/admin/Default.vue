@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Calendar from "../components/Calendar.vue";
-import CompliancesList from "../components/CompliancesListView.vue";
+import Calendar from "./Calendar.vue";
+import CompliancesList from "./CompliancesListView.vue";
 
 export default {
   name: "Default",
