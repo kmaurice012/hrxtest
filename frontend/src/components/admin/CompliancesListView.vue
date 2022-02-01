@@ -7,7 +7,7 @@
               v-on="on"
               block
               color="red darken-3 white--text font-weight-bold mt-2"
-              @click="showCompliance(item.title, item.id)"
+              @click="showCompanies(item.title, item.id)"
             >
               <!-- <v-icon large @click="submitCompliance(item.id)">mdi-file-plus</v-icon> -->
               <p class="ma-4">View Compliance</p>
@@ -98,10 +98,10 @@ export default {
     trimText: function (text) {
       return text.subtring(0, 100);
     },
-    showCompliance(type,id) {
+    showCompanies(type,id) {
       localStorage.setItem("compliance_type", type)
       localStorage.setItem("compliance_id_form", id)
-      this.$router.push(`/admin/dashboard/compliances`);
+      this.$router.push(`/admin/dashboard/compliance_period`);
       return true;
     },
   },

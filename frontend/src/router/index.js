@@ -24,7 +24,7 @@ const routes = [{
     children: [
       {
         path: '',
-        name: 'Dashboard',
+        name: 'User Dashboard',
         component: () => import('../components/user/Default.vue'),
       },
       {
@@ -51,16 +51,21 @@ const routes = [{
     children: [
       {
         path: '',
-        name: 'Dashboard',
+        name: 'Admin Dashboard',
         component: () => import('../components/admin/Default.vue'),
       },
       {
-        path: 'compliances',
-        name: 'Admin Compliances',
-        component: () => import('../components/admin/CompliancesList.vue'),
+        path: 'compliance_period',
+        name: 'Compliances Period',
+        component: () => import('../components/admin/CompliancesPeriod.vue'),
       },
       {
-        path: 'comply/:id',
+        path: 'compliance_companies',
+        name: 'Compliances Companies',
+        component: () => import('../components/admin/ComplianceCompanies.vue'),
+      },
+      {
+        path: 'verify-compliance/:id',
         name: 'Admin Verify Compliance',
         component: () => import('../components/admin/VerifyForm.vue'),
       },

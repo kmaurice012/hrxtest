@@ -56,6 +56,7 @@ export default {
             gridLines: {
               display: false,
             },
+            barPercentage: 0.4,
           },
         ],
       },
