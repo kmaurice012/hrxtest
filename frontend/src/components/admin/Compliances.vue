@@ -1,5 +1,10 @@
 <template>
   <v-card class="ma-4">
+    <v-card-title primary-title class="text-h4 green--text">
+      List of {{company_name}} Codes
+
+      <v-spacer></v-spacer>
+    </v-card-title>
     <v-data-table :headers="headers" :items="compliances" :loading="loading">
       <template v-slot:[`item.actions`]="{ item }">
             <v-btn
@@ -7,7 +12,7 @@
               v-on="on"
               block
               color="red darken-3 white--text font-weight-bold mt-2"
-              @click="showCompanies(item.title, item.id)"
+              @click="viewCompliances(item.title, item.id)"
             >
               <!-- <v-icon large @click="submitCompliance(item.id)">mdi-file-plus</v-icon> -->
               <p class="ma-4">View Compliance</p>
@@ -49,6 +54,16 @@ export default {
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
+        text: "complied",
+        value: "complied",
+        class: "font-weight-bold green white--text text-uppercase",
+      },
+      {
+        text: "not complied",
+        value: "not_complied",
+        class: "font-weight-bold green white--text text-uppercase",
+      },
+      {
         text: "actions",
         value: "actions",
         class: "font-weight-bold green white--text text-uppercase",
@@ -61,6 +76,8 @@ export default {
         frequency: 'Daily',
         serial_number: 'Serial.03',
         title: "Listing Rules",
+        complied: '25%',
+        not_complied: '75%',
         date: "2022-01-28",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
@@ -70,6 +87,8 @@ export default {
         frequency: 'Quarterly',
         serial_number: 'Serial.02',
         title: "Late Submission of Audited Annual Accounts",
+        complied: '10%',
+        not_complied: '90%',
         date: "2022-01-31",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
@@ -79,6 +98,8 @@ export default {
         frequency: 'Bi-Annually',
         serial_number: 'Serial.01',
         title: "Annual financial statements",
+        complied: '40%',
+        not_complied: '60%',
         date: "2022-02-12",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
@@ -88,25 +109,35 @@ export default {
         frequency: 'Weekly',
         serial_number: 'Serial.04',
         title: "Trading hours",
+        complied: '20%',
+        not_complied: '80%',
         date: "2022-03-28",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
     ],
     loading: true,
+    company_name: ""
   }),
   methods: {
     trimText: function (text) {
       return text.subtring(0, 100);
     },
-    showCompanies(type,id) {
-      localStorage.setItem("compliance_type", type)
+    // showCompanies(type,id) {
+    //   localStorage.setItem("compliance_type", type)
+    //   localStorage.setItem("compliance_id_form", id)
+    //   this.$router.push(`/admin/dashboard/compliance_period`);
+    //   return true;
+    // },
+    viewCompliances(title,id) {
+      localStorage.setItem("compliance_code_title", title)
       localStorage.setItem("compliance_id_form", id)
       this.$router.push(`/admin/dashboard/compliance_period`);
-      return true;
-    },
+    }
+
   },
   mounted() {
     this.loading = false;
+    this.company_name = localStorage.getItem("company_name");
   },
 };
 </script>

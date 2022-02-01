@@ -278,7 +278,7 @@ export default {
       this.compliancePeriod = localStorage.getItem("compliance_period");
       this.userCompany = this.userCompliances.find(
         (element) =>
-          element.id == localStorage.getItem("compliance_user_company")
+          element.id == localStorage.getItem("company_id")
       );
     },
   },

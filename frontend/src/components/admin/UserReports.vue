@@ -32,18 +32,18 @@ export default {
       ],
       datasets: [
         {
-          label: "Complied",
+          label: "Complied in %",
           borderWidth: 1,
           backgroundColor: "green",
           borderColor: "white",
-          data: [2,5,0,0,0,0,0,0,0,0,0,0],
+          data: [40,15,0,0,0,0,0,0,0,0,0,0],
         },
         {
-          label: "Not Complied",
+          label: "Not Complied in %",
           borderWidth: 1,
           backgroundColor: "crimson",
           borderColor: "black",
-          data: [8,2,0,0,0,0,0,0,0,0,0,0],
+          data: [80,25,0,0,0,0,0,0,0,0,0,0],
         },
       ],
     },
@@ -64,7 +64,7 @@ export default {
             gridLines: {
               display: false,
             },
-            barPercentage: 0.4,
+            barPercentage: 0.7,
           },
         ],
       },

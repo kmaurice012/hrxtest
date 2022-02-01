@@ -20,7 +20,7 @@
 
 <script>
 import Calendar from "./Calendar.vue";
-import CompliancesList from "./CompliancesListView.vue";
+import CompliancesList from "./Compliances.vue";
 
 export default {
   name: "Default",
