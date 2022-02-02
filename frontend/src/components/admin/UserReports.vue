@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card-title primary-title class="text-h4 green--text">
+    <v-card-title primary-title class="green text-h4 white--text">
       {{ complianceType }} Reports for the year 2022
     </v-card-title>
     <v-spacer></v-spacer>
@@ -79,8 +79,7 @@ export default {
 
   methods: {
     getComplianceType() {
-      this.complianceType = localStorage.getItem("compliance_type");
-      this.complianceType = localStorage.getItem("compliance_type");
+      this.complianceType = localStorage.getItem("compliance_code_title");
     },
   },
 

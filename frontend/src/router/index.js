@@ -56,7 +56,7 @@ const routes = [{
       },
       {
         path: 'company_codes/:id',
-        name: 'Companies',
+        name: 'Comliances',
         component: () => import('../components/admin/Compliances.vue'),
       },
       {

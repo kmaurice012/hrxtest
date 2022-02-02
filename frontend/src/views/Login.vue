@@ -31,9 +31,9 @@
             style="width: 40%; height: 20%; margin-left: 10%"
         /></span>
 
-        <h4>Login to your account:</h4>
+        <h4 class="font-weight-medium text-h5">Login to your account:</h4>
         <hr />
-        <form class="login mr-10" @submit.prevent="login">
+        <form class="login ml-4" @submit.prevent="login">
           <p style="text-align: center; color: red; font-weight: bold">
             {{ error }}
           </p>
@@ -44,45 +44,37 @@
           >
             <v-btn class="">Click to recover password.</v-btn>
           </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"
-                ><i class="fa fa-paper-plane"></i
-              ></span>
-              <input
+          <div class="form-group ml-4">
+              <!-- <input
                 type="text"
                 class="form-control"
                 name="userName"
                 id="userName"
                 placeholder="Username"
                 v-model="input.username"
-              />
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-              <input
-                type="password"
-                class="form-control"
+              /> -->
+              <v-text-field
+                box
+                placeholder="Username"
+                prepend-icon="mdi-shield-account"
+                v-model="input.username"
+              ></v-text-field>
+              <v-text-field
                 name="password"
-                id="password"
                 placeholder="Password"
-                v-model="input.password"
-              />
-            </div>
+                type="password"
+                prepend-icon="mdi-lock"
+              ></v-text-field>
           </div>
-          <div>
-            <div class="form-group mb-8 mr-12">
-              <v-btn color="red" class="mr-2" @click="validateLogin">
+            <div class="form-group ml-6 mr-12">
+              <v-btn block color="#dc4146" class="mr-2 white--text" @click="validateLogin">
                 Log In
               </v-btn>
             </div>
 
             <div class="form-group mb-8 mr-12">
-              <v-title class="text-center"> Forgot Password </v-title>
+              <v-title class=" ml-14 text-center red--text"> Forgot Password </v-title>
             </div>
-          </div>
         </form>
       </div>
 
