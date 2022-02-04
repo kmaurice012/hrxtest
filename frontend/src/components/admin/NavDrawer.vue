@@ -182,6 +182,12 @@ export default {
         icon: "mdi-home",
         color: "blue"
       },
+      {
+        name: "Reports",
+        route: "/admin/dashboard/admin-reports",
+        icon: "mdi-chart-box",
+        color: "green"
+      },
       // {
       //   name: "Compliances",
       //   route: "/dashboard/compliances",

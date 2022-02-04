@@ -108,7 +108,7 @@ export default {
     }
   },
   mounted() {
-    this.getComplianceDetails();
+    // this.getComplianceDetails();
   },
 };
 </script>

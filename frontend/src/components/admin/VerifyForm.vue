@@ -36,7 +36,7 @@
               >{{ userCompany.company }}
             </p>
             <p class="font-weight-medium">
-              <span class="font-weight-black">Complied Date: </span
+              <span class="font-weight-black">Submitted Date: </span
               >{{ userCompany.complied_date }}
             </p>
             <p class="font-weight-medium">

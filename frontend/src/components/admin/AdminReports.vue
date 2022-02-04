@@ -9,7 +9,7 @@
   </v-container>
 </template>
 <script>
-import BarChart from "./UserBar.vue";
+import BarChart from "./AdminBar.vue";
 export default {
   components: {
     BarChart,

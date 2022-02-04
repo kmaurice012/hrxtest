@@ -72,8 +72,18 @@ const routes = [{
       },
       {
         path: 'user-report',
-        name: 'Admin Reports',
+        name: 'Company Reports',
         component: () => import('../components/admin/UserReports.vue'),
+      },
+      {
+        path: 'admin-reports',
+        name: 'Admin Compliances Report',
+        component: () => import('../components/admin/ReportCompliances.vue'),
+      },
+      {
+        path: 'view-compliance-reports',
+        name: 'Admin Compliances Report',
+        component: () => import('../components/admin/AdminReports.vue'),
       },
     ]
   },
