@@ -15,14 +15,15 @@ class CreateOrgUsersTable extends Migration
     {
         Schema::create('org_users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ror_id');
             $table->string('username');
             $table->string('password');
-            $table->string('company_name');
-            $table->string('primary_color');
-            $table->string('secondary_color1');
-            $table->string('secondary_color1');
-            $table->string('secondary_color1');
+            $table->string('first_name');
+            $table->string('middle_name');
+            $table->string('last_name');
             $table->timestamps();
+
+            $table->foreign('ror_id')->references('id')->on('organizations');
         });
     }
 

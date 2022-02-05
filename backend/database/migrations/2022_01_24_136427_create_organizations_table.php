@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFrequencyTable extends Migration
+class CreateOrganizationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateFrequencyTable extends Migration
      */
     public function up()
     {
-        Schema::create('frequency', function (Blueprint $table) {
+        Schema::create('organizations', function (Blueprint $table) {
             $table->id();
-            $table->string('frequency');
-            $table->string('unit');
-            $table->unsignedbigInteger('qty');
+            $table->string('organization_name');
+            $table->string('primary_color');
+            $table->string('secondary_color1');
+            $table->string('secondary_color2');
+            $table->string('secondary_color3');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateFrequencyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('frequency');
+        Schema::dropIfExists('organizations');
     }
 }

@@ -22,8 +22,8 @@ class CreateBodyVerificationsTable extends Migration
             $table->date('action_date');
             $table->timestamps();
 
-            $table->foreign('id_user')->references('id_user')->on('ebr_users');
-            $table->foreign('cmp_id')->references('id')->on('user_codes_compliances');
+            $table->foreign('id_users')->references('id')->on('users');
+            $table->foreign('cmp_id')->references('id')->on('code_compliances');
         });
     }
 

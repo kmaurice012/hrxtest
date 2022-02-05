@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserCodesTable extends Migration
+class CreateUserRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateUserCodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_codes', function (Blueprint $table) {
+        Schema::create('user_roles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rus_id');
+            $table->unsignedBigInteger('rle_id');
             $table->date('start_date');
-            $table->date('end_date');
+            $table->date('end_date')->nullable();
             $table->timestamps();
 
-            
             $table->foreign('rus_id')->references('id')->on('org_users');
+            $table->foreign('rle_id')->references('id')->on('roles');
         });
     }
 
@@ -32,6 +33,6 @@ class CreateUserCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_codes');
+        Schema::dropIfExists('user_roles');
     }
 }

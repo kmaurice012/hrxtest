@@ -22,7 +22,7 @@ class CreateCodesTable extends Migration
             $table->string('color_code');
             $table->timestamps();
 
-            $table->foreign('fr_id')->references('id')->on('frequencies');
+            $table->foreign('fr_id')->references('id')->on('codes_frequency');
         });
     }
 

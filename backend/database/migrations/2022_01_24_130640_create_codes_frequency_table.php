@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserCodesTable extends Migration
+class CreateCodesFrequencyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateUserCodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_codes', function (Blueprint $table) {
+        Schema::create('codes_frequency', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rus_id');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->string('frequency');
+            $table->string('unit');
+            $table->unsignedbigInteger('qty');
             $table->timestamps();
-
-            
-            $table->foreign('rus_id')->references('id')->on('org_users');
         });
     }
 
@@ -32,6 +29,6 @@ class CreateUserCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_codes');
+        Schema::dropIfExists('codes_frequency');
     }
 }
