@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Documents extends Model
 {
     use HasFactory;
+
+    protected $table = 'documents';
+
+    public function code_compliances()
+    {
+        $this->belongsTo(CodeCompliances::class, 'cmp_id', 'id');
+    }
 }

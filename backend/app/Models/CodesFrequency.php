@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserCodes extends Model
+class CodesFrequency extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_codes';
+    protected $table = 'codes_frequency';
 
-    public function roles()
+    public function codes()
     {
-        $this->belongsTo(OrgUsers::class, 'rus_id', 'id');
+        $this->hasMany(Codes::class, 'fr_id', 'id');
     }
 }
