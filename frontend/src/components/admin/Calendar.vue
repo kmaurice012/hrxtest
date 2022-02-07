@@ -148,7 +148,7 @@
       selectedOpen: false,
       events: [],
       colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
-      names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
+      names: ['Listing Rules', 'Late Submission of Audited Annual Accounts', 'Trading hours', 'Annual financial statements', 'Listing Rules', 'Late Submission of Audited Annual Accounts', 'Trading hours', 'Annual financial statements'],
     }),
     mounted () {
       this.$refs.calendar.checkChange()

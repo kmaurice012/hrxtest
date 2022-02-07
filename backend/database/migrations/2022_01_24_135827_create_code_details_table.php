@@ -16,7 +16,7 @@ class CreateCodeDetailsTable extends Migration
         Schema::create('code_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cds_id');
-            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->text('details');
             $table->timestamps();
 

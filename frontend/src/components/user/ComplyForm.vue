@@ -70,7 +70,7 @@ export default {
         frequency: 'Daily',
         serial_number: 'Serial.03',
         title: "Listing Rules",
-        date: "2022-01-28",
+        date: "28-Jan-20222",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -79,7 +79,7 @@ export default {
         frequency: 'Quarterly',
         serial_number: 'Serial.02',
         title: "Late Submission of Audited Annual Accounts",
-        date: "2022-01-31",
+        date: "01-Jan-2022",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -88,7 +88,7 @@ export default {
         frequency: 'Bi-Annually',
         serial_number: 'Serial.01',
         title: "Annual financial statements",
-        date: "2022-02-12",
+        date: "12-Feb-2022",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -97,7 +97,7 @@ export default {
         frequency: 'Weekly',
         serial_number: 'Serial.04',
         title: "Trading hours",
-        date: "2022-03-28",
+        date: "28-Mar-2022",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
     ],

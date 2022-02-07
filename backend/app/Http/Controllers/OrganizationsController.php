@@ -14,7 +14,23 @@ class OrganizationsController extends Controller
      */
     public function index()
     {
-        //
+        try {
+
+            $models = Organizations::get()->loadMissing('org_codes', 'code');
+            $data = [
+                'success' => true,
+                'data' => $models
+            ];
+
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            logger($th);
+            $data = [
+                'success' => false,
+                'message' => 'An error occured while getting oragnizations, please try again'
+            ];
+            return response()->json($data, 500);
+        }
     }
 
     /**
@@ -34,9 +50,35 @@ class OrganizationsController extends Controller
      * @param  \App\Models\Organizations  $organizations
      * @return \Illuminate\Http\Response
      */
-    public function show(Organizations $organizations)
+    public function show($organization)
     {
-        //
+        try {
+
+            $model = Organizations::with('bonusType')->find($organization);
+            if ($model) {
+                $data = [
+                    'success' => true,
+                    'data' => $model
+                ];
+
+                return response()->json($data, 200);
+            } else {
+                $data = [
+                    'success' => false,
+                    'data' => $model,
+                    'message' => 'The organization was not found'
+                ];
+
+                return response()->json($data, 404);
+            }
+        } catch (\Throwable $th) {
+            logger($th);
+            $data = [
+                'success' => false,
+                'message' => 'An error occured while getting organization, please try again'
+            ];
+            return response()->json($data, 500);
+        }
     }
 
     /**

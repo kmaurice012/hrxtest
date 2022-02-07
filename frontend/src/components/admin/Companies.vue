@@ -1,10 +1,17 @@
 <template>
   <v-container>
-    <v-card-title primary-title class="text-h4 green--text">
+    <div class="d-flex">
+    <v-card-title primary-title class="text-h4 #303b4b--text" style="color: #303b4b;">
       List of Companies
-
-      <v-spacer></v-spacer>
     </v-card-title>
+    <v-spacer></v-spacer>
+      <v-btn color="green" class=" mt-6 white--text">
+        
+      Create Company
+      <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
+    </v-btn>
+    
+    </div>
     <v-data-table
       :headers="headers"
       :items="userCompliances"

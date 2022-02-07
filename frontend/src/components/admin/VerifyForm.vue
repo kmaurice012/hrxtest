@@ -1,14 +1,11 @@
 <template>
   <v-container>
-    <v-card-title primary-title class="text-h6 font-weight-bold mt-4 mb-6">
-      <span class="green--text"> Verify Compliance for: &nbsp;</span
-      >{{ compliancePeriod }}
-    </v-card-title>
+    <v-card-text class="green white--text text-h6">
+          <span class="text-uppercase">{{ userCompany.company }}</span> - {{ complianceDetails.title }} -  for the period {{ compliancePeriod }}</v-card-text
+        >
     <v-card class="ma-2">
       <v-row no-gutters>
-        <v-card-text class="green white--text text-h6">
-          Compliance Code Details</v-card-text
-        >
+        
       </v-row>
       <v-row class="ml-6">
         <v-col cols="4">
@@ -80,15 +77,15 @@
             large
             @click="upload"
           >
-            <v-icon right dark class="">mdi-clipboard-check</v-icon>
+            <v-icon right dark class="" >mdi-checkbox-marked-circle</v-icon>
             <v-text primary-title class="pa-2 text-subtitle-2"> Verify </v-text>
           </v-btn>
           <v-btn class="mr-2 pa-4" color="blue" dark large @click="upload">
-            <v-icon right dark class="">mdi-clipboard-check</v-icon>
+            <v-icon right dark class="">mdi-information</v-icon>
             <v-text primary-title class="pa-2 text-subtitle-2"> Request Info </v-text>
           </v-btn>
           <v-btn class="mr-2 pa-4" color="error" dark large @click="upload">
-            <v-icon right dark class="">mdi-clipboard-check</v-icon>
+            <v-icon right dark class="">mdi-close-octagon</v-icon>
             <v-text primary-title class="pa-2 text-subtitle-2"> Reject </v-text>
           </v-btn>
         </v-col>
@@ -122,7 +119,7 @@ export default {
         frequency: 'Daily',
         serial_number: 'Serial.03',
         title: "Listing Rules",
-        date: "2022-01-28",
+        date: "28-Jan-2022 17:00",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -131,7 +128,7 @@ export default {
         frequency: 'Quarterly',
         serial_number: 'Serial.02',
         title: "Late Submission of Audited Annual Accounts",
-        date: "2022-01-31",
+        date: "31-Jan-2022 15:00",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -140,7 +137,7 @@ export default {
         frequency: 'Bi-Annually',
         serial_number: 'Serial.01',
         title: "Annual financial statements",
-        date: "2022-02-12",
+        date: "12-Feb-2022 23:59",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -149,7 +146,7 @@ export default {
         frequency: 'Weekly',
         serial_number: 'Serial.04',
         title: "Trading hours",
-        date: "2022-03-28",
+        date: "28-Mar-2022 23:59",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
     ],
@@ -157,7 +154,7 @@ export default {
       {
         id: 1,
         company: "STL",
-        complied_date: "2022-01-02",
+        complied_date: "01-Jan-2022",
         file: "Listing Rules_STL.pdf",
         file_type: "mdi-file-pdf-box",
         status: "Complied",
@@ -166,7 +163,7 @@ export default {
       {
         id: 2,
         company: "Safaricom",
-        complied_date: "2022-01-12",
+        complied_date: "12-Jan-2022 23:59",
         file: "Listing Rules_Safaricom.docx",
         file_type: "mdi-file-word",
         status: "Rejected",
@@ -175,7 +172,7 @@ export default {
       {
         id: 3,
         company: "Equity",
-        complied_date: "2022-01-09",
+        complied_date: "09-Jan-2022 23:59",
         file: "Listing Rules_Equity.pdf",
         file_type: "mdi-file-pdf-box",
         status: "Complied",
@@ -220,7 +217,7 @@ export default {
       {
         id: 8,
         company: "UAP",
-        complied_date: "2022-01-05",
+        complied_date: "05-Jan-2022 23:59",
         file: "ListingRules_UAP.docx",
         file_type: "mdi-file-word",
         status: "Complied",

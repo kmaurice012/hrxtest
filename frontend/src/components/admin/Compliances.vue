@@ -15,7 +15,7 @@
               @click="viewCompliances(item.title, item.id)"
             >
               <!-- <v-icon large @click="submitCompliance(item.id)">mdi-file-plus</v-icon> -->
-              <p class="ma-4">View Compliance</p>
+              <p class="ma-2">View Compliance</p>
             </v-btn>
       </template>
       
@@ -52,6 +52,7 @@ export default {
         text: "date due",
         value: "date",
         class: "font-weight-bold green white--text text-uppercase",
+        width: "15%"
       },
       {
         text: "complied",
@@ -78,7 +79,7 @@ export default {
         title: "Listing Rules",
         complied: '25%',
         not_complied: '75%',
-        date: "2022-01-28",
+        date: "28-Jan-2022",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -89,7 +90,7 @@ export default {
         title: "Late Submission of Audited Annual Accounts",
         complied: '10%',
         not_complied: '90%',
-        date: "2022-01-31",
+        date: "31-Jan-2022",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -100,7 +101,7 @@ export default {
         title: "Annual financial statements",
         complied: '40%',
         not_complied: '60%',
-        date: "2022-02-12",
+        date: "12-Feb-2022",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -111,7 +112,7 @@ export default {
         title: "Trading hours",
         complied: '20%',
         not_complied: '80%',
-        date: "2022-03-28",
+        date: "28-Mar-2022",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
     ],

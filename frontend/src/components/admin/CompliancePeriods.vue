@@ -1,7 +1,10 @@
 <template>
   <v-container>
     <v-card-title primary-title class="text-h4 green--text">
-      {{ complianceTitle }} for the period between 2022-01 to 2022-12
+      <v-card-text class="green white--text text-h6">
+          <span class="text-uppercase">{{ companyName }}</span> - {{ complianceTitle }} -  for the period Jan-2022 to Feb-2022</v-card-text
+        >
+      <!-- {{ complianceTitle }} for the period between Jan-2022 to Feb-2022 -->
 
       <v-spacer></v-spacer>
       <v-tooltip left>
@@ -57,6 +60,8 @@
             large
             >{{ item.file_type }}</v-icon
           >
+
+        <v-icon right >mdi-information-outline</v-icon>
         </td>
       </template>
     </v-data-table>
@@ -103,9 +108,9 @@ export default {
     userCompliances: [
       {
         id: 1,
-        period: "2022-01",
-        due_date: "2022-02-01",
-        complied_date: "2022-01-25",
+        period: "Jan-2022",
+        due_date: "01-Jan-2022",
+        complied_date: "25-Jan-2022",
         file: "Listing Rules_Jan.pdf",
         file_type: "mdi-file-pdf-box",
         status: "Complied",
@@ -114,8 +119,8 @@ export default {
       {
         id: 2,
         period: "2022-02",
-        due_date: "2022-01-05",
-        complied_date: "2022-01-25",
+        due_date: "05-Jan-2022",
+        complied_date: "25-Jan-2022",
         file: "Listing Rules_Feb.docx",
         file_type: "mdi-file-word",
         status: "Rejected",
@@ -123,7 +128,7 @@ export default {
       },
       {
         id: 3,
-        period: "2022-01",
+        period: "Jan-2022",
         due_date: null,
         complied_date: null,
         file: null,
@@ -132,16 +137,16 @@ export default {
       },
       {
         id: 4,
-        period: "2022-01",
-        due_date: "2022-01-25",
-        complied_date: "2022-01-25",
+        period: "Jan-2022",
+        due_date: "25-Jan-2022",
+        complied_date: "25-Jan-2022",
         file: null,
         status: "Not Complied",
         color: "blue darken-3 font-weight-bold",
       },
       {
         id: 5,
-        period: "2022-01",
+        period: "Jan-2022",
         due_date: null,
         complied_date: null,
         file: null,
@@ -150,7 +155,7 @@ export default {
       },
       {
         id: 6,
-        period: "2022-01",
+        period: "Jan-2022",
         due_date: null,
         complied_date: null,
         file: null,
@@ -159,45 +164,45 @@ export default {
       },
       {
         id: 7,
-        period: "2022-01",
-        due_date: "2022-01-25",
-        complied_date: "2022-01-25",
+        period: "Jan-2022",
+        due_date: "25-Jan-2022",
+        complied_date: "25-Jan-2022",
         file: null,
         status: "Not Complied",
         color: "blue darken-3 font-weight-bold",
       },
       {
         id: 8,
-        period: "2022-01",
-        due_date: "2022-01-25",
-        complied_date: "2022-01-25",
+        period: "Jan-2022",
+        due_date: "25-Jan-2022",
+        complied_date: "25-Jan-2022",
         file: null,
         status: "Not Complied",
         color: "blue darken-3 font-weight-bold",
       },
       {
         id: 9,
-        period: "2022-01",
-        due_date: "2022-01-25",
-        complied_date: "2022-01-25",
+        period: "Jan-2022",
+        due_date: "25-Jan-2022",
+        complied_date: "25-Jan-2022",
         file: null,
         status: "Not Complied",
         color: "blue darken-3 font-weight-bold",
       },
       {
         id: 10,
-        period: "2022-01",
-        due_date: "2022-01-25",
-        complied_date: "2022-01-25",
+        period: "Jan-2022",
+        due_date: "25-Jan-2022",
+        complied_date: "25-Jan-2022",
         file: null,
         status: "Not Complied",
         color: "blue darken-3 font-weight-bold",
       },
       {
         id: 11,
-        period: "2022-01",
-        due_date: "2022-01-25",
-        complied_date: "2022-01-25",
+        period: "Jan-2022",
+        due_date: "25-Jan-2022",
+        complied_date: "25-Jan-2022",
         file: null,
         status: "Not Complied",
         color: "blue darken-3 font-weight-bold",
@@ -205,10 +210,12 @@ export default {
     ],
     complianceTitle: "",
     complianceId: "",
+    companyName: ""
   }),
   methods: {
     getComplianceType() {
       this.complianceTitle = localStorage.getItem("compliance_code_title");
+      this.companyName = localStorage.getItem("company_name");
     },
     // complyForm(period) {
     //   localStorage.setItem("compliance_period", period);
