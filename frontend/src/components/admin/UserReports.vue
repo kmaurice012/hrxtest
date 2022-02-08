@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card-title primary-title class="green text-h4 white--text">
-      Kenya Airways Ltd. - Listing Rules - Compliance Reports for the year 2022
+      Compliance Reports for the year 2022
     </v-card-title>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
@@ -16,19 +16,11 @@ export default {
   },
   data: () => ({
     chartdata: {
-     labels: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
+      labels: [
+      "Listing Rules",
+      "Late Submission of Audited Annual Accounts",
+      "Annual financial statements",
+      "Trading hours",
       ],
       datasets: [
         {
@@ -36,14 +28,14 @@ export default {
           borderWidth: 1,
           backgroundColor: "green",
           borderColor: "white",
-          data: [40,15,0,0,0,0,0,0,0,0,0,0],
+          data: [10,50,40,25],
         },
         {
           label: "Not Complied in %",
           borderWidth: 1,
           backgroundColor: "crimson",
           borderColor: "black",
-          data: [80,25,0,0,0,0,0,0,0,0,0,0],
+          data: [90,50,60.75],
         },
       ],
     },
