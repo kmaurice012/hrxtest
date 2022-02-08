@@ -13,6 +13,6 @@ class Documents extends Model
 
     public function code_compliances()
     {
-        $this->belongsTo(CodeCompliances::class, 'cmp_id', 'id');
+        return $this->belongsTo(CodeCompliances::class, 'cmp_id', 'id');
     }
 }

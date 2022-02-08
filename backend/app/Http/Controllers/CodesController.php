@@ -14,7 +14,23 @@ class CodesController extends Controller
      */
     public function index()
     {
-        //
+        try {
+
+            $models = Codes::get()->loadMissing('frequency', 'code_details', 'events', 'org_codes');
+            $data = [
+                'success' => true,
+                'data' => $models
+            ];
+
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            logger($th);
+            $data = [
+                'success' => false,
+                'message' => 'An error occured while getting codes, please try again'
+            ];
+            return response()->json($data, 500);
+        }
     }
 
     /**
@@ -34,9 +50,25 @@ class CodesController extends Controller
      * @param  \App\Models\Codes  $codes
      * @return \Illuminate\Http\Response
      */
-    public function show(Codes $codes)
+    public function show($codes)
     {
-        //
+        try {
+
+            $models = Codes::with('frequency', 'code_details',  'events', 'org_codes')->find($codes);
+            $data = [
+                'success' => true,
+                'data' => $models
+            ];
+
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            logger($th);
+            $data = [
+                'success' => false,
+                'message' => 'An error occured while getting codes, please try again'
+            ];
+            return response()->json($data, 500);
+        }
     }
 
     /**

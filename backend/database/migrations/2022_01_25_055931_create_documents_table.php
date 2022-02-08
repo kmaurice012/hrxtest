@@ -20,7 +20,7 @@ class CreateDocumentsTable extends Migration
             $table->unsignedBigInteger('archive');
             $table->string('file_type');
             $table->binary('content');
-            $table->string('file_size');
+            $table->binary('file_size'); 
             $table->timestamps();
 
             $table->foreign('cmp_id')->references('id')->on('code_compliances');

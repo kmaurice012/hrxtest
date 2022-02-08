@@ -13,10 +13,10 @@ class OrgCodes extends Model
 
     public function organization()
     {
-        $this->belongsTo(Organizations::class, 'ror_id', 'id');
+        return $this->belongsTo(Organizations::class, 'ror_id', 'id');
     }
     public function code()
     {
-        $this->belongsTo(Codes::class, 'cds_id', 'id');
+        return $this->belongsTo(Codes::class, 'cds_id', 'id');
     }
 }

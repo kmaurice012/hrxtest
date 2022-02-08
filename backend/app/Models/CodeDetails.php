@@ -13,6 +13,6 @@ class CodeDetails extends Model
 
     public function code()
     {
-        $this->belongsTo(Codes::class, 'cds_id', 'id');
+        return $this->belongsTo(Codes::class, 'cds_id', 'id');
     }
 }

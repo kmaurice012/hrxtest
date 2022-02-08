@@ -1,16 +1,18 @@
 <template>
   <v-container>
     <div class="d-flex">
-    <v-card-title primary-title class="text-h4 #303b4b--text" style="color: #303b4b;">
-      List of Companies
-    </v-card-title>
-    <v-spacer></v-spacer>
-      <v-btn color="green" class=" mt-6 white--text">
-        
-      Create Company
-      <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
-    </v-btn>
-    
+      <v-card-title
+        primary-title
+        class="text-h4 #303b4b--text"
+        style="color: #303b4b"
+      >
+        List of Companies
+      </v-card-title>
+      <v-spacer></v-spacer>
+      <v-btn color="green" class="mt-6 white--text" @click="createCompany()">
+        Create Company
+        <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
+      </v-btn>
     </div>
     <v-data-table
       :headers="headers"
@@ -53,37 +55,36 @@ export default {
     userCompliances: [
       {
         id: 1,
-        company: "STL",
+        company: "Kenya Airways Ltd.",
       },
       {
         id: 2,
-        company: "Safaricom",
+        company: "Safaricom Plc.",
       },
       {
         id: 3,
-        company: "Equity",
+        company: "Kenya Power & Lighting Plc.",
       },
       {
         id: 4,
-        company: "Cytonn",
+        company: "Nation Media Group Plc.",
       },
       {
         id: 5,
-        company: "MTN",
+        company: "Equity Group Holdings Plc.",
       },
       {
         id: 6,
-        company: "Airtel",
+        company: "Diamond Trust Bank Kenya Ltd",
       },
       {
         id: 7,
-        company: "Standard Group",
+        company: "Stanbic Holdings Ltd.",
       },
       {
         id: 8,
-        company: "UAP",
+        company: "Sasini Plc.",
       },
-      
     ],
     complianceType: "",
     complianceId: "",
@@ -107,13 +108,16 @@ export default {
     // openReports() {
     //   this.$router.push(`/admin/dashboard/user-report`);
     // }
-    viewCompanyCodes(id,company_name) {
+    viewCompanyCodes(id, company_name) {
       localStorage.setItem("company_id", id);
       localStorage.setItem("company_name", company_name);
       this.$router.push(`/admin/dashboard/company_codes/` + id);
-
-    }
+    },
+    createCompany() {
+      this.$router.push(`/admin/dashboard/companies/create`);
+    },
   },
+
   mounted() {
     // this.getComplianceDetails();
   },

@@ -1,21 +1,31 @@
 <template>
   <v-container>
-    <v-card-title primary-title class="text-h4 green--text">
-      <v-card-text class="green white--text text-h6">
-          <span class="text-uppercase">{{ companyName }}</span> - {{ complianceTitle }} -  for the period Jan-2022 to Feb-2022</v-card-text
-        >
+    <div class="d-flex">
+    <v-card-title primary-title class="green text-h4 white--text">
+        <span class="text-uppercase">{{ companyName }}</span> -
+        {{ complianceTitle }} </v-card-title>
+        <v-card-title class="green text-h6 white--text"> Jan-2022 to Feb-2022
       <!-- {{ complianceTitle }} for the period between Jan-2022 to Feb-2022 -->
 
+    </v-card-title>
       <v-spacer></v-spacer>
       <v-tooltip left>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn v-bind="attrs" v-on="on" class="cursor-pointer" large icon color="red">
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+            class="cursor-pointer"
+            large
+            icon
+            color="red"
+          >
             <v-icon @click="openReports()"> mdi-file-chart</v-icon></v-btn
           >
         </template>
         <span>View Reports</span>
       </v-tooltip>
-    </v-card-title>
+      </div>
+      <br>
     <v-data-table
       :headers="headers"
       :items="userCompliances"
@@ -24,7 +34,7 @@
       show-expand
       class="elevation-1"
     >
-    <template v-slot:[`item.status`]="{ item }">
+      <template v-slot:[`item.status`]="{ item }">
         <!-- <v-btn
           v-bind="attrs"
           v-on="on"
@@ -33,19 +43,20 @@
             item.status === 'Not Complied' ? verifyForm(item) : null
           "
         > -->
-        <v-card-text  :class="item.color + ' white--text pa-2 ma-4'">{{ item.status }}
-          
+        <v-card-text :class="item.color + ' white--text pa-2 ma-4'"
+          >{{ item.status }}
         </v-card-text>
-          <!-- <p class="ma-4">{{ item.status }}</p>
+        <!-- <p class="ma-4">{{ item.status }}</p>
         </v-btn> -->
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-btn v-if="item.status === 'Not Complied'"
+        <v-btn
+          v-if="item.status === 'Not Complied' || item.status === 'Complied Late'"
           v-bind="attrs"
           v-on="on"
           color="red darken-3 white--text"
           @click="
-            item.status === 'Not Complied' ? verifyForm(item.period) : null
+            item.status === 'Not Complied' || item.status === 'Complied Late' ? verifyForm(item.period) : null
           "
         >
           <p class="ma-4 font-weight-black">Verify</p>
@@ -53,15 +64,19 @@
       </template>
       <template v-slot:expanded-item="{ headers, item }">
         <td :colspan="headers.length" class="">
-          {{ item.file
-          }}<v-icon
-            class="mt-2 mb-2"
-            v-bind:color="item.file_type == 'mdi-file-pdf-box' ? 'red' : 'blue'"
-            large
-            >{{ item.file_type }}</v-icon
+          {{ item.file }}
+          <v-btn icon color="success" @click="viewFile()"
+            ><v-icon
+              class="mt-2 mb-2"
+              v-bind:color="
+                item.file_type == 'mdi-file-pdf-box' ? 'red' : 'blue'
+              "
+              large
+              >{{ item.file_type }}</v-icon
+            ></v-btn
           >
 
-        <v-icon right >mdi-information-outline</v-icon>
+          <v-icon right>mdi-information-outline</v-icon>
         </td>
       </template>
     </v-data-table>
@@ -109,19 +124,19 @@ export default {
       {
         id: 1,
         period: "Jan-2022",
-        due_date: "01-Jan-2022",
-        complied_date: "25-Jan-2022",
-        file: "Listing Rules_Jan.pdf",
+        due_date: "04-Jan-2022 16:00",
+        complied_date: "04-Jan-2022 15:01",
+        file: "Trading_hours_Jan.pdf",
         file_type: "mdi-file-pdf-box",
         status: "Complied",
         color: "green darken-3 font-weight-bold",
       },
       {
         id: 2,
-        period: "2022-02",
-        due_date: "05-Jan-2022",
-        complied_date: "25-Jan-2022",
-        file: "Listing Rules_Feb.docx",
+        period: "Jan-2022",
+        due_date: "11-Jan-2022 18:00",
+        complied_date: "25-Jan-2022 17:25",
+        file: "Listing Trading_hours_Jan.docx",
         file_type: "mdi-file-word",
         status: "Rejected",
         color: "red darken-3 font-weight-bold",
@@ -129,25 +144,27 @@ export default {
       {
         id: 3,
         period: "Jan-2022",
-        due_date: null,
+        due_date: "18-Jan-2022 17:30",
         complied_date: null,
-        file: null,
+        file: "Listing Trading_hours_Jan.docx",
+        file_type: "mdi-file-word",
         status: "Not Complied",
         color: "blue darken-3 font-weight-bold",
       },
       {
         id: 4,
         period: "Jan-2022",
-        due_date: "25-Jan-2022",
-        complied_date: "25-Jan-2022",
-        file: null,
-        status: "Not Complied",
-        color: "blue darken-3 font-weight-bold",
+        due_date: "25-Jan-2022 18:00",
+        complied_date: "26-Jan-2022 15:25",
+        file: "Listing Trading_hours_Jan.docx",
+        file_type: "mdi-file-word",
+        status: "Complied Late",
+        color: "yellow darken-3 font-weight-bold",
       },
       {
         id: 5,
-        period: "Jan-2022",
-        due_date: null,
+        period: "Feb-2022",
+        due_date: "01-Feb-2022 18:07",
         complied_date: null,
         file: null,
         status: "Not Complied",
@@ -155,62 +172,63 @@ export default {
       },
       {
         id: 6,
-        period: "Jan-2022",
-        due_date: null,
-        complied_date: null,
-        file: null,
+        period: "Feb-2022",
+        due_date: "08-Feb-2022 17:00",
+        complied_date: "08-Jan-2022 16:25",
+        file: "Listing Trading_hours_Jan.docx",
+        file_type: "mdi-file-word",
         status: "Not Complied",
         color: "blue darken-3 font-weight-bold",
       },
-      {
-        id: 7,
-        period: "Jan-2022",
-        due_date: "25-Jan-2022",
-        complied_date: "25-Jan-2022",
-        file: null,
-        status: "Not Complied",
-        color: "blue darken-3 font-weight-bold",
-      },
-      {
-        id: 8,
-        period: "Jan-2022",
-        due_date: "25-Jan-2022",
-        complied_date: "25-Jan-2022",
-        file: null,
-        status: "Not Complied",
-        color: "blue darken-3 font-weight-bold",
-      },
-      {
-        id: 9,
-        period: "Jan-2022",
-        due_date: "25-Jan-2022",
-        complied_date: "25-Jan-2022",
-        file: null,
-        status: "Not Complied",
-        color: "blue darken-3 font-weight-bold",
-      },
-      {
-        id: 10,
-        period: "Jan-2022",
-        due_date: "25-Jan-2022",
-        complied_date: "25-Jan-2022",
-        file: null,
-        status: "Not Complied",
-        color: "blue darken-3 font-weight-bold",
-      },
-      {
-        id: 11,
-        period: "Jan-2022",
-        due_date: "25-Jan-2022",
-        complied_date: "25-Jan-2022",
-        file: null,
-        status: "Not Complied",
-        color: "blue darken-3 font-weight-bold",
-      },
+      // {
+      //   id: 7,
+      //   period: "Jan-2022",
+      //   due_date: "25-Jan-2022",
+      //   complied_date: "25-Jan-2022",
+      //   file: null,
+      //   status: "Not Complied",
+      //   color: "blue darken-3 font-weight-bold",
+      // },
+      // {
+      //   id: 8,
+      //   period: "Jan-2022",
+      //   due_date: "25-Jan-2022",
+      //   complied_date: "25-Jan-2022",
+      //   file: null,
+      //   status: "Not Complied",
+      //   color: "blue darken-3 font-weight-bold",
+      // },
+      // {
+      //   id: 9,
+      //   period: "Jan-2022",
+      //   due_date: "25-Jan-2022",
+      //   complied_date: "25-Jan-2022",
+      //   file: null,
+      //   status: "Not Complied",
+      //   color: "blue darken-3 font-weight-bold",
+      // },
+      // {
+      //   id: 10,
+      //   period: "Jan-2022",
+      //   due_date: "25-Jan-2022",
+      //   complied_date: "25-Jan-2022",
+      //   file: null,
+      //   status: "Not Complied",
+      //   color: "blue darken-3 font-weight-bold",
+      // },
+      // {
+      //   id: 11,
+      //   period: "Jan-2022",
+      //   due_date: "25-Jan-2022",
+      //   complied_date: "25-Jan-2022",
+      //   file: null,
+      //   status: "Not Complied",
+      //   color: "blue darken-3 font-weight-bold",
+      // },
     ],
     complianceTitle: "",
     complianceId: "",
-    companyName: ""
+    companyName: "",
   }),
   methods: {
     getComplianceType() {
@@ -227,8 +245,14 @@ export default {
       this.$router.push(`/admin/dashboard/user-report`);
     },
     verifyForm(period) {
-      this.$router.push(`/admin/dashboard/verify-compliance/` + localStorage.getItem("compliance_id_form"));
-      localStorage.setItem("compliance_period", period)
+      this.$router.push(
+        `/admin/dashboard/verify-compliance/` +
+          localStorage.getItem("compliance_id_form")
+      );
+      localStorage.setItem("compliance_period", period);
+    },
+    viewFile() {
+      this.$router.push(`/admin/dashboard/view-file`);
     },
   },
   mounted() {

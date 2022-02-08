@@ -13,6 +13,6 @@ class UserCodes extends Model
 
     public function roles()
     {
-        $this->belongsTo(OrgUsers::class, 'rus_id', 'id');
+        return $this->belongsTo(OrgUsers::class, 'rus_id', 'id');
     }
 }

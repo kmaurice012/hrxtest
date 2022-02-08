@@ -13,11 +13,11 @@ class UserRoles extends Model
 
     public function roles()
     {
-        $this->belongsTo(Roles::class, 'rle_id', 'id');
+        return $this->belongsTo(Roles::class, 'rle_id', 'id');
     }
 
     public function org_users()
     {
-        $this->belongsTo(OrgUsers::class, 'rus_id', 'id');
+        return $this->belongsTo(OrgUsers::class, 'rus_id', 'id');
     }
 }

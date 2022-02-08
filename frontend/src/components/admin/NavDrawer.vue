@@ -189,15 +189,21 @@ export default {
         icon: "mdi-home",
         color: "blue",
       },
+      // {
+      //   name: "Company Compliances",
+      //   route: "/admin/dashboard/company-compliance",
+      //   icon: "mdi-clipboard-check",
+      //   color: "orange",
+      // },
       {
         name: "Manage Codes",
-        route: "/admin/dashboard/list-codes",
+        route: "/admin/dashboard/codes",
         icon: "mdi-clipboard-list",
         color: "red",
       },
       {
         name: "Manage Companies",
-        route: "/admin/dashboard/list-companies",
+        route: "/admin/dashboard/companies",
         icon: "mdi-office-building",
         color: "indigo",
       },

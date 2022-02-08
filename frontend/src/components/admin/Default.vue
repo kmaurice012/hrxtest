@@ -4,7 +4,7 @@
       <v-card width="100%" class="ma-4">
         <v-tabs color="primary" slider-color="primary">
           <v-tab ripple class="text-subtitle-1 font-weight-bold"> Calendar View </v-tab>
-          <v-tab ripple class="text-subtitle-1 font-weight-bold"> List View </v-tab>
+          <v-tab ripple class="text-subtitle-1 font-weight-bold"> All Reports </v-tab>
           <v-tab-item>
             <Calendar />
           </v-tab-item>
@@ -20,7 +20,7 @@
 
 <script>
 import Calendar from "./Calendar.vue";
-import CompliancesList from "./Compliances.vue";
+import CompliancesList from "../admin/UserReports.vue";
 
 export default {
   name: "Default",

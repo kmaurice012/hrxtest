@@ -13,26 +13,26 @@ class Codes extends Model
 
     public function frequency()
     {
-        $this->belongsTo(CodesFrequency::class, 'fr_id', 'id');
+        return $this->belongsTo(CodesFrequency::class, 'fr_id', 'id');
     }
 
     public function code_details()
     {
-        $this->hasMany(CodeDetails::class, 'cds_id', 'id');
+        return $this->hasMany(CodeDetails::class, 'cds_id', 'id');
     }
 
     public function org_codes()
     {
-        $this->hasMany(OrgCodes::class, 'cds_id', 'id');
+        return $this->hasMany(OrgCodes::class, 'cds_id', 'id');
     }
 
     public function events()
     {
-        $this->hasMany(Events::class, 'cds_id', 'id');
+        return $this->hasMany(Events::class, 'cds_id', 'id');
     }
 
     public function roles()
     {
-        $this->hasMany(UserRoles::class, 'cds_id', 'id');
+        return $this->hasMany(UserRoles::class, 'cds_id', 'id');
     }
 }

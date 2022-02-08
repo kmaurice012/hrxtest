@@ -52,15 +52,30 @@ const routes = [{
         name: 'Dashboard',
         component: () => import('../components/admin/Default.vue'),
       },
+      // {
+      //   path: 'company-compliance',
+      //   name: 'Companies Compliances',
+      //   component: () => import('../components/admin/ComplianceCodes.vue'),
+      // },
       {
-        path: 'list-codes',
+        path: 'codes',
         name: 'Codes',
-        component: () => import('../components/admin//Codes.vue'),
+        component: () => import('../components/admin/Codes.vue'),
       },
       {
-        path: 'list-companies',
+        path: 'companies',
         name: 'Companies',
         component: () => import('../components/admin/Companies.vue'),
+      },
+      {
+        path: 'companies/create',
+        name: 'Create Company',
+        component: () => import('../components/admin/CreateCompany.vue'),
+      },
+      {
+        path: 'codes/create',
+        name: 'Create Code',
+        component: () => import('../components/admin/CreateCode.vue'),
       },
       {
         path: 'company_codes/:id',
@@ -72,11 +87,20 @@ const routes = [{
         name: 'Compliances Period',
         component: () => import('../components/admin/CompliancePeriods.vue'),
       },
-
+      {
+        path: 'view-file',
+        name: 'View File',
+        component: () => import('../components/admin/ViewPDF.vue'),
+      },
       {
         path: 'verify-compliance/:id',
         name: 'Admin Verify Compliance',
         component: () => import('../components/admin/VerifyForm.vue'),
+      },
+      {
+        path: 'request-info-conversation',
+        name: 'Request for More Info Page',
+        component: () => import('../components/admin/RFIConversation.vue'),
       },
       {
         path: 'user-report',
@@ -85,7 +109,7 @@ const routes = [{
       },
       {
         path: 'admin-reports',
-        name: 'Admin Compliances Report',
+        name: 'Compliances Report',
         component: () => import('../components/admin/ReportCompliances.vue'),
       },
       {

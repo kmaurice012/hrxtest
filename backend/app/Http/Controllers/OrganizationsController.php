@@ -16,7 +16,7 @@ class OrganizationsController extends Controller
     {
         try {
 
-            $models = Organizations::get()->loadMissing('org_codes', 'code');
+            $models = Organizations::get()->loadMissing('org_codes', 'org_users');
             $data = [
                 'success' => true,
                 'data' => $models
@@ -27,7 +27,7 @@ class OrganizationsController extends Controller
             logger($th);
             $data = [
                 'success' => false,
-                'message' => 'An error occured while getting oragnizations, please try again'
+                'message' => 'An error occured while getting organizations, please try again'
             ];
             return response()->json($data, 500);
         }
@@ -41,7 +41,7 @@ class OrganizationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

@@ -13,11 +13,11 @@ class Organizations extends Model
 
     public function org_codes()
     {
-        $this->hasMany(OrgCodes::class, 'ror_id', 'id');
+        return $this->hasMany(OrgCodes::class, 'ror_id', 'id');
     }
 
     public function org_users()
     {
-        $this->hasMany(OrgUsers::class, 'ror_id', 'id');
+        return $this->hasMany(OrgUsers::class, 'ror_id', 'id');
     }
 }

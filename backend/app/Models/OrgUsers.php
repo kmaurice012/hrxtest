@@ -14,18 +14,28 @@ class OrgUsers extends Authenticatable
 
     protected $table = 'org_users';
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     public function organization()
     {
-        $this->belongsTo(Organizations::class, 'ror_id', 'id');
+        return $this->belongsTo(Organizations::class, 'ror_id', 'id');
     }
 
     public function user_roles()
     {
-        $this->hasMany(UserRoles::class, 'rus_id', 'id');
+        return $this->hasMany(UserRoles::class, 'rus_id', 'id');
     }
 
     public function user_codes()
     {
-        $this->hasMany(UserCodes::class, 'rus_id', 'id');
+        return $this->hasMany(UserCodes::class, 'rus_id', 'id');
     }
 }

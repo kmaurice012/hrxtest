@@ -16,11 +16,11 @@ class CompliancesSeeder extends Seeder
     {
         CodeCompliances::insert([
             [
-                'rcd_id' => '',
-                'rev_id' => '',
-                'reviewed_date' => '',
-                'from_date' => '',
-                'end_date' => '',
+                'rcd_id' => 1,
+                'rev_id' => 1,
+                'reviewed_date' => '2022-02-08 17:00',
+                'from_date' => '2022-02-08',
+                'end_date' => '2025-02-10',
             ]
         ]);
     }

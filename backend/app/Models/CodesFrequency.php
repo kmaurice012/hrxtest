@@ -13,6 +13,6 @@ class CodesFrequency extends Model
 
     public function codes()
     {
-        $this->hasMany(Codes::class, 'fr_id', 'id');
+        return $this->hasMany(Codes::class, 'fr_id', 'id');
     }
 }

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card-title primary-title class="green text-h4 white--text">
-      {{ complianceType }} Reports for the year 2022
+      Kenya Airways Ltd. - Listing Rules - Compliance Reports for the year 2022
     </v-card-title>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
@@ -16,7 +16,7 @@ export default {
   },
   data: () => ({
     chartdata: {
-      labels: [
+     labels: [
         "Jan",
         "Feb",
         "Mar",

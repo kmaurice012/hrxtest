@@ -13,11 +13,11 @@ class BodyVerifications extends Model
 
     public function code_compliances()
     {
-        $this->belongsTo(CodeCompliances::class, 'cmp_id', 'id');
+        return $this->belongsTo(CodeCompliances::class, 'cmp_id', 'id');
     }
 
     public function user()
     {
-        $this->belongsTo(User::class, 'id_users', 'id');
+        return $this->belongsTo(User::class, 'id_users', 'id');
     }
 }

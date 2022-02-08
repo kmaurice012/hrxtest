@@ -55,7 +55,7 @@
                     userCompany.file_type == 'mdi-file-pdf-box' ? 'red' : 'blue'
                   "
                   large
-                  @onlick="test()"
+                  @click="viewFile()"
                   >{{ userCompany.file_type }}</v-icon
                 ></v-btn
                   >
@@ -80,7 +80,7 @@
             <v-icon right dark class="" >mdi-checkbox-marked-circle</v-icon>
             <v-text primary-title class="pa-2 text-subtitle-2"> Verify </v-text>
           </v-btn>
-          <v-btn class="mr-2 pa-4" color="blue" dark large @click="upload">
+          <v-btn class="mr-2 pa-4" color="blue" dark large @click="requestInfo()">
             <v-icon right dark class="">mdi-information</v-icon>
             <v-text primary-title class="pa-2 text-subtitle-2"> Request Info </v-text>
           </v-btn>
@@ -153,52 +153,52 @@ export default {
     userCompliances: [
       {
         id: 1,
-        company: "STL",
-        complied_date: "01-Jan-2022",
-        file: "Listing Rules_STL.pdf",
+        company: "Kenya Airways Ltd.",
+        complied_date: "01-Jan-2022 12:40",
+        file: "Listing Rules_KQ.pdf",
         file_type: "mdi-file-pdf-box",
         status: "Complied",
         color: "green darken-3 font-weight-bold",
       },
       {
         id: 2,
-        company: "Safaricom",
+        company: "Safaricom Plc.",
         complied_date: "12-Jan-2022 23:59",
-        file: "Listing Rules_Safaricom.docx",
+        file: "Listing_Rules_Safaricom.docx",
         file_type: "mdi-file-word",
         status: "Rejected",
         color: "red darken-3 font-weight-bold",
       },
       {
         id: 3,
-        company: "Equity",
+        company: "Kenya Power & Lighting Plc.",
         complied_date: "09-Jan-2022 23:59",
-        file: "Listing Rules_Equity.pdf",
+        file: "Listing Rules_Kenya_Power.pdf",
         file_type: "mdi-file-pdf-box",
         status: "Complied",
         color: "green darken-3 font-weight-bold",
       },
       {
         id: 4,
-        company: "Cytonn",
-        complied_date: null,
-        file: "Listing Rules_Cytonn.docx",
+        company: "Nation Media Group Plc.",
+        complied_date: '10-Feb-2022 13:25',
+        file: "Listing Rules_Nation.docx",
         file_type: "mdi-file-word",
-        status: "Not Complied",
+        status: "Complied Late",
         color: "blue darken-3 font-weight-bold",
       },
       {
         id: 5,
-        company: "MTN",
+        company: "Equity Group Holdings Plc.",
         complied_date: null,
-        file: "Listing Rules_MTN.docx",
+        file: null,
         file_type: "mdi-file-word",
         status: "Not Complied",
         color: "blue darken-3 font-weight-bold",
       },
       {
         id: 6,
-        company: "Airtel",
+        company: "Diamond Trust Bank Kenya Ltd",
         complied_date: null,
         file: null,
         file_type: null,
@@ -207,18 +207,18 @@ export default {
       },
       {
         id: 7,
-        company: "Standard Group",
+        company: "Stanbic Holdings Ltd.",
         complied_date: null,
-        file: "Listing Rules_Standard.docx",
+        file: null,
         file_type: "mdi-file-word",
         status: "Not Complied",
         color: "blue darken-3 font-weight-bold",
       },
       {
         id: 8,
-        company: "UAP",
+        company: "Sasini Plc.",
         complied_date: "05-Jan-2022 23:59",
-        file: "ListingRules_UAP.docx",
+        file: null,
         file_type: "mdi-file-word",
         status: "Complied",
         color: "green darken-3 font-weight-bold",
@@ -278,6 +278,12 @@ export default {
           element.id == localStorage.getItem("company_id")
       );
     },
+    viewFile() {
+      this.$router.push(`/admin/dashboard/view-file`);
+    },
+    requestInfo() {
+      this.$router.push(`/admin/dashboard/request-info-conversation`);
+    }
   },
   mounted() {
     this.getComplianceDetails();

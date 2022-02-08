@@ -13,11 +13,11 @@ class Events extends Model
 
     public function code()
     {
-        $this->belongsTo(Codes::class, 'cds_id', 'id');
+        return $this->belongsTo(Codes::class, 'cds_id', 'id');
     }
 
     public function code_compliances()
     {
-        $this->hasMany(CodeCompliances::class, 'rev_id', 'id');
+        return $this->hasMany(CodeCompliances::class, 'rev_id', 'id');
     }
 }

@@ -13,21 +13,21 @@ class CodeCompliances extends Model
 
     public function events()
     {
-        $this->belongsTo(Events::class, 'rev_id', 'id');
+        return $this->belongsTo(Events::class, 'rev_id', 'id');
     }
 
     public function user_codes()
     {
-        $this->belongsTo(UserCodes::class, 'rcd_id', 'id');
+        return $this->belongsTo(UserCodes::class, 'rcd_id', 'id');
     }
 
     public function documents()
     {
-        $this->hasMany(Documents::class, 'cmp_id', 'id');
+        return $this->hasMany(Documents::class, 'cmp_id', 'id');
     }
 
     public function body_verifications()
     {
-        $this->hasMany(BodyVerifications::class, 'cmp_id', 'id');
+        return $this->hasMany(BodyVerifications::class, 'cmp_id', 'id');
     }
 }

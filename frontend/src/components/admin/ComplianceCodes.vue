@@ -5,24 +5,24 @@
         List of Codes
       </v-card-title>
       <v-spacer></v-spacer>
-      <v-btn color="green" class="mt-6 white--text" @click="createCode()">
+      <!-- <v-btn color="green" class="mt-6 white--text" @click="createCode()">
         Create Code
         <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
-      </v-btn>
+      </v-btn> -->
     </div>
     <v-data-table :headers="headers" :items="compliances" :loading="loading">
-      <!-- <template v-slot:[`item.actions`]="{ item }">
+      <template v-slot:[`item.actions`]="{ item }">
         <v-btn
           v-bind="attrs"
           v-on="on"
           block
           color="red darken-3 white--text font-weight-bold mt-2"
           @click="viewCompliances(item.title, item.id)"
-        > -->
+        >
           <!-- <v-icon large @click="submitCompliance(item.id)">mdi-file-plus</v-icon> -->
-          <!-- <p class="ma-2">View Compliance</p>
+          <p class="ma-2">View Compliance</p>
         </v-btn>
-      </template> -->
+      </template>
     </v-data-table>
   </v-card>
 </template>
@@ -66,11 +66,11 @@ export default {
         value: "not_complied",
         class: "font-weight-bold green white--text text-uppercase",
       },
-      // {
-      //   text: "actions",
-      //   value: "actions",
-      //   class: "font-weight-bold green white--text text-uppercase",
-      // },
+      {
+        text: "actions",
+        value: "actions",
+        class: "font-weight-bold green white--text text-uppercase",
+      },
     ],
     compliances: [
       {
