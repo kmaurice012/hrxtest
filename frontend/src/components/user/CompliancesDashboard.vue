@@ -1,23 +1,18 @@
 <template>
   <v-card class="ma-4">
-    <v-card-title class="green font-weight -bold text-h6 white--text">
-      Safaricom Code list
-    </v-card-title>
-    <br>
-    <v-spacer></v-spacer>
     <v-data-table :headers="headers" :items="compliances" :loading="loading">
-      <template v-slot:[`item.actions`]="{ item }">
+      <!-- <template v-slot:[`item.actions`]="{ item }">
             <v-btn
               v-bind="attrs"
               v-on="on"
               block
               color="red darken-3 white--text font-weight-bold mt-2"
               @click="showCompliance(item.title, item.id)"
-            >
+            > -->
               <!-- <v-icon large @click="submitCompliance(item.id)">mdi-file-plus</v-icon> -->
-              <p class="ma-4">View Compliance</p>
+              <!-- <p class="ma-4">View Compliance</p>
             </v-btn>
-      </template>
+      </template> -->
       
     </v-data-table>
 
@@ -54,11 +49,11 @@ export default {
         class: "font-weight-bold green white--text text-uppercase",
         width: "15%"
       },
-      {
-        text: "actions",
-        value: "actions",
-        class: "font-weight-bold green white--text text-uppercase",
-      },
+      // {
+      //   text: "actions",
+      //   value: "actions",
+      //   class: "font-weight-bold green white--text text-uppercase",
+      // },
     ],
     compliances: [
       {
@@ -69,7 +64,7 @@ export default {
         title: "Listing Rules",
         complied: '25%',
         not_complied: '75%',
-        date: "28-Jan-2022",
+        date: "28-Jan-2022 17:00",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -80,7 +75,7 @@ export default {
         title: "Late Submission of Audited Annual Accounts",
         complied: '10%',
         not_complied: '90%',
-        date: "31-Jan-2022",
+        date: "31-Jan-2022 15:30",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -91,7 +86,7 @@ export default {
         title: "Annual financial statements",
         complied: '40%',
         not_complied: '60%',
-        date: "12-Feb-2022",
+        date: "12-Feb-2022 23:59",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
       {
@@ -102,7 +97,7 @@ export default {
         title: "Trading hours",
         complied: '20%',
         not_complied: '80%',
-        date: "28-Mar-2022",
+        date: "28-Mar-2022 12:00",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
       },
     ],

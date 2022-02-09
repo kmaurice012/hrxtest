@@ -4,7 +4,7 @@
       <v-app-bar
         app
         clipped-left
-        style="background-color: #e33333; color: #fff"
+        style="background-color: green; color: white"
         height="45px"
         elevation="4"
       >
@@ -19,8 +19,8 @@
               font-weight-bold
             >
               <v-list-item-title class="ms-6"></v-list-item-title>
-              <v-icon>mdi-chevron-down</v-icon>
-              STL Vision
+              <!-- <v-icon>mdi-chevron-down</v-icon> -->
+              Safaricom
             </v-btn>
             <v-list-item-title></v-list-item-title>
           </template>
@@ -182,18 +182,18 @@ export default {
         icon: "mdi-home",
         color: "blue"
       },
-      // {
-      //   name: "Compliances",
-      //   route: "/dashboard/compliances",
-      //   icon: "mdi-clipboard-text",
-      //   color: "red"
-      // },
-      // {
-      //   name: "Submit Compliance",
-      //   route: "/dashboard/comply",
-      //   icon: "mdi-file-plus",
-      //   color: "brown",
-      // },
+      {
+        name: "Company Codes",
+        route: "/user/dashboard/codes",
+        icon: "mdi-clipboard-text",
+        color: "red"
+      },
+      {
+        name: "Reports",
+        route: "/user/dashboard/user-reports",
+        icon: "mdi-chart-box",
+        color: "green",
+      },
     ],
     companies: [
       {name: "STL Vision",},

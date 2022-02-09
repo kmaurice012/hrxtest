@@ -27,6 +27,11 @@ const routes = [{
         component: () => import('../components/user/Default.vue'),
       },
       {
+        path: 'codes',
+        name: 'User Compliances',
+        component: () => import('../components/user/CompliancesListView.vue'),
+      },
+      {
         path: 'compliances',
         name: 'User Compliances',
         component: () => import('../components/user/CompliancesList.vue'),
@@ -37,7 +42,7 @@ const routes = [{
         component: () => import('../components/user/ComplyForm.vue'),
       },
       {
-        path: 'user-report',
+        path: 'user-reports',
         name: 'User Reports',
         component: () => import('../components/user/UserReports.vue'),
       },
