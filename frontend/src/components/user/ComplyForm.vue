@@ -33,9 +33,9 @@
             label="File input"
             @change="selectFile"
           ></v-file-input>
-          <v-btn class="pa-4" color="success" dark small @click="upload">
-            <v-text primary-title class=" pa-2 text-subtitle-2"> Upload </v-text>
-            <v-icon right dark  class="ml-2">mdi-cloud-upload</v-icon>
+          <v-btn class="pa-5" color="success" dark @click="upload">
+            <v-text primary-title class=" pa-2 text-subtitle-2"> Comply </v-text>
+            <v-icon right dark  class="ml-2">mdi-file-check</v-icon>
           </v-btn>
         </v-col>
         <v-col cols="6" class="mb-10">

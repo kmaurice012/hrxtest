@@ -25,6 +25,10 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route::apiResource('organization', 'OrganizationsController');
 });
 
+Route::get('test', function(){
+    return now();
+});
+
 
 Route::apiResource('organizations', 'OrganizationsController');
 Route::apiResource('codes', 'CodesController');

@@ -17,8 +17,8 @@ class CreateUserRolesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('rus_id');
             $table->unsignedBigInteger('rle_id');
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->timestamp('start_date');
+            $table->timestamp('end_date')->nullable();
             $table->timestamps();
 
             $table->foreign('rus_id')->references('id')->on('org_users');

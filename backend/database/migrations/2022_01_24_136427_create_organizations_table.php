@@ -16,10 +16,10 @@ class CreateOrganizationsTable extends Migration
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
             $table->string('organization_name');
-            $table->string('primary_color');
-            $table->string('secondary_color1');
-            $table->string('secondary_color2');
-            $table->string('secondary_color3');
+            $table->string('primary_color')->nullable();
+            $table->string('secondary_color1')->nullable();
+            $table->string('secondary_color2')->nullable();
+            $table->string('secondary_color3')->nullable();
             $table->timestamps();
         });
     }

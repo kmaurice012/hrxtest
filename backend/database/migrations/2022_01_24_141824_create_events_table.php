@@ -17,11 +17,11 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('cds_id');
             $table->string('event');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('url');
-            $table->string('location');
-            $table->string('color');
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
+            $table->string('url')->nullable();
+            $table->string('location')->nullable();
+            $table->string('color')->nullable();
             $table->timestamps();
 
             $table->foreign('cds_id')->references('id')->on('codes');

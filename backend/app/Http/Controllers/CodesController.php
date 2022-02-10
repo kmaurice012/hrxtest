@@ -54,7 +54,7 @@ class CodesController extends Controller
     {
         try {
 
-            $models = Codes::with('frequency', 'code_details',  'events', 'org_codes')->find($codes);
+            $models = Codes::find($codes)->loadMissing('frequency', 'code_details',  'events', 'org_codes');
             $data = [
                 'success' => true,
                 'data' => $models

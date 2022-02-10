@@ -18,8 +18,8 @@ class CreateRolesTable extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('cds_id');
             $table->string('role');
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->timestamp('start_date');
+            $table->timestamp('end_date')->nullable();
             $table->timestamps();
 
             $table->foreign('cds_id')->references('id')->on('codes');

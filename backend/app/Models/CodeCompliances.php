@@ -26,8 +26,6 @@ class CodeCompliances extends Model
         return $this->hasMany(Documents::class, 'cmp_id', 'id');
     }
 
-    public function body_verifications()
-    {
-        return $this->hasMany(BodyVerifications::class, 'cmp_id', 'id');
-    }
+
+    
 }

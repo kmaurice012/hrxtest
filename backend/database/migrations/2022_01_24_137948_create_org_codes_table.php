@@ -17,8 +17,8 @@ class CreateOrgCodesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('cds_id');
             $table->unsignedBigInteger('ror_id');
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->timestamp('start_date');
+            $table->timestamp('end_date')->nullable();
             $table->timestamps();
 
             $table->foreign('cds_id')->references('id')->on('codes');

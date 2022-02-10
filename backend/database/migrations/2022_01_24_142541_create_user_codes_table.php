@@ -16,8 +16,8 @@ class CreateUserCodesTable extends Migration
         Schema::create('user_codes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rus_id');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
             $table->timestamps();
 
             

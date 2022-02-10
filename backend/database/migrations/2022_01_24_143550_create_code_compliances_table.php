@@ -17,9 +17,9 @@ class CreateCodeCompliancesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('rcd_id');
             $table->unsignedBigInteger('rev_id');
-            $table->date('reviewed_date');
-            $table->date('from_date');
-            $table->date('end_date');
+            $table->timestamp('reviewed_date');
+            $table->timestamp('from_date');
+            $table->timestamp('end_date');
             $table->timestamps();
 
             $table->foreign('rcd_id')->references('id')->on('user_codes');

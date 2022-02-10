@@ -19,7 +19,7 @@ class CreateCodesTable extends Migration
             $table->string('code');
             $table->string('serial_number');
             $table->string('description');
-            $table->string('color_code');
+            $table->string('color_code')->nullable();
             $table->timestamps();
 
             $table->foreign('fr_id')->references('id')->on('codes_frequency');
