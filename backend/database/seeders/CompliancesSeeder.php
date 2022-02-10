@@ -18,9 +18,9 @@ class CompliancesSeeder extends Seeder
             [
                 'rcd_id' => 1,
                 'rev_id' => 1,
-                'reviewed_date' => '2022-02-08 17:00',
-                'from_date' => '2022-02-08',
-                'end_date' => '2025-02-10',
+                'reviewed_date' => now()->toDateTimeString(),
+                'from_date' => now()->toDateTimeString(),
+                'end_date' => now()->addDecade()->toDateTimeString(),
             ]
         ]);
     }

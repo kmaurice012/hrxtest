@@ -16,8 +16,8 @@ class UserCodesSeeder extends Seeder
     {
         UserCodes::insert([
             'rus_id' => 1,
-            'start_date' => '2022-02-08',
-            'end_date' => '2028-05-20',
+            'start_date' => now()->toDateTimeString(),
+            'end_date' => now()->addDecade()->toDateTimeString(),
         ]);
     }
 }

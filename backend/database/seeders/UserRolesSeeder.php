@@ -18,19 +18,19 @@ class UserRolesSeeder extends Seeder
             [
                 'rus_id' => 1,
                 'rle_id' => 3,
-                'start_date' =>now(),
+                'start_date' =>now()->toDateTimeString(),
                 'end_date' => null
             ],
             [
                 'rus_id' => 1,
                 'rle_id' => 4,
-                'start_date' => now(),
+                'start_date' => now()->toDateTimeString(),
                 'end_date' => null
             ],
             [
                 'rus_id' => 1,
                 'rle_id' => 6,
-                'start_date' => now(),
+                'start_date' => now()->toDateTimeString(),
                 'end_date' => null
             ],
         ]);

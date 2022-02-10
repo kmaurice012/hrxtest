@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\OrgUsers;
+use App\Models\UserCodes;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,10 +17,19 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            OrganizationSeeder::class,
             FrequencySeeder::class,
             CodesSeeder::class,
-            
+            CodeDetailsSeeder::class,
+            EventsSeeder::class,
+            OrganizationSeeder::class,
+            OrgCodesSeeder::class,
+            OrgUsersSeeder::class,
+            RolesSeeder::class,
+            UserRolesSeeder::class,
+            UserCodesSeeder::class,
+            CompliancesSeeder::class,
+            DocumentsSeeder::class
+
         ]);
     }
 }

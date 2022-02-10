@@ -18,8 +18,8 @@ class EventsSeeder extends Seeder
             [
                 'cds_id' => 1,
                 'event' => 'Listing Rules',
-                'start_date' => '2022-02-05 09:00',
-                'end_date' => '2022-02-06 12:00',
+                'start_date' => now()->toDateTimeString(),
+                'end_date' => now()->addHours(5)->toDateTimeString(),
                 'url' => '',
                 'location' => '',
                 'color' => 'red',
@@ -27,8 +27,8 @@ class EventsSeeder extends Seeder
             [
                 'cds_id' => 2,
                 'event' => 'Late Submission of Audited Annual Accounts',
-                'start_date' => '2022-02-05 09:00',
-                'end_date' => '2022-02-06 12:00',
+                'start_date' =>now()->toDateTimeString(),
+                'end_date' => now()->addHours(5)->toDateTimeString(),
                 'url' => '',
                 'location' => '',
                 'color' => 'blue',
@@ -36,8 +36,8 @@ class EventsSeeder extends Seeder
             [
                 'cds_id' => 3,
                 'event' => 'Annual financial statements',
-                'start_date' => '2022-02-05 09:00',
-                'end_date' => '2022-02-06 12:00',
+                'start_date' => now()->toDateTimeString(),
+                'end_date' => now()->addHours(5)->toDateTimeString(),
                 'url' => '',
                 'location' => '',
                 'color' => 'green',
