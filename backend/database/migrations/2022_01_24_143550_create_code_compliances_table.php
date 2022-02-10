@@ -22,8 +22,8 @@ class CreateCodeCompliancesTable extends Migration
             $table->timestamp('end_date');
             $table->timestamps();
 
-            $table->foreign('rcd_id')->references('id')->on('user_codes');
-            $table->foreign('rev_id')->references('id')->on('events');
+            $table->foreign('rcd_id')->references('id')->on('user_codes')->onDelete('cascade');
+            $table->foreign('rev_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
 

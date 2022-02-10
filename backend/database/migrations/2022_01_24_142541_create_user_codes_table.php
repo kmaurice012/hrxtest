@@ -21,7 +21,7 @@ class CreateUserCodesTable extends Migration
             $table->timestamps();
 
             
-            $table->foreign('rus_id')->references('id')->on('org_users');
+            $table->foreign('rus_id')->references('id')->on('org_users')->onDelete('cascade');
         });
     }
 

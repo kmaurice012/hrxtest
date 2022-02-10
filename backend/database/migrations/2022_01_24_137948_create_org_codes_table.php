@@ -21,8 +21,8 @@ class CreateOrgCodesTable extends Migration
             $table->timestamp('end_date')->nullable();
             $table->timestamps();
 
-            $table->foreign('cds_id')->references('id')->on('codes');
-            $table->foreign('ror_id')->references('id')->on('organizations');
+            $table->foreign('cds_id')->references('id')->on('codes')->onDelete('cascade');
+            $table->foreign('ror_id')->references('id')->on('organizations')->onDelete('cascade');
         });
     }
 

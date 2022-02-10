@@ -22,12 +22,12 @@ class CreateRolesTable extends Migration
             $table->timestamp('end_date')->nullable();
             $table->timestamps();
 
-            $table->foreign('cds_id')->references('id')->on('codes');
+            $table->foreign('cds_id')->references('id')->on('codes')->onDelete('cascade');
         });
 
 
         Schema::table('roles', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('roles');
+            $table->foreign('parent_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }
 

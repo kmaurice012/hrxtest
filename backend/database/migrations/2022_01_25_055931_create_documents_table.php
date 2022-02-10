@@ -24,7 +24,7 @@ class CreateDocumentsTable extends Migration
             $table->bigInteger('file_size'); 
             $table->timestamps();
 
-            $table->foreign('cmp_id')->references('id')->on('code_compliances');
+            $table->foreign('cmp_id')->references('id')->on('code_compliances')->onDelete('cascade');
         });
 
         //set content to medium blob

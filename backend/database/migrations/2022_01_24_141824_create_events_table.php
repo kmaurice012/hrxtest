@@ -24,7 +24,7 @@ class CreateEventsTable extends Migration
             $table->string('color')->nullable();
             $table->timestamps();
 
-            $table->foreign('cds_id')->references('id')->on('codes');
+            $table->foreign('cds_id')->references('id')->on('codes')->onDelete('cascade');
         });
     }
 

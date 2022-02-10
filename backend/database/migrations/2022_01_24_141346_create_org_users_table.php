@@ -23,7 +23,7 @@ class CreateOrgUsersTable extends Migration
             $table->string('last_name');
             $table->timestamps();
 
-            $table->foreign('ror_id')->references('id')->on('organizations');
+            $table->foreign('ror_id')->references('id')->on('organizations')->onDelete('cascade');
         });
     }
 

@@ -20,7 +20,7 @@ class CreateCodeDetailsTable extends Migration
             $table->text('details');
             $table->timestamps();
 
-            $table->foreign('cds_id')->references('id')->on('codes');
+            $table->foreign('cds_id')->references('id')->on('codes')->onDelete('cascade');
         });
     }
 

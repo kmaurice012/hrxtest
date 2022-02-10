@@ -21,8 +21,8 @@ class CreateUserRolesTable extends Migration
             $table->timestamp('end_date')->nullable();
             $table->timestamps();
 
-            $table->foreign('rus_id')->references('id')->on('org_users');
-            $table->foreign('rle_id')->references('id')->on('roles');
+            $table->foreign('rus_id')->references('id')->on('org_users')->onDelete('cascade');
+            $table->foreign('rle_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }
 
