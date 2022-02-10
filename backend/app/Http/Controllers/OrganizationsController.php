@@ -79,9 +79,9 @@ class OrganizationsController extends Controller
 
             $model->organization_name = $request->organization_name;
             $model->primary_color = $request->primary_color;
-            $model->secondary_color1 = 'test';
-            $model->secondary_color2 = 'test';
-            $model->secondary_color3 = 'test';
+            $model->secondary_color1 = $request->secondary_color1 ?? null;
+            $model->secondary_color2 = $request->secondary_color1 ?? null;
+            $model->secondary_color3 = $request->secondary_color1 ?? null;
 
             $model->save();
 
@@ -114,7 +114,7 @@ class OrganizationsController extends Controller
                 }
             }
         } catch (\Throwable $th) {
-            throw $th;
+           logger($th);
 
             $data = [
                 'success' => false,
@@ -130,11 +130,11 @@ class OrganizationsController extends Controller
      * @param  \App\Models\Organizations  $organizations
      * @return \Illuminate\Http\Response
      */
-    public function show($organization)
+    public function show($id)
     {
         try {
 
-            $model = Organizations::find($organization)->loadMissing('org_codes', 'org_users');
+            $model = Organizations::find($id)->loadMissing('org_codes', 'org_users');
             if ($model) {
                 $data = [
                     'success' => true,
@@ -165,10 +165,10 @@ class OrganizationsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $organization
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $organization)
+    public function update(Request $request, $id)
     {
         try {
             $rules = [
@@ -204,13 +204,13 @@ class OrganizationsController extends Controller
             }
 
             DB::beginTransaction();
-            $model = Organizations::find($organization);
+            $model = Organizations::find($id);
 
             $model->organization_name = $request->organization_name;
             $model->primary_color = $request->primary_color;
-            $model->secondary_color1 = 'test';
-            $model->secondary_color2 = 'test';
-            $model->secondary_color3 = 'test';
+            $model->secondary_color1 = $request->secondary_color1 ?? null;
+            $model->secondary_color2 = $request->secondary_color1 ?? null;
+            $model->secondary_color3 = $request->secondary_color1 ?? null;
 
             $model->save();
 
@@ -244,7 +244,7 @@ class OrganizationsController extends Controller
                 }
             }
         } catch (\Throwable $th) {
-            throw $th;
+           logger($th);
 
             $data = [
                 'success' => false,
@@ -260,11 +260,11 @@ class OrganizationsController extends Controller
      * @param  id $organizations
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organizations $organization)
+    public function destroy($id)
     {
         try {
 
-            Organizations::destroy($organization);
+            Organizations::destroy($id);
 
             $data = [
                 'success' => true,

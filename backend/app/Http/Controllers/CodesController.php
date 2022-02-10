@@ -117,7 +117,7 @@ class CodesController extends Controller
                 }
             }
         } catch (\Throwable $th) {
-            throw $th;
+           logger($th);
 
             $data = [
                 'success' => false,
@@ -172,18 +172,24 @@ class CodesController extends Controller
                 'description' => 'required|string',
                 'color_code' => 'sometimes|string',
                 'code_details_parent_id' => 'sometimes|integer',
-                'code_details' => 'sometimes|string'
+                'code_details' => 'sometimes|string',
+                'code_details_id' => 'required|string'
             ];
+
+
             $messages = [
                 'fr_id.required' => 'Please choose a frequency',
                 'fr_id.integer' => 'The frequency id should be a number/integer',
                 'code.required' => 'Please enter a code name',
-                'code.string' => 'The color code should be in characters',
+                'code.string' => 'The code name should be in characters',
                 'serial_number.required' => 'Please enter serial number',
-                'serial_number.string' => 'The color code should be in characters',
+                'serial_number.string' => 'The serial_number should be in characters',
                 'description,required' => 'Please enter a description',
-                'description.string' => 'The color code should be in characters',
+                'description.string' => 'The description should be in characters',
                 'color_code.string' => 'The color code should be in characters',
+                'code_details_parent_id' => 'Parent id should be a number',
+                'code_details' => 'Code details should be in characters',
+                'code_details_id' => 'Code id should be a number',
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -210,7 +216,7 @@ class CodesController extends Controller
             if ($model) {
 
                 //add code details
-                $assignCode = $request->code_details ? $this->updateCodeDetails($request, $model->id) : true;
+                $assignCode = $request->code_details ? $this->updateCodeDetails($request, $model->id, $request->code_details_id) : true;
 
                 // $model->org_codes()->save($model, ['cds_id' => $request->code, 'start_date' =>now()->toDateTimeString()]);
                 if ($assignCode) {
@@ -236,7 +242,7 @@ class CodesController extends Controller
                 }
             }
         } catch (\Throwable $th) {
-            throw $th;
+           logger($th);
 
             $data = [
                 'success' => false,
