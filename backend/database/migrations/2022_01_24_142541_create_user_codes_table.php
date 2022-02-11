@@ -13,7 +13,7 @@ class CreateUserCodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_codes', function (Blueprint $table) {
+        Schema::create('rpr_user_codes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rus_id');
             $table->timestamp('start_date');

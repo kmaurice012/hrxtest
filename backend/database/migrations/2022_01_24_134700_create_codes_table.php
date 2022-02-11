@@ -13,7 +13,7 @@ class CreateCodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('codes', function (Blueprint $table) {
+        Schema::create('rpr_codes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('fr_id');
             $table->string('code');

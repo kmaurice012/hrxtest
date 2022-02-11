@@ -13,7 +13,7 @@ class CreateCodesFrequencyTable extends Migration
      */
     public function up()
     {
-        Schema::create('codes_frequency', function (Blueprint $table) {
+        Schema::create('rpr_codes_frequency', function (Blueprint $table) {
             $table->id();
             $table->string('frequency');
             $table->string('unit');

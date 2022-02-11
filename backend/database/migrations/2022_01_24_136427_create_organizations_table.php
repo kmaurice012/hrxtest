@@ -13,7 +13,7 @@ class CreateOrganizationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organizations', function (Blueprint $table) {
+        Schema::create('rpr_organizations', function (Blueprint $table) {
             $table->id();
             $table->string('organization_name');
             $table->string('primary_color')->nullable();

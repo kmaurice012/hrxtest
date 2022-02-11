@@ -224,7 +224,7 @@ class CodesController extends Controller
                     DB::commit();
                     $data = [
                         'success' => true,
-                        'message' => 'Code created succesfully'
+                        'message' => 'Code updated succesfully'
                     ];
 
 
@@ -234,7 +234,7 @@ class CodesController extends Controller
 
                     $data = [
                         'success' => false,
-                        'message' => 'An error occured while adding code details'
+                        'message' => 'An error occured while updating code details'
                     ];
 
 
@@ -246,7 +246,7 @@ class CodesController extends Controller
 
             $data = [
                 'success' => false,
-                'message' => 'An error occured while creating code'
+                'message' => 'An error occured while updating code'
             ];
             return response()->json($data, 500);
         }
@@ -258,7 +258,7 @@ class CodesController extends Controller
      * @param  \App\Models\Codes  $codes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Codes $code)
+    public function destroy($code)
     {
         try {
             Codes::destroy($code);
@@ -286,7 +286,7 @@ class CodesController extends Controller
             $model = new CodeDetails();
             $model->cds_id = $code;
             $model->parent_id = $request->code_details_parent_id ?? null;
-            $model->description = $request->code_details;
+            $model->details = $request->code_details;
 
             $model->save();
 
@@ -307,7 +307,7 @@ class CodesController extends Controller
             $model = CodeDetails::find($code_details);
             $model->cds_id = $code;
             $model->parent_id = $request->code_details_parent_id ?? null;
-            $model->description = $request->code_details;
+            $model->details = $request->code_details;
 
             $model->save();
 

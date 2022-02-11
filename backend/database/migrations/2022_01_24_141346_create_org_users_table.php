@@ -13,7 +13,7 @@ class CreateOrgUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('org_users', function (Blueprint $table) {
+        Schema::create('rpr_org_users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ror_id');
             $table->string('username');

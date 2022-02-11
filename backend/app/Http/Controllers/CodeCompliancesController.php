@@ -140,14 +140,17 @@ class CodeCompliancesController extends Controller
         //
     }
 
-    public function companyCompliances(Request $request)
+    /**
+     * Get Organization Compliances
+     */
+    public function orgCompliances(Request $request)
     {
         try {
 
             $models = CodeCompliances::leftJoin('user_codes', 'code_compliances.rcd_id', '=', 'user_codes.id')
                 ->leftJoin('org_users', 'user_codes.rus_id', '=', 'org_users.id')
                 ->leftJoin('organizations', 'user_codes.ror_id', '=', 'organizations.id')
-                ->where('organizations.id', $request->org_id)->get();
+                ->where('organizations.id', $request->org_id)->get()->loadmissing('documents');
 
             $data = [
                 'success' => true,

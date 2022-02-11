@@ -13,7 +13,7 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('rpr_events', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cds_id');
             $table->string('event');

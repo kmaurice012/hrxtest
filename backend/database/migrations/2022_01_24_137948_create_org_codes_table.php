@@ -13,10 +13,11 @@ class CreateOrgCodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('org_codes', function (Blueprint $table) {
+        Schema::create('rpr_org_codes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cds_id');
             $table->unsignedBigInteger('ror_id');
+            $table->timestamp('due_date');
             $table->timestamp('start_date');
             $table->timestamp('end_date')->nullable();
             $table->timestamps();

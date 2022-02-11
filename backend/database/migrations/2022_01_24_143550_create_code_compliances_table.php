@@ -13,7 +13,7 @@ class CreateCodeCompliancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('code_compliances', function (Blueprint $table) {
+        Schema::create('rpr_code_compliances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rcd_id');
             $table->unsignedBigInteger('rev_id');

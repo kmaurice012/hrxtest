@@ -13,7 +13,7 @@ class CreateCodeDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('code_details', function (Blueprint $table) {
+        Schema::create('rpr_code_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cds_id');
             $table->unsignedBigInteger('parent_id')->nullable();

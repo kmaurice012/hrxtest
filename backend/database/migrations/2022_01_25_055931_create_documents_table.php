@@ -14,7 +14,7 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('rpr_documents', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cmp_id');
             $table->string('doc_name');
