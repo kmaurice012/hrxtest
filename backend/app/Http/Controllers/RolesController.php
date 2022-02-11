@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CodeCompliances;
+use App\Models\Roles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CodeCompliancesController extends Controller
+class RolesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class CodeCompliancesController extends Controller
     {
         try {
 
-            $models = CodeCompliances::get()->loadMissing('events', 'user_codes', 'documents');
+            $models = Roles::get()->loadMissing('parent', 'children', 'codes', 'user_roles');
             $data = [
                 'success' => true,
                 'data' => $models
@@ -28,7 +28,7 @@ class CodeCompliancesController extends Controller
             logger($th);
             $data = [
                 'success' => false,
-                'message' => 'An error occured while getting compliances, please try again'
+                'message' => 'An error occured while getting roles, please try again'
             ];
             return response()->json($data, 500);
         }
@@ -42,16 +42,16 @@ class CodeCompliancesController extends Controller
      */
     public function store(Request $request)
     {
+
+
         try {
             $rules = [
-                'rev_id' => 'required|integer',
-                // 'complied' => 'required|string',
-                'remarks' => 'sometimes|string',
 
-                // 'reviewed_date' => now()->toDateTimeString(),
-                // 'from_date' => now()->toDateTimeString(),
-                // 'end_date' => now()->addDecade()->toDateTimeString(),
-
+                'parent_id' => 'sometimes|id',
+                'cds_id' => 'required|integer',
+                'role' => 'required|string',
+                // 'start_date' => now()->toDateTimeString(),
+                // 'end_date' => null,
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -64,17 +64,18 @@ class CodeCompliancesController extends Controller
                 return response()->json($data, 422);
             }
 
-            $model = new CodeCompliances();
+            $model = new Roles();
 
-            $model->rev_id = $request->rev_id ?? null;
-            $model->remarks = $request->cds_id;
-            $model->reviewed_date = $request->role;
-            $model->from_date = now()->toDateTimeString();
+            $model->parent_id = $request->parent_id ?? null;
+            $model->cds_id = $request->cds_id;
+            $model->role = $request->role;
+            $model->start_date = now()->toDateTimeString();
+            $model->end_date = null;
 
             $model->save();
             $data = [
                 'success' => true,
-                'message' => 'Compliance submitted succesfully'
+                'message' => 'Role created succesfully'
             ];
 
 
@@ -84,7 +85,7 @@ class CodeCompliancesController extends Controller
 
             $data = [
                 'success' => false,
-                'message' => 'An error occured while submitting compliance'
+                'message' => 'An error occured while creating role'
             ];
             return response()->json($data, 500);
         }
@@ -100,7 +101,7 @@ class CodeCompliancesController extends Controller
     {
         try {
 
-            $models = CodeCompliances::find($id)->loadMissing('events', 'user_codes', 'documents');
+            $models = Roles::find($id)->loadMissing('parent', 'children', 'codes', 'user_roles');
             $data = [
                 'success' => true,
                 'data' => $models
@@ -126,7 +127,51 @@ class CodeCompliancesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $rules = [
+
+                'parent_id' => 'sometimes|id',
+                'cds_id' => 'required|integer',
+                'role' => 'required|string',
+                'start_date' => now()->toDateTimeString(),
+                'end_date' => null,
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                $data = [
+                    'success' => false,
+                    'message' => $validator->errors()->first()
+                ];
+                return response()->json($data, 422);
+            }
+
+            $model = Roles::find($id);
+
+            $model->parent_id = $request->parent_id ?? null;
+            $model->cds_id = $request->cds_id;
+            $model->role = $request->role;
+            $model->start_date = now()->toDateTimeString();
+            $model->end_date = $request->end_date ?? null;
+
+            $model->save();
+            $data = [
+                'success' => true,
+                'message' => 'Role updated succesfully'
+            ];
+
+
+            return response()->json($data, 201);
+        } catch (\Throwable $th) {
+            logger($th);
+
+            $data = [
+                'success' => false,
+                'message' => 'An error occured while updating role'
+            ];
+            return response()->json($data, 500);
+        }
     }
 
     /**
@@ -137,29 +182,18 @@ class CodeCompliancesController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    public function companyCompliances(Request $request)
-    {
         try {
-
-            $models = CodeCompliances::leftJoin('user_codes', 'code_compliances.rcd_id', '=', 'user_codes.id')
-                ->leftJoin('org_users', 'user_codes.rus_id', '=', 'org_users.id')
-                ->leftJoin('organizations', 'user_codes.ror_id', '=', 'organizations.id')
-                ->where('organizations.id', $request->org_id)->get();
-
+            Roles::destroy($id);
             $data = [
                 'success' => true,
-                'data' => $models
+                'message' => 'Role deleted succesfully'
             ];
-
             return response()->json($data, 200);
         } catch (\Throwable $th) {
             logger($th);
             $data = [
                 'success' => false,
-                'message' => 'An error occured while getting organization compliances, please try again'
+                'message' => 'An error occured while deleting role'
             ];
             return response()->json($data, 500);
         }

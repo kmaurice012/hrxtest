@@ -32,3 +32,5 @@ Route::get('test', function(){
 
 Route::apiResource('organizations', 'OrganizationsController');
 Route::apiResource('codes', 'CodesController');
+Route::apiResource('roles', 'RolesController');
+Route::apiResource('frequencies', 'FrequencyController');

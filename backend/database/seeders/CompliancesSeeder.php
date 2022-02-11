@@ -18,6 +18,8 @@ class CompliancesSeeder extends Seeder
             [
                 'rcd_id' => 1,
                 'rev_id' => 1,
+                'complied' => 'complied',
+                'remarks' => 'This is a remark',
                 'reviewed_date' => now()->toDateTimeString(),
                 'from_date' => now()->toDateTimeString(),
                 'end_date' => now()->addDecade()->toDateTimeString(),
