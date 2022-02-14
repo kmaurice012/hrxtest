@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\BodyVerifications;
+use App\Models\RegulatorVerifications;
 use Illuminate\Database\Seeder;
 
-class BodyVerificationsSeeder extends Seeder
+class RegulatorVerificationsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class BodyVerificationsSeeder extends Seeder
      */
     public function run()
     {
-        BodyVerifications::insert([
+        RegulatorVerifications::insert([
             'rct_id' => 1,
             'id_users' => 1,
             'cmp_id' => 1,

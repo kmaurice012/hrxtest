@@ -28,7 +28,9 @@ class DatabaseSeeder extends Seeder
             UserRolesSeeder::class,
             UserCodesSeeder::class,
             CompliancesSeeder::class,
-            DocumentsSeeder::class
+            DocumentsSeeder::class,
+            PeriodsSeeder::class,
+            RegulatorVerificationsSeeder::class
 
         ]);
     }

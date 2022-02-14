@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBodyVerificationsTable extends Migration
+class CreateRegulatorVerificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBodyVerificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('body_verifications', function (Blueprint $table) {
+        Schema::create('rpr_regulator_verifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rct_id');
             $table->unsignedBigInteger('id_users');
@@ -22,8 +22,8 @@ class CreateBodyVerificationsTable extends Migration
             $table->date('action_date');
             $table->timestamps();
 
-            $table->foreign('id_users')->references('id')->on('users');
-            $table->foreign('cmp_id')->references('id')->on('code_compliances');
+            $table->foreign('id_users')->references('id')->on('rpr_users');
+            $table->foreign('cmp_id')->references('id')->on('rpr_code_compliances');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateBodyVerificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('body_verifications');
+        Schema::dropIfExists('rpr_regulator_verifications');
     }
 }

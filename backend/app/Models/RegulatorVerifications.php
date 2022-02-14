@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BodyVerifications extends Model
+class RegulatorVerifications extends Model
 {
     use HasFactory;
 
-    protected $table = 'body_verifications';
+    protected $table = 'rpr_regulator_verifications';
 
     public function code_compliances()
     {
