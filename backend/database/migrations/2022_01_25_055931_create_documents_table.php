@@ -24,11 +24,11 @@ class CreateDocumentsTable extends Migration
             $table->bigInteger('file_size'); 
             $table->timestamps();
 
-            $table->foreign('cmp_id')->references('id')->on('code_compliances')->onDelete('cascade');
+            $table->foreign('cmp_id')->references('id')->on('rpr_code_compliances')->onDelete('cascade');
         });
 
         //set content to medium blob
-        DB::statement('ALTER TABLE documents MODIFY COLUMN content MEDIUMBLOB');
+        DB::statement('ALTER TABLE rpr_documents MODIFY COLUMN content MEDIUMBLOB');
     }
 
     /**
@@ -38,6 +38,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('rpr_documents');
     }
 }

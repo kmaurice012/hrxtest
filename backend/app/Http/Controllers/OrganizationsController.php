@@ -134,11 +134,11 @@ class OrganizationsController extends Controller
     {
         try {
 
-            $model = Organizations::find($id)->loadMissing('org_codes', 'org_users');
+            $model = Organizations::find($id);
             if ($model) {
                 $data = [
                     'success' => true,
-                    'data' => $model
+                    'data' => $model->loadMissing('org_codes', 'org_users')
                 ];
 
                 return response()->json($data, 200);

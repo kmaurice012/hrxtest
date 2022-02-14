@@ -29,6 +29,6 @@ class CreateCodesFrequencyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('codes_frequency');
+        Schema::dropIfExists('rpr_codes_frequency');
     }
 }

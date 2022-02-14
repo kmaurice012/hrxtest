@@ -9,7 +9,7 @@ class CodeDetails extends Model
 {
     use HasFactory;
 
-    protected $table = 'code_details';
+    protected $table = 'rpr_code_details';
 
     public function code()
     {

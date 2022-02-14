@@ -21,8 +21,8 @@ class CreateUserRolesTable extends Migration
             $table->timestamp('end_date')->nullable();
             $table->timestamps();
 
-            $table->foreign('rus_id')->references('id')->on('org_users')->onDelete('cascade');
-            $table->foreign('rle_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('rus_id')->references('id')->on('rpr_org_users')->onDelete('cascade');
+            $table->foreign('rle_id')->references('id')->on('rpr_roles')->onDelete('cascade');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateUserRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_roles');
+        Schema::dropIfExists('rpr_user_roles');
     }
 }

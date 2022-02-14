@@ -9,7 +9,7 @@ class Events extends Model
 {
     use HasFactory;
 
-    protected $table = 'events';
+    protected $table = 'rpr_events';
 
     public function code()
     {

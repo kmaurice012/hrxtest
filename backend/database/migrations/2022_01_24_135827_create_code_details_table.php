@@ -20,7 +20,7 @@ class CreateCodeDetailsTable extends Migration
             $table->text('details');
             $table->timestamps();
 
-            $table->foreign('cds_id')->references('id')->on('codes')->onDelete('cascade');
+            $table->foreign('cds_id')->references('id')->on('rpr_codes')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateCodeDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('code_details');
+        Schema::dropIfExists('rpr_code_details');
     }
 }

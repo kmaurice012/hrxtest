@@ -22,8 +22,8 @@ class CreateOrgCodesTable extends Migration
             $table->timestamp('end_date')->nullable();
             $table->timestamps();
 
-            $table->foreign('cds_id')->references('id')->on('codes')->onDelete('cascade');
-            $table->foreign('ror_id')->references('id')->on('organizations')->onDelete('cascade');
+            $table->foreign('cds_id')->references('id')->on('rpr_codes')->onDelete('cascade');
+            $table->foreign('ror_id')->references('id')->on('rpr_organizations')->onDelete('cascade');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateOrgCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('org_codes');
+        Schema::dropIfExists('rpr_org_codes');
     }
 }

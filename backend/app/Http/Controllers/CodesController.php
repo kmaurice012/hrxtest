@@ -117,7 +117,7 @@ class CodesController extends Controller
                 }
             }
         } catch (\Throwable $th) {
-           logger($th);
+            logger($th);
 
             $data = [
                 'success' => false,
@@ -137,13 +137,27 @@ class CodesController extends Controller
     {
         try {
 
-            $models = Codes::find($codes)->loadMissing('frequency', 'code_details',  'events', 'org_codes');
-            $data = [
-                'success' => true,
-                'data' => $models
-            ];
+            $model = Codes::find($codes);
 
-            return response()->json($data, 200);
+
+            if ($model) {
+
+                $data = [
+                    'success' => true,
+                    'data' => $model->loadMissing('frequency', 'code_details', 'events', 'org_codes')
+                ];
+
+                return response()->json($data, 200);
+            } else {
+
+                $data = [
+                    'success' => false,
+                    'data' => $model,
+                    'message' => 'Code was not found'
+                ];
+
+                return response()->json($data, 404);
+            }
         } catch (\Throwable $th) {
             logger($th);
             $data = [
@@ -242,7 +256,7 @@ class CodesController extends Controller
                 }
             }
         } catch (\Throwable $th) {
-           logger($th);
+            logger($th);
 
             $data = [
                 'success' => false,

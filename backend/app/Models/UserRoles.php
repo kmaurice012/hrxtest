@@ -9,7 +9,7 @@ class UserRoles extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_roles';
+    protected $table = 'rpr_user_roles';
 
     public function roles()
     {

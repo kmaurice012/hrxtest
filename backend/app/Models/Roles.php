@@ -9,7 +9,7 @@ class Roles extends Model
 {
     use HasFactory;
 
-    protected $table = 'roles';
+    protected $table = 'rpr_roles';
 
     public function parent()
     {

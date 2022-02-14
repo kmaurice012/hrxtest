@@ -9,7 +9,7 @@ class UserCodes extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_codes';
+    protected $table = 'rpr_user_codes';
 
     public function roles()
     {

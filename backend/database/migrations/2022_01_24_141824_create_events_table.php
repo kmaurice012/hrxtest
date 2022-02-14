@@ -24,7 +24,7 @@ class CreateEventsTable extends Migration
             $table->string('color')->nullable();
             $table->timestamps();
 
-            $table->foreign('cds_id')->references('id')->on('codes')->onDelete('cascade');
+            $table->foreign('cds_id')->references('id')->on('rpr_codes')->onDelete('cascade');
         });
     }
 
@@ -35,6 +35,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('rpr_events');
     }
 }

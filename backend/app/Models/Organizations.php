@@ -9,7 +9,7 @@ class Organizations extends Model
 {
     use HasFactory;
 
-    protected $table = 'organizations';
+    protected $table = 'rpr_organizations';
 
     public function org_codes()
     {

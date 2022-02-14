@@ -22,12 +22,12 @@ class CreateRolesTable extends Migration
             $table->timestamp('end_date')->nullable();
             $table->timestamps();
 
-            $table->foreign('cds_id')->references('id')->on('codes')->onDelete('cascade');
+            $table->foreign('cds_id')->references('id')->on('rpr_codes')->onDelete('cascade');
         });
 
 
-        Schema::table('roles', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('roles')->onDelete('cascade');
+        Schema::table('rpr_roles', function (Blueprint $table) {
+            $table->foreign('parent_id')->references('id')->on('rpr_roles')->onDelete('cascade');
         });
     }
 
@@ -38,6 +38,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('rpr_roles');
     }
 }

@@ -9,7 +9,7 @@ class Documents extends Model
 {
     use HasFactory;
 
-    protected $table = 'documents';
+    protected $table = 'rpr_documents';
 
     public function code_compliances()
     {

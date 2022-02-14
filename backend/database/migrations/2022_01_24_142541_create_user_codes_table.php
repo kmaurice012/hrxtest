@@ -21,7 +21,7 @@ class CreateUserCodesTable extends Migration
             $table->timestamps();
 
             
-            $table->foreign('rus_id')->references('id')->on('org_users')->onDelete('cascade');
+            $table->foreign('rus_id')->references('id')->on('rpr_org_users')->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateUserCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_codes');
+        Schema::dropIfExists('rpr_user_codes');
     }
 }

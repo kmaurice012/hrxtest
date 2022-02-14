@@ -9,7 +9,7 @@ class CodeCompliances extends Model
 {
     use HasFactory;
 
-    protected $table = 'code_compliances';
+    protected $table = 'rpr_code_compliances';
 
     public function events()
     {

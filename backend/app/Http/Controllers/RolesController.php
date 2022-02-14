@@ -101,18 +101,29 @@ class RolesController extends Controller
     {
         try {
 
-            $models = Roles::find($id)->loadMissing('parent', 'children', 'codes', 'user_roles');
-            $data = [
-                'success' => true,
-                'data' => $models
-            ];
+            $model = Roles::find($id);
 
-            return response()->json($data, 200);
+            if ($model) {
+                $data = [
+                    'success' => true,
+                    'data' => $model->loadMissing('parent', 'children', 'codes', 'user_roles')
+                ];
+
+                return response()->json($data, 200);
+            } else {
+                $data = [
+                    'success' => false,
+                    'data' => $model,
+                    'message' => 'The role was not found'
+                ];
+
+                return response()->json($data, 404);
+            }
         } catch (\Throwable $th) {
             logger($th);
             $data = [
                 'success' => false,
-                'message' => 'An error occured while getting roles, please try again'
+                'message' => 'An error occured while getting role, please try again'
             ];
             return response()->json($data, 500);
         }

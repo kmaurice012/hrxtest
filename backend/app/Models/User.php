@@ -12,6 +12,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    /**
+     * User Table
+     */
+    protected $table = 'rpr_users';
+
     /**
      * The attributes that are mass assignable.
      *

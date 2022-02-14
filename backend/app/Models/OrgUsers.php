@@ -12,7 +12,7 @@ class OrgUsers extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $table = 'org_users';
+    protected $table = 'rpr_org_users';
 
     /**
      * The attributes that should be hidden for serialization.

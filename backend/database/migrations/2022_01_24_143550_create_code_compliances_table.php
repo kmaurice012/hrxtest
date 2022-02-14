@@ -24,8 +24,8 @@ class CreateCodeCompliancesTable extends Migration
             $table->string('remarks')->nullable();
             $table->timestamps();
 
-            $table->foreign('rcd_id')->references('id')->on('user_codes')->onDelete('cascade');
-            $table->foreign('rev_id')->references('id')->on('events')->onDelete('cascade');
+            $table->foreign('rcd_id')->references('id')->on('rpr_user_codes')->onDelete('cascade');
+            $table->foreign('rev_id')->references('id')->on('rpr_events')->onDelete('cascade');
         });
     }
 
@@ -36,6 +36,6 @@ class CreateCodeCompliancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('code_compliances');
+        Schema::dropIfExists('rpr_code_compliances');
     }
 }

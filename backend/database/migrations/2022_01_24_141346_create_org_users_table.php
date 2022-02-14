@@ -23,7 +23,7 @@ class CreateOrgUsersTable extends Migration
             $table->string('last_name');
             $table->timestamps();
 
-            $table->foreign('ror_id')->references('id')->on('organizations')->onDelete('cascade');
+            $table->foreign('ror_id')->references('id')->on('rpr_organizations')->onDelete('cascade');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateOrgUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('org_users');
+        Schema::dropIfExists('rpr_org_users');
     }
 }

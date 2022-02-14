@@ -95,13 +95,26 @@ class FrequencyController extends Controller
     {
         try {
 
-            $models = CodesFrequency::find($id)->loadMissing('codes');
-            $data = [
-                'success' => true,
-                'data' => $models
-            ];
+            $model = CodesFrequency::find($id)->loadMissing('codes');
 
-            return response()->json($data, 200);
+            if ($model) {
+
+                $data = [
+                    'success' => true,
+                    'data' => $model->loadMissing('codes')
+                ];
+
+                return response()->json($data, 200);
+            } else {
+
+                $data = [
+                    'success' => false,
+                    'data' => $model,
+                    'message' => 'Code Frequency was not found'
+                ];
+
+                return response()->json($data, 404);
+            }
         } catch (\Throwable $th) {
             logger($th);
             $data = [

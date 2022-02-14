@@ -22,7 +22,7 @@ class CreateCodesTable extends Migration
             $table->string('color_code')->nullable();
             $table->timestamps();
 
-            $table->foreign('fr_id')->references('id')->on('codes_frequency')->onDelete('cascade');
+            $table->foreign('fr_id')->references('id')->on('rpr_codes_frequency')->onDelete('cascade');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('codes');
+        Schema::dropIfExists('rpr_codes');
     }
 }

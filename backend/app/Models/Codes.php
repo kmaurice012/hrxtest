@@ -9,7 +9,7 @@ class Codes extends Model
 {
     use HasFactory;
 
-    protected $table = 'codes';
+    protected $table = 'rpr_codes';
 
     public function frequency()
     {
