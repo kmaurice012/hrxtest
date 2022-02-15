@@ -10,4 +10,9 @@ class Periods extends Model
     use HasFactory;
 
     protected $table = 'rpr_periods';
+
+    public function org_codes()
+    {
+        return $this->belongsTo(OrgCodes::class, 'roc_id', 'id');
+    }
 }

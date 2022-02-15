@@ -20,4 +20,12 @@ class Organizations extends Model
     {
         return $this->hasMany(OrgUsers::class, 'ror_id', 'id');
     }
+    // public function periods()
+    // {
+    //     return $this->hasMany(Periods::class, 'roc_id', 'id');
+    // }
+    public function org_type()
+    {
+        $this->hasMany(Organizations::class, 'oty_id', 'id');
+    }
 }

@@ -19,4 +19,8 @@ class OrgCodes extends Model
     {
         return $this->belongsTo(Codes::class, 'cds_id', 'id');
     }
+    public function periods()
+    {
+        return $this->hasMany(Periods::class, 'roc_id', 'id');
+    }
 }

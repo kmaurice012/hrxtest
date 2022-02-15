@@ -17,8 +17,8 @@ class CreatePeriodsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('roc_id');
             $table->string('period_name');
-            $table->timestamp('start_date')->nullable();
-            $table->timestamp('end_date')->nullable();
+            $table->timestamp('period_start_date')->nullable();
+            $table->timestamp('period_end_date')->nullable();
             $table->timestamps();
 
 

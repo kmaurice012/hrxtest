@@ -16,6 +16,8 @@ class OrganizationSeeder extends Seeder
     {
         Organizations::insert([
             [
+
+                'oty_id' =>1,
                 'organization_name' => 'STL',
                 'primary_color' => 'red',
                 'secondary_color1' => 'white',
@@ -23,6 +25,7 @@ class OrganizationSeeder extends Seeder
                 'secondary_color3' => 'crimson'
             ],
             [
+                'oty_id' =>1,
                 'organization_name' => 'Safaricom',
                 'primary_color' => 'green',
                 'secondary_color1' => 'white',
@@ -30,6 +33,7 @@ class OrganizationSeeder extends Seeder
                 'secondary_color3' => 'red'
             ],
             [
+                'oty_id' =>1,
                 'organization_name' => 'KCB',
                 'primary_color' => 'green',
                 'secondary_color1' => 'white',

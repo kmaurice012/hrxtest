@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Codes;
 use App\Models\Organizations;
 use App\Models\OrgCodes;
+use App\Models\Periods;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +22,7 @@ class OrganizationsController extends Controller
     {
         try {
 
-            $models = Organizations::get()->loadMissing('org_codes', 'org_users');
+            $models = Organizations::get()->loadMissing('org_codes', 'org_users', 'periods');
             $data = [
                 'success' => true,
                 'data' => $models
@@ -52,7 +54,11 @@ class OrganizationsController extends Controller
                 'secondary_color1' => 'sometimes|string',
                 'secondary_color2' => 'sometimes|string',
                 'secondary_color3' => 'sometimes|string',
-                'code' => 'required|integer'
+                'code' => 'required|integer',
+                'period_name' => 'required|string',
+                'period_start_date' => 'required|date',
+                'period_end_date' => 'required|date',
+
             ];
             $messages = [
                 'organization_name.required' => 'Please enter Organization name',
@@ -115,7 +121,7 @@ class OrganizationsController extends Controller
                 }
             }
         } catch (\Throwable $th) {
-           logger($th);
+            logger($th);
 
             $data = [
                 'success' => false,
@@ -139,7 +145,7 @@ class OrganizationsController extends Controller
             if ($model) {
                 $data = [
                     'success' => true,
-                    'data' => $model->loadMissing('org_codes', 'org_users')
+                    'data' => $model->loadMissing('org_codes', 'org_users', 'periods')
                 ];
 
                 return response()->json($data, 200);
@@ -231,8 +237,7 @@ class OrganizationsController extends Controller
 
 
                     return response()->json($data, 201);
-                }
-                else {
+                } else {
                     DB::rollBack();
 
                     $data = [
@@ -245,7 +250,7 @@ class OrganizationsController extends Controller
                 }
             }
         } catch (\Throwable $th) {
-           logger($th);
+            logger($th);
 
             $data = [
                 'success' => false,
@@ -294,12 +299,37 @@ class OrganizationsController extends Controller
 
             $model = new OrgCodes();
 
-            $due_date = Codes::find($request->code);
-            $
+            $codes = Codes::find($request->code);
+
+            if ($codes->due_date) {
+                $model->due_date = $codes->due_date;
+            } else {
+                if ($codes->hours_offset) {
+                    $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addHours($codes->days_offset);
+                } elseif ($codes->days_offset) {
+                    $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addDays($codes->days_offset);
+                } elseif ($codes->weeks_offset) {
+                    $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addWeeks($codes->days_offset);
+                } elseif ($codes->months_offset) {
+                    $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addMonths($codes->days_offset);
+                } elseif ($codes->years_offset) {
+                    $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addYears($codes->days_offset);
+                }
+            }
             $model->cds_id = $request->code;
             $model->ror_id =  $organization;
             $model->start_date = now()->toDateTimeString();
             $model->save();
+
+
+            $addPeriod = $this->addPeriods($request, $model->id);
+
+            if ($addPeriod) {
+                return true;
+            } else {
+                return false;
+            }
+
             return true;
         } catch (\Throwable $th) {
             throw ($th);
@@ -321,14 +351,70 @@ class OrganizationsController extends Controller
 
             $model = OrgCodes::find($orgCode);
 
+            $codes = Codes::find($request->code);
+
+            if ($codes->due_date) {
+                $model->due_date = $codes->due_date;
+            } else {
+                if ($codes->hours_offset) {
+                    $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addHours($codes->days_offset);
+                } elseif ($codes->days_offset) {
+                    $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addDays($codes->days_offset);
+                } elseif ($codes->weeks_offset) {
+                    $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addWeeks($codes->days_offset);
+                } elseif ($codes->months_offset) {
+                    $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addMonths($codes->days_offset);
+                } elseif ($codes->years_offset) {
+                    $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addYears($codes->days_offset);
+                }
+            }
+            
             $model->cds_id = $request->code;
             $model->ror_id = $organization;
             $model->start_date = now()->toDateTimeString();
             $model->save();
+        } catch (\Throwable $th) {
+            logger($th);
+            return false;
+        }
+    }
+
+    /**
+     * Add periods
+     */
+    public function addPeriods(Request $request, $roc_id)
+    {
+        try {
+            $model = new Periods();
+
+            $model->roc_id = $roc_id;
+            $model->period_name = $request->period_name;
+            $model->period_start_date = $request->period_start_date;
+            $model->period_end_date = $request->period_end_date;
+            $model->save();
             return true;
         } catch (\Throwable $th) {
             logger($th);
+            return false;
+        }
+    }
 
+    /**
+     * Update periods
+     */
+    public function updatePeriods(Request $request, $roc_id, $id)
+    {
+        try {
+            $model = Periods::find($id);
+
+            $model->roc_id = $roc_id;
+            $model->period_name = $request->period_name;
+            $model->period_start_date = $request->period_start_date;
+            $model->period_end_date = $request->period_end_date;
+            $model->save();
+            return true;
+        } catch (\Throwable $th) {
+            logger($th);
             return false;
         }
     }
