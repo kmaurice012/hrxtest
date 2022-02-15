@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BodyVerifications;
+use App\Models\RegulatorVerifications;
 use Illuminate\Http\Request;
 
-class BodyVerificationsController extends Controller
+class RegulatorVerificationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class BodyVerificationsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BodyVerifications  $bodyVerifications
+     * @param  \App\Models\RegulatorVerifications  $RegulatorVerifications
      * @return \Illuminate\Http\Response
      */
-    public function show(BodyVerifications $bodyVerifications)
+    public function show(RegulatorVerifications $RegulatorVerifications)
     {
         //
     }
@@ -43,10 +43,10 @@ class BodyVerificationsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BodyVerifications  $bodyVerifications
+     * @param  \App\Models\RegulatorVerifications  $RegulatorVerifications
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BodyVerifications $bodyVerifications)
+    public function update(Request $request, RegulatorVerifications $RegulatorVerifications)
     {
         //
     }
@@ -54,10 +54,10 @@ class BodyVerificationsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BodyVerifications  $bodyVerifications
+     * @param  \App\Models\RegulatorVerifications  $RegulatorVerifications
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BodyVerifications $bodyVerifications)
+    public function destroy(RegulatorVerifications $RegulatorVerifications)
     {
         //
     }

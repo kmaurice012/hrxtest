@@ -53,7 +53,13 @@ class CodesController extends Controller
                 'description' => 'required|string',
                 'color_code' => 'sometimes|string',
                 'code_details_parent_id' => 'sometimes|integer',
-                'code_details' => 'sometimes|string'
+                'code_details' => 'sometimes|string',
+                'due_date' => 'sometimes|date',
+                'hours_offset' => 'sometimes|integer',
+                'days_offset' => 'sometimes|integer',
+                'weeks_offset' => 'sometimes|integer',
+                'months_offset' => 'sometimes|integer',
+                'years_offset' => 'sometimes|integer'
             ];
             $messages = [
                 'fr_id.required' => 'Please choose a frequency',
@@ -187,7 +193,13 @@ class CodesController extends Controller
                 'color_code' => 'sometimes|string',
                 'code_details_parent_id' => 'sometimes|integer',
                 'code_details' => 'sometimes|string',
-                'code_details_id' => 'required|string'
+                'code_details_id' => 'required|string',
+                'due_date' => 'sometimes|date',
+                'hours_offset' => 'sometimes|integer',
+                'days_offset' => 'sometimes|integer',
+                'weeks_offset' => 'sometimes|integer',
+                'months_offset' => 'sometimes|integer',
+                'years_offset' => 'sometimes|integer'
             ];
 
 

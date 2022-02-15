@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Codes;
 use App\Models\Organizations;
 use App\Models\OrgCodes;
 use Illuminate\Http\Request;
@@ -293,6 +294,8 @@ class OrganizationsController extends Controller
 
             $model = new OrgCodes();
 
+            $due_date = Codes::find($request->code);
+            $
             $model->cds_id = $request->code;
             $model->ror_id =  $organization;
             $model->start_date = now()->toDateTimeString();

@@ -20,6 +20,12 @@ class CreateCodesTable extends Migration
             $table->string('serial_number');
             $table->string('description');
             $table->string('color_code')->nullable();
+            $table->timestamp('due_date')->nullable();
+            $table->integer('hours_offset')->nullable();
+            $table->integer('days_offset')->nullable();
+            $table->integer('weeks_offset')->nullable();
+            $table->integer('months_offset')->nullable();
+            $table->integer('years_offset')->nullable();
             $table->timestamps();
 
             $table->foreign('fr_id')->references('id')->on('rpr_codes_frequency')->onDelete('cascade');

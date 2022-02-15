@@ -26,6 +26,9 @@ class CodeCompliances extends Model
         return $this->hasMany(Documents::class, 'cmp_id', 'id');
     }
 
-
+    public function verifications()
+    {
+        return $this->hasMany(RegulatorVerifications::class, 'cmp_id', 'id');
+    }
     
 }

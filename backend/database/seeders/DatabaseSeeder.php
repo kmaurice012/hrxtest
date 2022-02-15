@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
             UserCodesSeeder::class,
             CompliancesSeeder::class,
             DocumentsSeeder::class,
+            RegulatorVerificationsSeeder::class,
             PeriodsSeeder::class,
-            RegulatorVerificationsSeeder::class
 
         ]);
     }
