@@ -49,7 +49,9 @@
 </template>
 
 <script>
+
 export default {
+  name: "createComp",
   data: () => ({
     name: "",
     primary_color: "",
@@ -81,6 +83,7 @@ export default {
     /**
      * Add checkbox values elese delete
      */
+    
     addCodeSelects(id) {
       if (!this.codeselects.find((element) => element == id)) {
         this.codeselects.push(id);

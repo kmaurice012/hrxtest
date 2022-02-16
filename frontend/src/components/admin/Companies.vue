@@ -9,10 +9,17 @@
         List of Companies
       </v-card-title>
       <v-spacer></v-spacer>
-      <v-btn color="green" class="mt-6 white--text" @click="createCompany()">
-        Create Company
-        <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
-      </v-btn>
+      <v-dialog v-model="dialog" max-width="700px" >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="green" dark v-bind="attrs" v-on="on">
+            Create Company
+            <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
+          </v-btn>
+          <v-spacer></v-spacer>
+        </template>
+        <v-spacer></v-spacer>
+        <CreateComp />
+      </v-dialog>
     </div>
     <v-data-table
       :headers="headers"
@@ -35,7 +42,11 @@
   </v-container>
 </template>
 <script>
+import CreateComp from "../admin/CreateCompany.vue";
 export default {
+  components: {
+    CreateComp,
+  },
   data: () => ({
     expanded: [],
     singleExpand: false,

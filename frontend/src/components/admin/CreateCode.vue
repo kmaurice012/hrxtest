@@ -1,12 +1,12 @@
 <template>
-  <v-card class="ma-2 mt-8">
+  <v-card class=" overflow-x-hidden " style="height: 850px">
     <v-card-title
       primary-title
       class="green font-weight-bold white--text text-h4"
     >
       Add Code
     </v-card-title>
-    <form class="ma-8">
+    <form class="ma-8 dbox">
       <v-text-field
         label="Code"
         v-model="code"
@@ -23,38 +23,42 @@
         v-model="description"
         required
       ></v-text-field>
-      <!-- <v-text-field
-        label="Secondary color "
-        v-model="email"
-        required
-      ></v-text-field> -->
-      <!-- <v-color-picker
-  dot-size="25"
-  swatches-max-height="200"
-></v-color-picker> -->
+
       <v-select
         label="Select Frequency"
         v-model="select"
         :items="frequency"
         required
       ></v-select>
-      <template>
-          <v-card-text class="font-weight-bold mt-4 mb-4">
-              Choose Date Due
-          </v-card-text>
+
+      <v-card-text class="font-weight-bold mt-4 mb-4">
+        Choose Date Due
+      </v-card-text>
+      <div style="display: flex">
         <v-row>
-          <v-date-picker v-model="picker"></v-date-picker>
+          <v-col cols="12" sm="6" class="my-2 px-1" >
+            <v-date-picker v-model="picker"  full-width></v-date-picker>
+          </v-col>
         </v-row>
-      </template>
-      <v-text-field
-        label="Code Details"
-        v-model="code_details"
-        textarea
-        multi-line
-      ></v-text-field>
-      <div class="d-flex">
-        <v-btn class="green white--text mb-4 mr-10">save code</v-btn>
-        <v-btn class="red white--text mb-4">clear</v-btn>
+        <v-col cols="12" sm="6" class="my-2 px-1">
+          <div>
+            <v-text-field
+              label="Code Details"
+              v-model="code_details"
+              textarea
+              multi-line
+            ></v-text-field>
+
+            <div class="d-flex" style="margin-top: 170px;">
+              <v-btn class="green white--text mb-4 mr-10">save code</v-btn>
+              <v-btn class="red white--text mb-4">clear</v-btn>
+              <v-btn color="red" style="margin-left: 24px" text @click="dialog = false">
+                Close
+              </v-btn>
+            </div>
+             
+          </div>
+        </v-col>
       </div>
     </form>
   </v-card>
@@ -62,7 +66,9 @@
 
 <script>
 export default {
+  name: "build",
   data: () => ({
+    dialog: false,
     code: "",
     serial_no: "",
     description: "",
@@ -75,7 +81,19 @@ export default {
       "Bi-Annually",
       "Annually",
     ],
-    picker: ''
+    picker: "",
   }),
 };
 </script>
+<style>
+/* Hide scrollbar for Chrome, Safari and Opera */
+.dbox::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.dbox {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+</style>

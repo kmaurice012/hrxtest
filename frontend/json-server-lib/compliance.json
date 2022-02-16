@@ -1,0 +1,108 @@
+{
+    "userCompliances": [
+        {
+          "id": 1,
+          "period": "Jan-2022",
+          "due_date": "04-Jan-2022 16:00",
+          "complied_date": "04-Jan-2022 15:01",
+          "file": "Trading_hours_Jan.pdf",
+          "file_type": "mdi-file-pdf-box",
+          "status": "Complied",
+         " color": "green darken-3 font-weight-bold"
+        },
+        {
+          "id": 2,
+         " period": "Jan-2022",
+          "due_date": "11-Jan-2022 18:00",
+          "complied_date": "25-Jan-2022 17:25",
+          "file": "Listing Trading_hours_Jan.docx",
+          "file_type": "mdi-file-word",
+          "status": "Rejected",
+          "color": "red darken-3 font-weight-bold"
+        },
+        {
+          "id": 3,
+          "period": "Jan-2022",
+          "due_date": "18-Jan-2022 17:30",
+          "complied_date": null,
+          "file": "Listing Trading_hours_Jan.docx",
+          "file_type": "mdi-file-word",
+          "status": "Not Complied",
+          "color": "blue darken-3 font-weight-bold"
+        },
+        {
+          "id": 4,
+          "period": "Jan-2022",
+          "due_date": "25-Jan-2022 18:00",
+          "complied_date": "26-Jan-2022 15:25",
+          "file": "Listing Trading_hours_Jan.docx",
+          "file_type": "mdi-file-word",
+          "status": "Complied Late",
+          "Color": "yellow darken-3 font-weight-bold"
+        },
+        {
+          "id": 5,
+          "period": "Feb-2022",
+          "due_date": "01-Feb-2022 18:07",
+          "complied_date": null,
+          "file": null,
+          "status": "Not Complied",
+          "color": "blue darken-3 font-weight-bold"
+        },
+        {
+          "id": 6,
+          "period": "Feb-2022",
+          "due_date": "08-Feb-2022 17:00",
+          "complied_date": "08-Jan-2022 16:25",
+          "file": "Listing Trading_hours_Jan.docx",
+          "file_type": "mdi-file-word",
+          "status": "Not Complied",
+          "color": "blue darken-3 font-weight-bold"
+        },
+        {
+          "id": 7,
+          "period": "Jan-2022",
+          "due_date": "25-Jan-2022",
+          "complied_date": "25-Jan-2022",
+          "file": null,
+          "status": "Not Complied",
+          "color": "blue darken-3 font-weight-bold"
+        },
+        {
+          "id": 8,
+          "period": "Jan-2022",
+          "due_date": "25-Jan-2022",
+          "complied_date": "25-Jan-2022",
+          "file": null,
+          "status": "Not Complied",
+          "color": "blue darken-3 font-weight-bold"
+        },
+        {
+          "id": 9,
+          "period": "Jan-2022",
+          "due_date": "25-Jan-2022",
+          "complied_date": "25-Jan-2022",
+          "file": null,
+          "status": "Not Complied",
+          "color": "blue darken-3 font-weight-bold"
+        },
+        {
+          "id": 10,
+          "period": "Jan-2022",
+          "due_date": "25-Jan-2022",
+          "complied_date": "25-Jan-2022",
+          "file": null,
+          "status": "Not Complied",
+          "color": "blue darken-3 font-weight-bold"
+        },
+        {
+          "id": 11,
+          "period": "Jan-2022",
+          "due_date": "25-Jan-2022",
+          "complied_date": "25-Jan-2022",
+          "file": null,
+          "status": "Not Complied",
+          "color": "blue darken-3 font-weight-bold"
+        }
+      ]
+}

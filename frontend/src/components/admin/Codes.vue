@@ -1,16 +1,21 @@
 <template>
-  <v-card class="ma-4">
+  <v-card class="ma-4" >
     <div class="d-flex">
-      <v-card-title primary-title class="text-h4 #303b4b--text">
-        List of Codes
-      </v-card-title>
       <v-spacer></v-spacer>
-      <v-btn color="green" class="mt-6 white--text" @click="createCode()">
-        Create Code
-        <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
-      </v-btn>
+      <v-dialog v-model="dialog"  max-width="1400px" max-height="950px">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="green" dark v-bind="attrs" v-on="on">
+            Create Code
+            <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
+          </v-btn>
+          <v-spacer></v-spacer>
+        </template>
+             <v-spacer></v-spacer>
+
+        <Build />
+      </v-dialog>
     </div>
-    <v-data-table :headers="headers" :items="compliances" :loading="loading">
+    <v-data-table :headers="headers" :items="compliances" :loading="loading" style="margin-top: 10px;">
       <!-- <template v-slot:[`item.actions`]="{ item }">
         <v-btn
           v-bind="attrs"
@@ -19,16 +24,21 @@
           color="red darken-3 white--text font-weight-bold mt-2"
           @click="viewCompliances(item.title, item.id)"
         > -->
-          <!-- <v-icon large @click="submitCompliance(item.id)">mdi-file-plus</v-icon> -->
-          <!-- <p class="ma-2">View Compliance</p>
+      <!-- <v-icon large @click="submitCompliance(item.id)">mdi-file-plus</v-icon> -->
+      <!-- <p class="ma-2">View Compliance</p>
         </v-btn>
       </template> -->
     </v-data-table>
   </v-card>
 </template>
 <script>
+import Build from "../admin/CreateCode.vue";
 export default {
+  components: {
+    Build,
+  },
   data: () => ({
+     dialog: false,
     headers: [
       {
         text: "name",
@@ -156,7 +166,7 @@ export default {
 
     createCode() {
       this.$router.push(`/admin/dashboard/codes/create`);
-    }
+    },
   },
   mounted() {
     this.loading = false;
@@ -166,3 +176,15 @@ export default {
   created() {},
 };
 </script>
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+.dbox::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.dbox {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+</style>
