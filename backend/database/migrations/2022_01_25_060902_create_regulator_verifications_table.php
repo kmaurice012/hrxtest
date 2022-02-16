@@ -19,7 +19,7 @@ class CreateRegulatorVerificationsTable extends Migration
             $table->unsignedBigInteger('id_users');
             $table->unsignedBigInteger('cmp_id');
             $table->string('comments');
-            $table->date('action_date');
+            $table->timestamp('action_date');
             $table->timestamps();
 
             $table->foreign('id_users')->references('id')->on('rpr_users');

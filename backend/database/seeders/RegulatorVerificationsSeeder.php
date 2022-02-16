@@ -19,7 +19,7 @@ class RegulatorVerificationsSeeder extends Seeder
             'id_users' => 1,
             'cmp_id' => 1,
             'comments' => 'this is a comment',
-            'action_date' => '2022-02-08-10:00',
+            'action_date' => now()->toDateTimeString(),
         ]);
     }
 }
