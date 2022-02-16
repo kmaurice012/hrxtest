@@ -46,12 +46,9 @@ class RolesController extends Controller
 
         try {
             $rules = [
-
-                'parent_id' => 'sometimes|id',
+                'parent_id' => 'sometimes|integer',
                 'cds_id' => 'required|integer',
                 'role' => 'required|string',
-                // 'start_date' => now()->toDateTimeString(),
-                // 'end_date' => null,
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -66,7 +63,10 @@ class RolesController extends Controller
 
             $model = new Roles();
 
-            $model->parent_id = $request->parent_id ?? null;
+            if ($request->parent_id) {
+                $model->parent_id = $request->parent_id;
+            }
+
             $model->cds_id = $request->cds_id;
             $model->role = $request->role;
             $model->start_date = now()->toDateTimeString();
@@ -141,11 +141,9 @@ class RolesController extends Controller
         try {
             $rules = [
 
-                'parent_id' => 'sometimes|id',
+                'parent_id' => 'sometimes|integer',
                 'cds_id' => 'required|integer',
                 'role' => 'required|string',
-                'start_date' => now()->toDateTimeString(),
-                'end_date' => null,
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -160,7 +158,10 @@ class RolesController extends Controller
 
             $model = Roles::find($id);
 
-            $model->parent_id = $request->parent_id ?? null;
+            if ($request->parent_id) {
+                $model->parent_id = $request->parent_id;
+            }
+
             $model->cds_id = $request->cds_id;
             $model->role = $request->role;
             $model->start_date = now()->toDateTimeString();
