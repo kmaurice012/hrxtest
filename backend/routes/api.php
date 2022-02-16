@@ -36,4 +36,4 @@ Route::apiResource('roles', 'RolesController');
 Route::apiResource('frequencies', 'FrequencyController');
 Route::apiResource('compliances', 'CodeCompliancesController');
 Route::post('organization-compliances', 'CodeCompliancesController@orgCompliances');
-// Route::post('organization-compliance', 'CodeCompliancesController@orgCompliance');
+Route::apiResource('verifications', 'RegulatorVerificationsController');
