@@ -22,7 +22,7 @@ class CreatePeriodsTable extends Migration
             $table->timestamps();
 
 
-            $table->foreign('roc_id')->references('id')->on('rpr_org_codes');
+            $table->foreign('roc_id')->references('id')->on('rpr_org_codes')->onDelete('cascade');
         });
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Events;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class EventsController extends Controller
@@ -50,9 +51,9 @@ class EventsController extends Controller
                 'event' => 'required|string',
                 'start_date' => 'required|date',
                 'end_date' => 'required|date',
-                'url' => 'sometimes|string',
-                'location' => 'sometimes|string',
-                'color' => 'sometimes|string',
+                'url' => 'sometimes|string|nullable',
+                'location' => 'sometimes|string|nullable',
+                'color' => 'sometimes|string|nullable',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -70,7 +71,7 @@ class EventsController extends Controller
             $model->cds_id = $request->cds_id;
             $model->event = $request->event;
             $model->start_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->start_date);
-                $model->end_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->end_date);
+            $model->end_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->end_date);
             $model->url = $request->url ?? null;
             $model->location = $request->location ?? null;
             $model->color = $request->color ?? bin2hex(openssl_random_pseudo_bytes(3));
@@ -148,9 +149,9 @@ class EventsController extends Controller
                 'event' => 'required|string',
                 'start_date' => 'required|date',
                 'end_date' => 'required|date',
-                'url' => 'sometimes|string',
-                'location' => 'sometimes|string',
-                'color' => 'sometimes|string',
+                'url' => 'sometimes|string|nullable',
+                'location' => 'sometimes|string|nullable',
+                'color' => 'sometimes|string|nullable',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -232,10 +233,9 @@ class EventsController extends Controller
     public function OrgEvents($org_id)
     {
         try {
-
-            $models = Events::leftJoin('rpr_codes', 'rpr_events.cds_id', '=', 'rpr_codes.id')
-                ->leftJoin('rpr_org_codes', 'rpr_codes.id', '=', 'rpr_org_codes.cds_id')
-                ->leftJoin('rpr_organizations', 'rpr_org_codes.ror_id', '=', 'rpr_organizations.id')
+            $models = DB::table('rpr_organizations')->leftJoin('rpr_org_codes', 'rpr_organizations.id', '=', 'rpr_org_codes.ror_id')
+                ->leftJoin('rpr_codes', 'rpr_org_codes.cds_id', '=', 'rpr_codes.id')
+                ->leftJoin('rpr_events', 'rpr_codes.id', '=', 'rpr_events.cds_id')
                 ->where('rpr_organizations.id', '=', $org_id)
                 ->get();
             $data = [

@@ -17,6 +17,7 @@ class CreateOrgCodesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('cds_id');
             $table->unsignedBigInteger('ror_id');
+            $table->unsignedBigInteger('prd_id');
             $table->timestamp('due_date');
             $table->timestamp('start_date');
             $table->timestamp('end_date')->nullable();

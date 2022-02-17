@@ -23,7 +23,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('secondary_color3')->nullable();
             $table->timestamps();
 
-            $table->foreign('oty_id')->references('id')->on('rpr_org_type');
+            $table->foreign('oty_id')->references('id')->on('rpr_org_type')->onDelete('cascade');
         });
     }
 
