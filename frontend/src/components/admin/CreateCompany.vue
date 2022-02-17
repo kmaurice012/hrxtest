@@ -2,15 +2,22 @@
   <v-card class="overflow-x-hidden">
     <v-card-title
       primary-title
-      class="green font-weight bold white--text text-h4  d-flex flex-row justify-space-between "
+      class="
+        green
+        font-weight
+        bold
+        white--text
+        text-h4
+        d-flex
+        flex-row
+        justify-space-between
+      "
     >
+      <div>Add a Company</div>
       <div>
-          Add a Company
-      </div>
-      <div>
-       <v-btn class="mx-2" small fab dark  color="white" @click="method(false)">
-        <v-icon dark small color="green" > mdi-close</v-icon>
-      </v-btn>
+        <v-btn class="mx-2" small fab dark color="white" @click="method(false)">
+          <v-icon dark small color="green"> mdi-close</v-icon>
+        </v-btn>
       </div>
     </v-card-title>
 
@@ -51,17 +58,25 @@
       <div class="mt-6 d-flex">
         <v-btn class="green white--text mb-4 mr-10">submit</v-btn>
         <v-btn class="red white--text mb-4">clear</v-btn>
+        <v-btn
+          class="blue white--text mb-4"
+          style="margin-left: 24px"
+          text
+         
+        >
+          Close
+        </v-btn>
       </div>
     </form>
   </v-card>
 </template>
 <script>
-
 export default {
   name: "createComp",
-   props: {
+    props: {
     method: { type: Function },
   },
+
   data: () => ({
     name: "",
     primary_color: "",
@@ -103,7 +118,6 @@ export default {
       }
       console.log(this.selects);
     },
-    
   },
 };
 </script>

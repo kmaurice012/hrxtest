@@ -118,6 +118,16 @@ const routes = [{
         component: () => import('../components/admin/ReportCompliances.vue'),
       },
       {
+        path: 'admin-roles',
+        name: 'Admin Roles',
+        component: () => import('../components/admin/AdminRoles.vue'),
+      },
+      {
+        path: 'admin-frequencies',
+        name: 'Admin Frequencies',
+        component: () => import('../components/admin/AdminFrequencies.vue'),
+      },
+      {
         path: 'view-compliance-reports',
         name: 'Admin Compliances Report',
         component: () => import('../components/admin/AdminReports.vue'),

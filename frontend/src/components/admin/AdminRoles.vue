@@ -6,7 +6,7 @@
         class="text-h4 #303b4b--text"
         style="color: #303b4b"
       >
-        List of Companies
+        List of Roles
       </v-card-title>
       <v-spacer></v-spacer>
       <v-dialog v-model="dialog"  max-width="700px" max-height="950px">

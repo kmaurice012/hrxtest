@@ -207,24 +207,25 @@ export default {
         icon: "mdi-office-building",
         color: "indigo",
       },
+          {
+        name: "Manage Roles",
+        route: "/admin/dashboard/admin-roles",
+        icon: "mdi-clipboard-account-outline",
+        color: "orange",
+      },
+        {
+        name: "Manage Frequencies",
+        route: "/admin/dashboard/admin-frequencies",
+        icon: "mdi-chart-areaspline ",
+        color: "cyan",
+      },
       {
         name: "Reports",
         route: "/admin/dashboard/admin-reports",
         icon: "mdi-chart-box",
         color: "green",
       },
-       {
-        name: "Manage Roles",
-        route: "/admin/dashboard/admin-report",
-        icon: "mdi-chart-box",
-        color: "orange",
-      },
-        {
-        name: "Manage Frequencies",
-        route: "/admin/dashboard/admin-report",
-        icon: "mdi-chart-box",
-        color: "black",
-      },
+   
       // {
       //   name: "Submit Compliance",
       //   route: "/dashboard/comply",
