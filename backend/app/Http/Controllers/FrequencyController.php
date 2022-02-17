@@ -152,19 +152,32 @@ class FrequencyController extends Controller
             }
 
             $model = CodesFrequency::find($id);
-
-            $model->frequency = $request->frequency;
-            $model->unit = $request->unit;
-            $model->qty = $request->qty;
-
-            $model->save();
-            $data = [
-                'success' => true,
-                'message' => 'Frequency updated succesfully'
-            ];
+            if ($model) {
 
 
-            return response()->json($data, 201);
+                $model->frequency = $request->frequency;
+                $model->unit = $request->unit;
+                $model->qty = $request->qty;
+
+                $model->save();
+
+
+                $data = [
+                    'success' => true,
+                    'message' => 'Frequency updated succesfully'
+                ];
+
+
+                return response()->json($data, 201);
+            } else {
+                $data = [
+                    'success' => false,
+                    'message' => 'Frequency not found'
+                ];
+
+
+                return response()->json($data, 404);
+            }
         } catch (\Throwable $th) {
             logger($th);
 

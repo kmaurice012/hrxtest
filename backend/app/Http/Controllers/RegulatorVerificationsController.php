@@ -64,6 +64,15 @@ class RegulatorVerificationsController extends Controller
 
             $model = new RegulatorVerifications();
 
+            $complianceVerrificationExists = $model::where('cmp_id', '=', $request->cmp_id)->exists();
+
+            if ($complianceVerrificationExists) {
+                $data = [
+                    'success' => false,
+                    'message' => 'Compliance verification status already exists'
+                ];
+                return response()->json($data, 409);
+            }
             $model->rct_id = $request->rct_id;
             $model->id_users = $request->id_users;
             $model->cmp_id = $request->cmp_id;
@@ -71,13 +80,24 @@ class RegulatorVerificationsController extends Controller
             $model->action_date = now()->toDateTimeString();
 
             $model->save();
-            $data = [
-                'success' => true,
-                'message' => 'Verification added succesfully'
-            ];
+
+            $updateCompliance = $this->updateComplianceVerification($request->compliance, $request->cmp_id);
+
+            if ($updateCompliance) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Verification created succesfully'
+                ];
 
 
-            return response()->json($data, 201);
+                return response()->json($data, 201);
+            } else {
+                $data = [
+                    'success' => false,
+                    'message' => 'An error occured while updating compliance verification'
+                ];
+                return response()->json($data, 500);
+            }
         } catch (\Throwable $th) {
             logger($th);
 
@@ -129,30 +149,42 @@ class RegulatorVerificationsController extends Controller
 
             $model = RegulatorVerifications::find($id);
 
-            $model->rct_id = $request->rct_id;
-            $model->id_users = $request->id_users;
-            $model->cmp_id = $request->cmp_id;
-            $model->comments = $request->comments;
-            $model->action_date = now()->toDateTimeString();
+            if ($model) {
+                $model->rct_id = $request->rct_id;
+                $model->id_users = $request->id_users;
+                $model->cmp_id = $request->cmp_id;
+                $model->comments = $request->comments;
+                $model->action_date = now()->toDateTimeString();
 
-            $model->save();
+                $model->save();
 
 
-            $updateCompliance = $this->updateComplianceVerification($request->compliance, $request->cmp_id);
+                $updateCompliance = $this->updateComplianceVerification($request->compliance, $request->cmp_id);
 
-            if ($updateCompliance ) {
-                # code...
+                if ($updateCompliance) {
+                    $data = [
+                        'success' => true,
+                        'message' => 'Verification updated succesfully'
+                    ];
+
+
+                    return response()->json($data, 201);
+                } else {
+                    $data = [
+                        'success' => false,
+                        'message' => 'An error occured while updating compliance verification'
+                    ];
+                    return response()->json($data, 500);
+                }
             } else {
-                # code...
+                $data = [
+                    'success' => false,
+                    'message' => 'Verification not found'
+                ];
+
+
+                return response()->json($data, 404);
             }
-            
-            $data = [
-                'success' => true,
-                'message' => 'Verification updated succesfully'
-            ];
-
-
-            return response()->json($data, 201);
         } catch (\Throwable $th) {
             logger($th);
 

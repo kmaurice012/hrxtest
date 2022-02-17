@@ -37,3 +37,5 @@ Route::apiResource('frequencies', 'FrequencyController');
 Route::apiResource('compliances', 'CodeCompliancesController');
 Route::post('organization-compliances', 'CodeCompliancesController@orgCompliances');
 Route::apiResource('verifications', 'RegulatorVerificationsController');
+Route::apiResource('events', 'EventsController');
+Route::post('organization-events', 'EventsController@OrgEvents');

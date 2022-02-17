@@ -212,42 +212,52 @@ class OrganizationsController extends Controller
 
             DB::beginTransaction();
             $model = Organizations::find($id);
-
-            $model->organization_name = $request->organization_name;
-            $model->primary_color = $request->primary_color;
-            $model->secondary_color1 = $request->secondary_color1 ?? null;
-            $model->secondary_color2 = $request->secondary_color1 ?? null;
-            $model->secondary_color3 = $request->secondary_color1 ?? null;
-
-            $model->save();
-
             if ($model) {
 
-                //add code
-                $updateCode = $this->updateCode($request, $model->id, $request->org_code);
+                $model->organization_name = $request->organization_name;
+                $model->primary_color = $request->primary_color;
+                $model->secondary_color1 = $request->secondary_color1 ?? null;
+                $model->secondary_color2 = $request->secondary_color1 ?? null;
+                $model->secondary_color3 = $request->secondary_color1 ?? null;
 
-                // $model->org_codes()->save($model, ['cds_id' => $request->code, 'start_date' =>now()->toDateTimeString()]);
-                if ($updateCode) {
+                $model->save();
 
-                    DB::commit();
-                    $data = [
-                        'success' => true,
-                        'message' => 'Organization updated succesfully'
-                    ];
+                if ($model) {
 
+                    //add code
+                    $updateCode = $this->updateCode($request, $model->id, $request->org_code);
 
-                    return response()->json($data, 201);
-                } else {
-                    DB::rollBack();
+                    // $model->org_codes()->save($model, ['cds_id' => $request->code, 'start_date' =>now()->toDateTimeString()]);
+                    if ($updateCode) {
 
-                    $data = [
-                        'success' => false,
-                        'message' => 'An error occured while updating code to organization'
-                    ];
+                        DB::commit();
+                        $data = [
+                            'success' => true,
+                            'message' => 'Organization updated succesfully'
+                        ];
 
 
-                    return response()->json($data, 201);
+                        return response()->json($data, 201);
+                    } else {
+                        DB::rollBack();
+
+                        $data = [
+                            'success' => false,
+                            'message' => 'An error occured while updating code to organization'
+                        ];
+
+
+                        return response()->json($data, 201);
+                    }
                 }
+            } else {
+                $data = [
+                    'success' => false,
+                    'message' => 'Organization not found'
+                ];
+
+
+                return response()->json($data, 404);
             }
         } catch (\Throwable $th) {
             logger($th);
@@ -368,7 +378,7 @@ class OrganizationsController extends Controller
                     $model->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $request->period_end_date)->addYears($codes->days_offset);
                 }
             }
-            
+
             $model->cds_id = $request->code;
             $model->ror_id = $organization;
             $model->start_date = now()->toDateTimeString();
