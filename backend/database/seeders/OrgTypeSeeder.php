@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\OrgType;
 use Illuminate\Database\Seeder;
 
 class OrgTypeSeeder extends Seeder
@@ -13,6 +14,10 @@ class OrgTypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        OrgType::insert([
+            [
+                'org_type' => 'organization',
+            ]
+        ]);
     }
 }

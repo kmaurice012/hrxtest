@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CodesSeeder::class,
             CodeDetailsSeeder::class,
             EventsSeeder::class,
+            OrgTypeSeeder::class,
             OrganizationSeeder::class,
             OrgCodesSeeder::class,
             OrgUsersSeeder::class,
