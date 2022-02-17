@@ -1,11 +1,19 @@
 <template>
-  <v-card class="ma-2 mt-8">
+  <v-card class="overflow-x-hidden">
     <v-card-title
       primary-title
-      class="green font-weight bold white--text text-h4"
+      class="green font-weight bold white--text text-h4  d-flex flex-row justify-space-between "
     >
-      Add a Company
+      <div>
+          Add a Company
+      </div>
+      <div>
+       <v-btn class="mx-2" small fab dark  color="white" @click="method(false)">
+        <v-icon dark small color="green" > mdi-close</v-icon>
+      </v-btn>
+      </div>
     </v-card-title>
+
     <form class="ma-8">
       <v-text-field
         label="Company Name"
@@ -47,11 +55,13 @@
     </form>
   </v-card>
 </template>
-
 <script>
 
 export default {
   name: "createComp",
+   props: {
+    method: { type: Function },
+  },
   data: () => ({
     name: "",
     primary_color: "",
@@ -83,7 +93,7 @@ export default {
     /**
      * Add checkbox values elese delete
      */
-    
+
     addCodeSelects(id) {
       if (!this.codeselects.find((element) => element == id)) {
         this.codeselects.push(id);
@@ -93,6 +103,7 @@ export default {
       }
       console.log(this.selects);
     },
+    
   },
 };
 </script>

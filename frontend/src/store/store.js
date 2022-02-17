@@ -1,40 +1,23 @@
-// import dependency to handle HTTP request to our back end
-import axios from 'axios'
-import Vuex from 'vuex'
-import Vue from 'vue'
+import Vue from "vue";
+import Vuex from "vuex";
+// import * as user from '@/store/modules/user.js'
+import Event from "../services/admin_api";
+// import Compliance from "../services/admin_api";
+// import userCompliances from '../services/admin_api'
+// import * as notification from '@/store/modules/notification.js'
 
-//load Vuex
 Vue.use(Vuex);
+let event = Event.Event;
+// let compliance = Compliance.Compliance;
 
-//to handle state
-const state = {
-    posts: []
-}
-
-//to handle state
-const getters = {}
-
-//to handle actions
-const actions = {
-    getEvents({ commit }) {
-        axios.get('http://localhost:3000/events')
-            .then(response => {
-                commit('SET_POSTS', response.data)
-        })
-    }
-}
-
-//to handle mutations
-const mutations = {
-    SET_Event(state, event) {
-        state.event = event
-    }
-}
-
-//export store module
 export default new Vuex.Store({
-    state,
-    getters,
-    actions,
-    mutations
-})
+  component: {
+    Event,
+    // Compliance,
+  },
+  state: {
+    event,
+    // compliance,
+    // userCompliances
+  },
+});

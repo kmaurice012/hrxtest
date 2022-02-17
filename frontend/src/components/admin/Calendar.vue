@@ -90,11 +90,11 @@
 
 <script>
 
-import Events from "../../services/admin_api.js";
 
-let events = Events.Events;
-console.log(events, "these are the events");
+
+let events = JSON.parse(sessionStorage.events);
 export default {
+
   data: () => ({
     focus: '',
     type: 'month',
@@ -112,13 +112,6 @@ export default {
   }),
   mounted () {
     this.$refs.calendar.checkChange()
-     this.$store.dispatch("getEvents");
-  },
- 
-  computed: {
-    event() {
-    return this.$store.state.events
-    }
   },
   methods: {
     viewDay ({ date }) {

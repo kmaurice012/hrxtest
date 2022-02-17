@@ -1,10 +1,18 @@
 <template>
-  <v-card class=" overflow-x-hidden " style="height: 850px">
+  <v-card class=" overflow-x-hidden  overflow-y-hidden" style="height: 850px">
     <v-card-title
       primary-title
-      class="green font-weight-bold white--text text-h4"
+      class="green font-weight-bold white--text text-h4  d-flex flex-row justify-space-between"
     >
-      Add Code
+    <div>
+  Add Code
+    </div>
+    <div>
+  <v-btn class="mx-2" small fab dark  color="white" @click="method(false)">
+        <v-icon dark small color="green" > mdi-close</v-icon>
+      </v-btn>
+    </div>
+    
     </v-card-title>
     <form class="ma-8 dbox">
       <v-text-field
@@ -52,7 +60,7 @@
             <div class="d-flex" style="margin-top: 170px;">
               <v-btn class="green white--text mb-4 mr-10">save code</v-btn>
               <v-btn class="red white--text mb-4">clear</v-btn>
-              <v-btn color="red" style="margin-left: 24px" text @click="dialog = false">
+              <v-btn class="blue white--text mb-4" style="margin-left: 24px" text @click="method(false)">
                 Close
               </v-btn>
             </div>
@@ -67,6 +75,9 @@
 <script>
 export default {
   name: "build",
+  props: {
+    method: { type: Function },
+  },
   data: () => ({
     dialog: false,
     code: "",

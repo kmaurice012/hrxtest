@@ -72,16 +72,16 @@ const routes = [{
         name: 'Companies',
         component: () => import('../components/admin/Companies.vue'),
       },
-      {
-        path: 'companies/create',
-        name: 'Create Company',
-        component: () => import('../components/admin/CreateCompany.vue'),
-      },
-      {
-        path: 'codes/create',
-        name: 'Create Code',
-        component: () => import('../components/admin/CreateCode.vue'),
-      },
+      // {
+      //   path: 'companies/create',
+      //   name: 'Create Company',
+      //   component: () => import('../components/admin/CreateCompany.vue'),
+      // },
+      // {
+      //   path: 'codes/create',
+      //   name: 'Create Code',
+      //   component: () => import('../components/admin/CreateCode.vue'),
+      // },
       {
         path: 'company_codes/:id',
         name: 'Comliances',

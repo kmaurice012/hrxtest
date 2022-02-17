@@ -18,7 +18,7 @@
           <v-spacer></v-spacer>
         </template>
         <v-spacer></v-spacer>
-        <CreateComp />
+        <CreateComp :method="close" />
       </v-dialog>
     </div>
     <v-data-table
@@ -43,6 +43,7 @@
 </template>
 <script>
 import CreateComp from "../admin/CreateCompany.vue";
+  let userCompliances = JSON.parse(sessionStorage.userCompliances);
 export default {
   components: {
     CreateComp,
@@ -63,40 +64,7 @@ export default {
         width: "5%",
       },
     ],
-    userCompliances: [
-      {
-        id: 1,
-        company: "Kenya Airways Ltd.",
-      },
-      {
-        id: 2,
-        company: "Safaricom Plc.",
-      },
-      {
-        id: 3,
-        company: "Kenya Power & Lighting Plc.",
-      },
-      {
-        id: 4,
-        company: "Nation Media Group Plc.",
-      },
-      {
-        id: 5,
-        company: "Equity Group Holdings Plc.",
-      },
-      {
-        id: 6,
-        company: "Diamond Trust Bank Kenya Ltd",
-      },
-      {
-        id: 7,
-        company: "Stanbic Holdings Ltd.",
-      },
-      {
-        id: 8,
-        company: "Sasini Plc.",
-      },
-    ],
+    userCompliances,
     complianceType: "",
     complianceId: "",
     compliancePeriod: "",
@@ -126,6 +94,11 @@ export default {
     },
     createCompany() {
       this.$router.push(`/admin/dashboard/companies/create`);
+    },
+     close(dialog){
+       console.log( this.dialog);
+      return this.dialog = dialog;
+
     },
   },
 

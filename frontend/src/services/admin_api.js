@@ -22,17 +22,35 @@ const apiClient = axios.create({
     .then((response) => {
       sessionStorage.setItem("events", JSON.stringify(response.data));
     })
-    .catch((error) => {
-      console.log(error);
-    });
   let Events = JSON.parse(sessionStorage.events);
   
   JSON.stringify(Events);
   
-  
+  apiClient
+    .get("/compliances")
+    .then((response) => {
+      sessionStorage.setItem("compliance", JSON.stringify(response.data));
+    })
+    let Compliance = JSON.parse(sessionStorage.compliance);
+    
+    apiClient
+    .get("/userCompliancess")
+    .then((response) => {
+      sessionStorage.setItem("userCompliances", JSON.stringify(response.data));
+    })
+    let userCompliances = JSON.parse(sessionStorage.userCompliances);
+    apiClient
+    .get("/userCompliances")
+    .then((response) => {
+      sessionStorage.setItem("userCompliance", JSON.stringify(response.data));
+    })
+    let userCompliance = JSON.parse(sessionStorage.userCompliance);
   export default {
     // AdminApi,
     Events,
+    Compliance,
+    userCompliances,
+    userCompliance 
   
   };
   

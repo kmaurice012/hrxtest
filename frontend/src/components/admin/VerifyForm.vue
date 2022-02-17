@@ -173,7 +173,7 @@ export default {
         id: 3,
         company: "Kenya Power & Lighting Plc.",
         complied_date: "09-Jan-2022 23:59",
-        file: "Listing Rules_Kenya_Power.pdf",
+        file: "_Kenya_Power.pdf",
         file_type: "mdi-file-pdf-box",
         status: "Complied",
         color: "green darken-3 font-weight-bold",
