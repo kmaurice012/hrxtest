@@ -1,56 +1,49 @@
-import axios from 'axios'
+import axios from "axios";
 
-    //get company list
-    // get company codes list
-    // get company compliances
-    //get compliance details
-    //verify form
-    //get company report for a specific code
-// 
+//get company list
+// get company codes list
+// get company compliances
+//get compliance details
+//verify form
+//get company report for a specific code
+//
 
 const apiClient = axios.create({
-    baseURL: `http://localhost:3000`,
-    withCredentials: false, // This is the default
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
-  
-  apiClient
-    .get("/events")
-    .then((response) => {
-      sessionStorage.setItem("events", JSON.stringify(response.data));
-    })
-  let Events = JSON.parse(sessionStorage.events);
-  
-  JSON.stringify(Events);
-  
-  apiClient
-    .get("/compliances")
-    .then((response) => {
-      sessionStorage.setItem("compliance", JSON.stringify(response.data));
-    })
-    let Compliance = JSON.parse(sessionStorage.compliance);
-    
-    apiClient
-    .get("/userCompliancess")
-    .then((response) => {
-      sessionStorage.setItem("userCompliances", JSON.stringify(response.data));
-    })
-    let userCompliances = JSON.parse(sessionStorage.userCompliances);
-    apiClient
-    .get("/userCompliances")
-    .then((response) => {
-      sessionStorage.setItem("userCompliance", JSON.stringify(response.data));
-    })
-    let userCompliance = JSON.parse(sessionStorage.userCompliance);
+  baseURL: `http://localhost:3000`,
+  withCredentials: false, // This is the default
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+});
+// apiClient.get("/roles-table").then((response) => {
+//   sessionStorage.setItem("roles_table", JSON.stringify(response.data));
+// });
+// let roles_table = JSON.parse(sessionStorage.roles_table);
+
   export default {
-    // AdminApi,
-    Events,
-    Compliance,
-    userCompliances,
-    userCompliance 
-  
-  };
-  
+    getEvents() {
+      return apiClient.get('/events')
+    },
+    getComplinces() {
+      return apiClient.get('/compliances')
+    },
+    getCompanies() {
+      return apiClient.get('/companies')
+    },
+    getUsercomps() {
+      return apiClient.get('/userCompliances')
+    }
+ 
+    // userCompliances,
+    // userCompliance,
+    // roles_table
+    // getEvent(id) {
+    //   return apiClient.get('/compliances')
+    // },
+    // postEvent(event) {
+    //   return apiClient.post('/events', event)
+    // }
+  }
+
+

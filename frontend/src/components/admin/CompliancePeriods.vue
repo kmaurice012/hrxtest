@@ -1,13 +1,14 @@
 <template>
   <v-container>
     <div class="d-flex">
-    <v-card-title primary-title class="green text-h4 white--text">
+      <v-card-title primary-title class="green text-h4 white--text">
         <span class="text-uppercase">{{ companyName }}</span> -
-        {{ complianceTitle }} </v-card-title>
-        <v-card-title class="green text-h6 white--text"> Jan-2022 to Feb-2022
-      <!-- {{ complianceTitle }} for the period between Jan-2022 to Feb-2022 -->
-
-    </v-card-title>
+        {{ complianceTitle }}
+      </v-card-title>
+      <v-card-title class="green text-h6 white--text">
+        Jan-2022 to Feb-2022
+        <!-- {{ complianceTitle }} for the period between Jan-2022 to Feb-2022 -->
+      </v-card-title>
       <v-spacer></v-spacer>
       <v-tooltip left>
         <template v-slot:activator="{ on, attrs }">
@@ -24,11 +25,11 @@
         </template>
         <span>View Reports</span>
       </v-tooltip>
-      </div>
-      <br>
+    </div>
+    <br />
     <v-data-table
       :headers="headers"
-      :items="userCompliances"
+      :items= usercomps
       :single-expand="singleExpand"
       :expanded.sync="expanded"
       show-expand
@@ -51,12 +52,16 @@
       </template>
       <template v-slot:[`item.actions`]="{ item }">
         <v-btn
-          v-if="item.status === 'Not Complied' || item.status === 'Complied Late'"
+          v-if="
+            item.status === 'Not Complied' || item.status === 'Complied Late'
+          "
           v-bind="attrs"
           v-on="on"
           color="red darken-3 white--text"
           @click="
-            item.status === 'Not Complied' || item.status === 'Complied Late' ? verifyForm(item.period) : null
+            item.status === 'Not Complied' || item.status === 'Complied Late'
+              ? verifyForm(item.period)
+              : null
           "
         >
           <p class="ma-4 font-weight-black">Verify</p>
@@ -69,8 +74,7 @@
             ><v-icon
               class="mt-2 mb-2"
               v-bind:color="
-                item.file_type == 'mdi-file-pdf-box' ? 'red' : 'blue'
-              "
+                item.file_type == 'mdi-file-pdf-box' ? 'red' : 'blue'"
               large
               >{{ item.file_type }}</v-icon
             ></v-btn
@@ -83,7 +87,7 @@
   </v-container>
 </template>
 <script>
-   let userCompliance = JSON.parse(sessionStorage.userCompliance);
+import { mapState } from "vuex";
 export default {
   data: () => ({
     expanded: [],
@@ -121,11 +125,16 @@ export default {
         class: "font-weight-bold green white--text text-uppercase",
       },
     ],
-    userCompliance,
+    userCompliances: [],
     complianceTitle: "",
     complianceId: "",
     companyName: "",
   }),
+
+  created() {
+    this.$store.dispatch("fetchUsercomps");
+  },
+  computed: mapState(["usercomps"]),
   methods: {
     getComplianceType() {
       this.complianceTitle = localStorage.getItem("compliance_code_title");

@@ -25,7 +25,7 @@
     </div>
     <v-data-table
       :headers="headers"
-      :items="userCompliances"
+      :items= companies
       :single-expand="singleExpand"
       :expanded.sync="expanded"
       class="elevation-1"
@@ -45,7 +45,7 @@
 </template>
 <script>
 import CreateComp from "../admin/CreateCompany.vue";
-  let userCompliances = JSON.parse(sessionStorage.userCompliances);
+ import { mapState } from "vuex";
 export default {
   components: {
     CreateComp,
@@ -66,12 +66,15 @@ export default {
         width: "5%",
       },
     ],
-    userCompliances,
     complianceType: "",
     complianceId: "",
     compliancePeriod: "",
     complianceDue: "",
   }),
+  created() {
+    this.$store.dispatch("fetchCompanies");
+  },
+   computed: mapState(["companies"]),
   methods: {
     closeDialog(dialog){
       return this.dialog = dialog;

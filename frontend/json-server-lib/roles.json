@@ -1,0 +1,267 @@
+{"Roles-Table":[
+  {
+    "id": 1,
+    "parent_id": null,
+    "cds_id": 3,
+    "role": "Finance",
+    "start_date": "2022-02-16 06:29:16",
+    "end_date": null,
+    "created_at": null,
+    "updated_at": null,
+    "parent": null,
+    "children": [
+      {
+        "id": 3,
+        "parent_id": 1,
+        "cds_id": 3,
+        "role": "Annual financial statements",
+        "start_date": "2022-02-16 06:29:16",
+        "end_date": null,
+        "created_at": null,
+        "updated_at": null
+      }
+    ],
+    "codes": {
+      "id": 3,
+      "fr_id": 6,
+      "code": "NSE01",
+      "serial_number": "Serial.01",
+      "description": "Annual financial statements",
+      "color_code": "#3a87ad",
+      "due_date": null,
+      "hours_offset": null,
+      "days_offset": null,
+      "weeks_offset": null,
+      "months_offset": 4,
+      "years_offset": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    "user_roles": []
+  },
+  {
+    "id": 2,
+    "parent_id": null,
+    "cds_id": 4,
+    "role": "Audit",
+    "start_date": "2022-02-16 06:29:16",
+    "end_date": null,
+    "created_at": null,
+    "updated_at": null,
+    "parent": null,
+    "children": [
+      {
+        "id": 4,
+        "parent_id": 2,
+        "cds_id": 4,
+        "role": "Late Submission of Audited Annual Accounts",
+        "start_date": "2022-02-16 06:29:16",
+        "end_date": null,
+        "created_at": null,
+        "updated_at": null
+      }
+    ],
+    "codes": {
+      "id": 4,
+      "fr_id": 2,
+      "code": "NSE04",
+      "serial_number": "Serial.04",
+      "description": "Trading hours",
+      "color_code": "#3a87ad",
+      "due_date": null,
+      "hours_offset": null,
+      "days_offset": 30,
+      "weeks_offset": null,
+      "months_offset": null,
+      "years_offset": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    "user_roles": []
+  },
+  {
+    "id": 3,
+    "parent_id": 1,
+    "cds_id": 3,
+    "role": "Annual financial statements",
+    "start_date": "2022-02-16 06:29:16",
+    "end_date": null,
+    "created_at": null,
+    "updated_at": null,
+    "parent": {
+      "id": 1,
+      "parent_id": null,
+      "cds_id": 3,
+      "role": "Finance",
+      "start_date": "2022-02-16 06:29:16",
+      "end_date": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    "children": [],
+    "codes": {
+      "id": 3,
+      "fr_id": 6,
+      "code": "NSE01",
+      "serial_number": "Serial.01",
+      "description": "Annual financial statements",
+      "color_code": "#3a87ad",
+      "due_date": null,
+      "hours_offset": null,
+      "days_offset": null,
+      "weeks_offset": null,
+      "months_offset": 4,
+      "years_offset": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    "user_roles": [
+      {
+        "id": 1,
+        "rus_id": 1,
+        "rle_id": 3,
+        "start_date": "2022-02-16 06:29:16",
+        "end_date": null,
+        "created_at": null,
+        "updated_at": null
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "parent_id": 2,
+    "cds_id": 4,
+    "role": "Late Submission of Audited Annual Accounts",
+    "start_date": "2022-02-16 06:29:16",
+    "end_date": null,
+    "created_at": null,
+    "updated_at": null,
+    "parent": {
+      "id": 2,
+      "parent_id": null,
+      "cds_id": 4,
+      "role": "Audit",
+      "start_date": "2022-02-16 06:29:16",
+      "end_date": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    "children": [],
+    "codes": {
+      "id": 4,
+      "fr_id": 2,
+      "code": "NSE04",
+      "serial_number": "Serial.04",
+      "description": "Trading hours",
+      "color_code": "#3a87ad",
+      "due_date": null,
+      "hours_offset": null,
+      "days_offset": 30,
+      "weeks_offset": null,
+      "months_offset": null,
+      "years_offset": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    "user_roles": [
+      {
+        "id": 2,
+        "rus_id": 1,
+        "rle_id": 4,
+        "start_date": "2022-02-16 06:29:16",
+        "end_date": null,
+        "created_at": null,
+        "updated_at": null
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "parent_id": null,
+    "cds_id": 3,
+    "role": "Sales",
+    "start_date": "2022-02-16 06:29:16",
+    "end_date": null,
+    "created_at": null,
+    "updated_at": null,
+    "parent": null,
+    "children": [
+      {
+        "id": 6,
+        "parent_id": 5,
+        "cds_id": 2,
+        "role": "Trading hours",
+        "start_date": "2022-02-16 06:29:16",
+        "end_date": null,
+        "created_at": null,
+        "updated_at": null
+      }
+    ],
+    "codes": {
+      "id": 3,
+      "fr_id": 6,
+      "code": "NSE01",
+      "serial_number": "Serial.01",
+      "description": "Annual financial statements",
+      "color_code": "#3a87ad",
+      "due_date": null,
+      "hours_offset": null,
+      "days_offset": null,
+      "weeks_offset": null,
+      "months_offset": 4,
+      "years_offset": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    "user_roles": []
+  },
+  {
+    "id": 6,
+    "parent_id": 5,
+    "cds_id": 2,
+    "role": "Trading hours",
+    "start_date": "2022-02-16 06:29:16",
+    "end_date": null,
+    "created_at": null,
+    "updated_at": null,
+    "parent": {
+      "id": 5,
+      "parent_id": null,
+      "cds_id": 3,
+      "role": "Sales",
+      "start_date": "2022-02-16 06:29:16",
+      "end_date": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    "children": [],
+    "codes": {
+      "id": 2,
+      "fr_id": 4,
+      "code": "NSE02",
+      "serial_number": "Serial.02",
+      "description": "Late Submission of Audited Annual Accounts",
+      "color_code": "#3a87ad",
+      "due_date": null,
+      "hours_offset": null,
+      "days_offset": null,
+      "weeks_offset": null,
+      "months_offset": 4,
+      "years_offset": null,
+      "created_at": null,
+      "updated_at": null
+    },
+    "user_roles": [
+      {
+        "id": 3,
+        "rus_id": 1,
+        "rle_id": 6,
+        "start_date": "2022-02-16 06:29:16",
+        "end_date": null,
+        "created_at": null,
+        "updated_at": null
+      }
+    ]
+  }
+]
+}

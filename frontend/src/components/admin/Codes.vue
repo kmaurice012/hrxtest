@@ -1,8 +1,8 @@
 <template>
-  <v-card class="ma-4" >
+  <v-card class="ma-4">
     <div class="d-flex">
       <v-spacer></v-spacer>
-      <v-dialog v-model="dialog"  max-width="1400px" max-height="950px">
+      <v-dialog v-model="dialog" max-width="1400px" max-height="950px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn color="green" dark v-bind="attrs" v-on="on">
             Create Code
@@ -10,13 +10,17 @@
           </v-btn>
           <v-spacer></v-spacer>
         </template>
-             <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
 
         <Build :method="closeDialog" />
-
       </v-dialog>
     </div>
-    <v-data-table :headers="headers" :items="compliances" :loading="loading" style="margin-top: 10px;">
+    <v-data-table
+      :headers="headers"
+      :items= compliances
+      :loading="loading"
+      style="margin-top: 10px"
+    >
       <!-- <template v-slot:[`item.actions`]="{ item }">
         <v-btn
           v-bind="attrs"
@@ -33,14 +37,14 @@
   </v-card>
 </template>
 <script>
-let compliances = JSON.parse(sessionStorage.compliance);
+import { mapState } from "vuex";
 import Build from "../admin/CreateCode.vue";
 export default {
   components: {
     Build,
   },
   data: () => ({
-     dialog: false,
+    dialog: false,
     headers: [
       {
         text: "name",
@@ -84,11 +88,15 @@ export default {
       //   class: "font-weight-bold green white--text text-uppercase",
       // },
     ],
-    compliances,
+
     loading: true,
     company_name: "",
     todayDate: "",
   }),
+  created() {
+    this.$store.dispatch("fetchCompliances");
+  },
+  computed: mapState(["compliances"]),
   methods: {
     trimText: function (text) {
       return text.subtring(0, 100);
@@ -99,8 +107,8 @@ export default {
     //   this.$router.push(`/admin/dashboard/compliance_period`);
     //   return true;
     // },
-    closeDialog(dialog){
-      return this.dialog = dialog;
+    closeDialog(dialog) {
+      return (this.dialog = dialog);
     },
     // viewCompliances(title, id) {
     //   localStorage.setItem("compliance_code_title", title);
@@ -133,14 +141,14 @@ export default {
 };
 </script>
 <style>
-  /* Hide scrollbar for Chrome, Safari and Opera */
+/* Hide scrollbar for Chrome, Safari and Opera */
 .dbox::-webkit-scrollbar {
   display: none !important;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .dbox {
-  -ms-overflow-style: none !important;  /* IE and Edge */
-  scrollbar-width: none !important;  /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
 }
 </style>

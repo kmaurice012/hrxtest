@@ -45,7 +45,7 @@
           ref="calendar"
           v-model="focus"
           color="primary"
-          :events="events"
+          :events= events
           :event-color="getEventColor"
           :type="type"
           @click:event="showEvent"
@@ -83,16 +83,14 @@
             </v-card-actions>
           </v-card>
         </v-menu>
+     
       </v-sheet>
     </v-col>
   </v-row>
 </template>
 
 <script>
-
-
-
-let events = JSON.parse(sessionStorage.events);
+import { mapState } from 'vuex'
 export default {
 
   data: () => ({
@@ -108,8 +106,11 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    events
   }),
+  created (){
+     this.$store.dispatch('fetchEvents')
+  },
+  computed: mapState(['events']),
   mounted () {
     this.$refs.calendar.checkChange()
   },
@@ -177,4 +178,5 @@ export default {
     },
   },
 }
+
 </script>
