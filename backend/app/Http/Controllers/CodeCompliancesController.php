@@ -188,7 +188,6 @@ class CodeCompliancesController extends Controller
                 $model->rev_id = $request->rev_id;
                 $model->remarks = $request->remarks;
                 $model->complied = $request->complied;
-                ;
                 $model->from_date = now()->toDateTimeString();
 
                 $model->save();

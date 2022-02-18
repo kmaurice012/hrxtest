@@ -25,6 +25,7 @@ class CreateOrgCodesTable extends Migration
 
             $table->foreign('cds_id')->references('id')->on('rpr_codes')->onDelete('cascade');
             $table->foreign('ror_id')->references('id')->on('rpr_organizations')->onDelete('cascade');
+            $table->foreign('prd_id')->references('id')->on('rpr_periods')->onDelete('cascade');
         });
     }
 
