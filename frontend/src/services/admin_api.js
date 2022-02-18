@@ -16,11 +16,6 @@ const apiClient = axios.create({
     "Content-Type": "application/json",
   },
 });
-// apiClient.get("/roles-table").then((response) => {
-//   sessionStorage.setItem("roles_table", JSON.stringify(response.data));
-// });
-// let roles_table = JSON.parse(sessionStorage.roles_table);
-
   export default {
     getEvents() {
       return apiClient.get('/events')
@@ -33,17 +28,14 @@ const apiClient = axios.create({
     },
     getUsercomps() {
       return apiClient.get('/userCompliances')
+    },
+    getFrequencies() {
+      return apiClient.get('/frequencies')
+    },
+    getRoles() {
+      return apiClient.get('/roles')
     }
- 
-    // userCompliances,
-    // userCompliance,
-    // roles_table
-    // getEvent(id) {
-    //   return apiClient.get('/compliances')
-    // },
-    // postEvent(event) {
-    //   return apiClient.post('/events', event)
-    // }
+
   }
 
 

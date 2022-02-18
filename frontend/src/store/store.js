@@ -15,8 +15,9 @@ export default new Vuex.Store({
     events: [],
     compliances: [],
     companies: [],
-    usercomps: []
-    //   compliance
+    usercomps: [],
+    frequencies: [],
+    roles: []
   },
   mutations: {
     SET_EVENT(state, events) {
@@ -30,6 +31,12 @@ export default new Vuex.Store({
       },
       SET_USERCOMPS(state, usercomps) {
         state.usercomps = [...usercomps];
+      },
+      SET_FREQUENCIES(state, frequencies) {
+        state.frequencies = [...frequencies];
+      },
+      SET_ROLES(state, roles) {
+        state.roles = [...roles];
       },
 
   },
@@ -65,6 +72,24 @@ export default new Vuex.Store({
         AdminApi.getUsercomps()
           .then((response) => {
             commit("SET_USERCOMPS", response.data);
+          })
+          .catch((error) => {
+            console.log("There was an error:", error.response);
+          });
+      },
+      fetchFrequencies({ commit }) {
+        AdminApi.getFrequencies()
+          .then((response) => {
+            commit("SET_FREQUENCIES", response.data);
+          })
+          .catch((error) => {
+            console.log("There was an error:", error.response);
+          });
+      },
+      fetchRoles({ commit }) {
+        AdminApi.getRoles()
+          .then((response) => {
+            commit("SET_ROLES", response.data);
           })
           .catch((error) => {
             console.log("There was an error:", error.response);

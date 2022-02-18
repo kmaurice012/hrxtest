@@ -1,17 +1,26 @@
 <template>
   <v-container>
-    <div class="d-flex">
-      <v-card-title
-        primary-title
-        class="text-h4 #303b4b--text"
-        style="color: #303b4b"
-      >
+     <div class="d-flex">
+      <v-card-title primary-title class="text-h4 #303b4b--text">
         List of Roles
       </v-card-title>
       <v-spacer></v-spacer>
+      <v-dialog v-model="dialog" max-width="700px" max-height="950px">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="green" dark v-bind="attrs" v-on="on">
+            Create Role
+            <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
+          </v-btn>
+          <v-spacer></v-spacer>
+        </template>
+        <v-spacer></v-spacer>
+
+        <Role :method="closeDialog" />
+      </v-dialog>
     </div>
     <v-data-table
       :headers="headers"
+      :items= roles
       :single-expand="singleExpand"
       :expanded.sync="expanded"
       class="elevation-1"
@@ -20,53 +29,38 @@
   </v-container>
 </template>
 <script>
-let roles_table = JSON.parse(sessionStorage.roles_table);
-let parentArray = [];
-let rolesArray = [];
-const test = roles_table.map((roles,parent) => {
-  rolesArray.push(roles.roles);
-  parentArray .push(parent.parent)
-});
-
-console.log(rolesArray, "ROLES");
-console.log(parentArray,"CODES");
-console.log(test);
+import Role from "../admin/CreateRole.vue";
+import { mapState } from "vuex";
 export default {
-  components: {},
+  components: {
+   Role
+  },
   data: () => ({
     expanded: [],
     singleExpand: false,
    headers: [
       {
         text: "roles",
-        value: "roles",
-        class: "font-weight-bold green white--text text-uppercase",
-      },
-      {
-        text: "code",
-        value: "code",
+        value: "role",
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
         text: "parent name",
-        value: "parent name",
+        value: "parent.role",
         class: "font-weight-bold green white--text text-uppercase",
-      },
-      {
-        text: "serial number",
-        value: "serial_number",
-        class: "font-weight-bold green white--text text-uppercase",
-      },
-      
-      {
-        text: "description",
-        value: "description",
-        class: "font-weight-bold green white--text text-uppercase",
-        width: "15%",
       },
     ]
   }),
-  methods: {},
+    created() {
+    this.$store.dispatch("fetchRoles");
+    
+  },
+  computed: mapState(["roles"]),
+  methods: {
+     createCode() {
+      this.$router.push(`/admin/dashboard/codes/create`);
+    },
+  },
 
   mounted() {},
 };

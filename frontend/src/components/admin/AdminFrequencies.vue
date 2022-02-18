@@ -9,23 +9,22 @@
         List of Frequencies
       </v-card-title>
       <v-spacer></v-spacer>
-      <v-dialog v-model="dialog"  max-width="700px" max-height="950px">
+      <v-dialog v-model="dialog" max-width="700px" max-height="950px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn color="green" dark v-bind="attrs" v-on="on">
-            Create Company
+            Create Frequency
             <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
         </template>
-             <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
 
-        <CreateComp :method="closeDialog"/>
-
+        <Freq :method="closeDialog" />
       </v-dialog>
     </div>
     <v-data-table
       :headers="headers"
-      :items="userCompliances"
+      :items="frequencies"
       :single-expand="singleExpand"
       :expanded.sync="expanded"
       class="elevation-1"
@@ -44,65 +43,39 @@
   </v-container>
 </template>
 <script>
-import CreateComp from "../admin/CreateCompany.vue";
-  let userCompliances = JSON.parse(sessionStorage.userCompliances);
+import Freq from "../admin/CreateFrequency.vue";
+import { mapState } from "vuex"
 export default {
   components: {
-    CreateComp,
+  Freq,
   },
   data: () => ({
     expanded: [],
     singleExpand: false,
     headers: [
       {
-        text: "company name",
-        value: "company",
+        text: "Frequencies",
+        value: "frequency",
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
-        text: "actions",
-        value: "actions",
+        text: "unit",
+        value: "unit",
+        class: " pa-18 mr-2 font-weight-bold green white--text text-uppercase",
+        width: "5%",
+      },
+      {
+        text: "quantity",
+        value: "qty",
         class: " pa-18 mr-2 font-weight-bold green white--text text-uppercase",
         width: "5%",
       },
     ],
-    userCompliances,
-    complianceType: "",
-    complianceId: "",
-    compliancePeriod: "",
-    complianceDue: "",
   }),
-  methods: {
-    closeDialog(dialog){
-      return this.dialog = dialog;
-    },
-    //    createCompany() {
-    //   this.$router.push(`/admin/dashboard/companies/create`);
-    // },
-    // getComplianceDetails() {
-    //   this.complianceType = localStorage.getItem("compliance_type");
-    //   this.complianceId = localStorage.getItem("compliance_id");
-    //   this.compliancePeriod = localStorage.getItem("compliance_period");
-    //   this.complianceDue = localStorage.getItem("compliance_due_date");
-    // //   console.log(this.complianceType);
-    // },
-    // verifyForm(company) {
-    //   localStorage.setItem("compliance_user_company", company);
-    //   this.$router.push(`/admin/dashboard/verify-compliance/` + this.complianceId);
-    //   return true;
-    // },
-
-    // openReports() {
-    //   this.$router.push(`/admin/dashboard/user-report`);
-    // }
-    viewCompanyCodes(id, company_name) {
-      localStorage.setItem("company_id", id);
-      localStorage.setItem("company_name", company_name);
-      this.$router.push(`/admin/dashboard/company_codes/` + id);
-    },
- 
-   
+  created() {
+    this.$store.dispatch("fetchFrequencies");
   },
+  computed: mapState(["frequencies"]),
 
   mounted() {
     // this.getComplianceDetails();

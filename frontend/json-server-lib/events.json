@@ -258,7 +258,7 @@
       "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
     }
   ],
-  "roles-table":[
+  "roles":[
     {
       "id": 1,
       "parent_id": null,
@@ -523,7 +523,131 @@
         }
       ]
     }
-  ]
+  ],
+  "frequencies": [
+    {
+        "id": 1,
+        "frequency": "Daily",
+        "unit": "day",
+        "qty": 1,
+        "created_at": null,
+        "updated_at": null,
+        "codes": [
+            {
+                "id": 1,
+                "fr_id": 1,
+                "code": "NSE03",
+                "serial_number": "Serial.03",
+                "description": "Listing Rules",
+                "color_code": "#3a87ad",
+                "due_date": null,
+                "hours_offset": null,
+                "days_offset": null,
+                "weeks_offset": null,
+                "months_offset": 4,
+                "years_offset": null,
+                "created_at": null,
+                "updated_at": null
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "frequency": "Weekly",
+        "unit": "week",
+        "qty": 1,
+        "created_at": null,
+        "updated_at": null,
+        "codes": [
+            {
+                "id": 4,
+                "fr_id": 2,
+                "code": "NSE04",
+                "serial_number": "Serial.04",
+                "description": "Trading hours",
+                "color_code": "#3a87ad",
+                "due_date": null,
+                "hours_offset": null,
+                "days_offset": 30,
+                "weeks_offset": null,
+                "months_offset": null,
+                "years_offset": null,
+                "created_at": null,
+                "updated_at": null
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "frequency": "Monthly",
+        "unit": "month",
+        "qty": 1,
+        "created_at": null,
+        "updated_at": null,
+        "codes": []
+    },
+    {
+        "id": 4,
+        "frequency": "Quarterly",
+        "unit": "month",
+        "qty": 3,
+        "created_at": null,
+        "updated_at": null,
+        "codes": [
+            {
+                "id": 2,
+                "fr_id": 4,
+                "code": "NSE02",
+                "serial_number": "Serial.02",
+                "description": "Late Submission of Audited Annual Accounts",
+                "color_code": "#3a87ad",
+                "due_date": null,
+                "hours_offset": null,
+                "days_offset": null,
+                "weeks_offset": null,
+                "months_offset": 4,
+                "years_offset": null,
+                "created_at": null,
+                "updated_at": null
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "frequency": "Bi-Annually",
+        "unit": "month",
+        "qty": 6,
+        "created_at": null,
+        "updated_at": null,
+        "codes": []
+    },
+    {
+        "id": 6,
+        "frequency": "Annually",
+        "unit": "year",
+        "qty": 1,
+        "created_at": null,
+        "updated_at": null,
+        "codes": [
+            {
+                "id": 3,
+                "fr_id": 6,
+                "code": "NSE01",
+                "serial_number": "Serial.01",
+                "description": "Annual financial statements",
+                "color_code": "#3a87ad",
+                "due_date": null,
+                "hours_offset": null,
+                "days_offset": null,
+                "weeks_offset": null,
+                "months_offset": 4,
+                "years_offset": null,
+                "created_at": null,
+                "updated_at": null
+            }
+        ]
+    }
+]
  
 
 

@@ -1,6 +1,9 @@
 <template>
   <v-card class="ma-4">
     <div class="d-flex">
+        <v-card-title primary-title class="text-h4 #303b4b--text">
+        List of Codes
+      </v-card-title>
       <v-spacer></v-spacer>
       <v-dialog v-model="dialog" max-width="1400px" max-height="950px">
         <template v-slot:activator="{ on, attrs }">
@@ -21,18 +24,8 @@
       :loading="loading"
       style="margin-top: 10px"
     >
-      <!-- <template v-slot:[`item.actions`]="{ item }">
-        <v-btn
-          v-bind="attrs"
-          v-on="on"
-          block
-          color="red darken-3 white--text font-weight-bold mt-2"
-          @click="viewCompliances(item.title, item.id)"
-        > -->
-      <!-- <v-icon large @click="submitCompliance(item.id)">mdi-file-plus</v-icon> -->
-      <!-- <p class="ma-2">View Compliance</p>
-        </v-btn>
-      </template> -->
+     <v-icon small >delete</v-icon>
+   
     </v-data-table>
   </v-card>
 </template>
