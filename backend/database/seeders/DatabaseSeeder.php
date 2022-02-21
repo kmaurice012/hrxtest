@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             CompliancesSeeder::class,
             DocumentsSeeder::class,
             RegulatorVerificationsSeeder::class,
+            ActionsSeeder::class,
 
         ]);
     }

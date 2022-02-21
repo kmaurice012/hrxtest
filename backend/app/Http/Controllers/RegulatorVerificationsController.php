@@ -47,9 +47,9 @@ class RegulatorVerificationsController extends Controller
             $rules = [
                 'rct_id' => 'required|integer',
                 'id_users' => 'required|integer',
-                'cmp_id' => 'required|integer',
+                'cmp_id' => 'required|integer|exists:rpr_code_compliances,id',
                 'comments' => 'required|string',
-                'compliance' => 'required|string',
+                'compliance' => 'required|string|size:1',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -132,9 +132,10 @@ class RegulatorVerificationsController extends Controller
         try {
             $rules = [
                 'rct_id' => 'required|integer',
-                'id_users' => 'required|integer',
-                'cmp_id' => 'required|integer',
+                'id_users' => 'required|integer|exists:rpr_users,id',
+                'cmp_id' => 'required|integer|exists:rpr_code_compliances,id',
                 'comments' => 'required|string',
+                'compliance' => 'required|string|size:1',
             ];
 
             $validator = Validator::make($request->all(), $rules);

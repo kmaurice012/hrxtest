@@ -71,7 +71,6 @@ class CodeCompliancesController extends Controller
             $model->rcd_id = $request->rcd_id;
             $model->rev_id = $request->rev_id;
             $model->remarks = $request->remarks;
-            $model->complied = 'not complied';
             $model->from_date = now()->toDateTimeString();
 
             $model->save();
@@ -187,7 +186,6 @@ class CodeCompliancesController extends Controller
                 $model->rcd_id = $request->rcd_id;
                 $model->rev_id = $request->rev_id;
                 $model->remarks = $request->remarks;
-                $model->complied = $request->complied;
                 $model->from_date = now()->toDateTimeString();
 
                 $model->save();

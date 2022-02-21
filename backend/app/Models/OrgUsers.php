@@ -38,4 +38,9 @@ class OrgUsers extends Authenticatable
     {
         return $this->hasMany(UserCodes::class, 'rus_id', 'id');
     }
+
+    public function actions()
+    {
+        return $this->hasMany(Actions::class, 'cmp_id', 'id');
+    }
 }
