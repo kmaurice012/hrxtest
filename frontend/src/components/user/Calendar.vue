@@ -133,7 +133,6 @@
 </template>
 
 <script>
-import event from '../../store/store'
   export default {
     data: () => ({
       focus: '',
@@ -147,7 +146,80 @@ import event from '../../store/store'
       selectedEvent: {},
       selectedElement: null,
       selectedOpen: false,
-      event
+      events: [
+    // colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
+    // names: ['Listing Rules', 'Late Submission of Audited Annual Accounts', 'Trading hours', 'Annual financial statements', 'Listing Rules', 'Late Submission of Audited Annual Accounts', 'Trading hours', 'Annual financial statements'],
+    {
+      name: 'Listing Rules',
+      start: '2022-02-07 08:00',
+      end: '2022-02-07 17:00',
+      color: 'red',
+      timed: '3',
+    },
+    {
+      name: 'Listing Rules',
+      start: '2022-02-08 08:00',
+      end: '2022-02-08 17:00',
+      color: 'red',
+      timed: '3',
+    },
+    {
+      name: 'Listing Rules',
+      start: '2022-02-09 08:00',
+      end: '2022-02-09 17:00',
+      color: 'red',
+      timed: '3',
+    },
+    {
+      name: 'Listing Rules',
+      start: '2022-02-10 08:00',
+      end: '2022-02-10 17:00',
+      color: 'red',
+      timed: '3',
+    },
+    {
+      name: 'Listing Rules',
+      start: '2022-02-11 08:00',
+      end: '2022-02-11 17:00',
+      color: 'red',
+      timed: '3',
+    },
+    {
+      name: 'Late Submission of Audited Annual Accounts',
+      start: '2022-01-31 00:00',
+      end: '2022-01-31 17:00',
+      color: 'blue',
+      timed: '3',
+    },
+    {
+      name: 'Late Submission of Audited Annual Accounts',
+      start: '2022-02-07 00:00',
+      end: '2022-02-07 17:00',
+      color: 'blue',
+      timed: '3',
+    },
+    {
+      name: 'Late Submission of Audited Annual Accounts',
+      start: '2022-02-14 00:00',
+      end: '2022-02-14 17:00',
+      color: 'blue',
+      timed: '3',
+    },
+    {
+      name: 'Trading hours',
+      start: '2022-02-15 7:00',
+      end: '2022-02-15 17:00',
+      color: 'yellow',
+      timed: '3',
+    },
+    {
+      name: 'Annual financial statements',
+      start: '2022-02-08 09:00',
+      end: '2022-02-08 20:00',
+      color: 'green',
+      timed: '3',
+    },
+    ]
     }),
     mounted () {
       this.$refs.calendar.checkChange()
