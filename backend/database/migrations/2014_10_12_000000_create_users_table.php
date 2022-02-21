@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('rpr_users', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id', true);
             $table->string('username');
             $table->string('password');
             $table->string('title');

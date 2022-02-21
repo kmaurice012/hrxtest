@@ -16,7 +16,7 @@ class CreateRegulatorVerificationsTable extends Migration
         Schema::create('rpr_regulator_verifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rct_id');
-            $table->unsignedBigInteger('id_users');
+            $table->integer('id_users');
             $table->unsignedBigInteger('cmp_id')->unique();
             $table->string('comments');
             $table->timestamp('action_date');
