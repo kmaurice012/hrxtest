@@ -1,84 +1,80 @@
 <template>
   <v-container>
-    <div class="d-flex">
-      <v-card-title
-        primary-title
-        class="text-h4 #303b4b--text"
-        style="color: #303b4b"
-      >
-        List of Frequencies
-      </v-card-title>
-      <v-spacer></v-spacer>
-      <v-dialog v-model="dialog" max-width="700px" max-height="950px">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn color="green" dark v-bind="attrs" v-on="on">
-            Create Frequency
-            <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-        </template>
-        <v-spacer></v-spacer>
-
-        <Freq :method="closeDialog" />
-      </v-dialog>
-    </div>
     <v-data-table
       :headers="headers"
-      :items="frequencies"
+      :items="roles"
       :single-expand="singleExpand"
       :expanded.sync="expanded"
       class="elevation-1"
     >
-      <template v-slot:[`item.actions`]="{ item }">
-        <v-btn
-          v-bind="attrs"
-          v-on="on"
-          color="green white--text'"
-          @click="viewCompanyCodes(item.id, item.company)"
-        >
-          <p class="ma-4 white--text">View Company Codes</p>
-        </v-btn>
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-card-title primary-title class="text-h4 #303b4b--text">
+            List of Roles
+          </v-card-title>
+
+          <v-spacer></v-spacer>
+          <v-dialog v-model="dialog" max-width="700px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="green" dark v-bind="attrs" v-on="on">
+                Create Role
+                <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
+              </v-btn>
+            </template>
+            <Role :method="closeDialog" />
+          </v-dialog>
+        </v-toolbar>
+      </template>
+      <template v-slot:item.actions="{ id }">
+        <v-icon small class="mr-2" @click="editItem(id)"> mdi-pencil </v-icon>
+        <v-icon small @click="deleteItem(id)"> mdi-delete </v-icon>
+      </template>
+      <template v-slot:no-data>
+        <v-btn color="primary" @click="initialize"> Reset </v-btn>
       </template>
     </v-data-table>
   </v-container>
 </template>
 <script>
-import Freq from "../admin/CreateFrequency.vue";
-import { mapState } from "vuex"
+import Role from "../admin/CreateRole.vue";
+import { mapState } from "vuex";
 export default {
   components: {
-  Freq,
+    Role,
   },
   data: () => ({
-    expanded: [],
-    singleExpand: false,
+    dialog: false,
+    dialogDelete: false,
     headers: [
       {
-        text: "Frequencies",
-        value: "frequency",
+        text: "Roles",
+        value: "role",
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
-        text: "unit",
-        value: "unit",
-        class: " pa-18 mr-2 font-weight-bold green white--text text-uppercase",
-        width: "5%",
+        text: "Parent Name",
+        value: "parent.role",
+        class: "font-weight-bold green white--text text-uppercase",
       },
       {
-        text: "quantity",
-        value: "qty",
+          text: "Actions",
+        value: "actions",
+        sortable: false,
         class: " pa-18 mr-2 font-weight-bold green white--text text-uppercase",
-        width: "5%",
+         width: "5%",
       },
     ],
+
+    editedItem: {},
   }),
   created() {
-    this.$store.dispatch("fetchFrequencies");
+    this.$store.dispatch("fetchRoles");
   },
-  computed: mapState(["frequencies"]),
+  deleteItem(){
 
-  mounted() {
-    // this.getComplianceDetails();
   },
+  computed: mapState(["roles"]),
+
+  methods: {},
 };
 </script>
