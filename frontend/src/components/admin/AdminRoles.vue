@@ -93,7 +93,7 @@ export default {
           text: "Actions",
         value: "actions",
         sortable: false,
-        class: " pa-18 mr-2 font-weight-bold green white--text text-uppercase",
+        class: " font-weight-bold green white--text text-uppercase",
          width: "5%",
       },
       ],

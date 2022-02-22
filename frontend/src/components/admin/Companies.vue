@@ -9,7 +9,7 @@
         List of Companies
       </v-card-title>
       <v-spacer></v-spacer>
-      <v-dialog v-model="dialog"  max-width="700px" max-height="950px">
+      <v-dialog v-model="dialog" max-width="700px" max-height="950px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn color="green" dark v-bind="attrs" v-on="on">
             Create Company
@@ -17,35 +17,64 @@
           </v-btn>
           <v-spacer></v-spacer>
         </template>
-             <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
 
-        <CreateComp :method="closeDialog"/>
-
+        <CreateComp :method="closeDialog" />
       </v-dialog>
     </div>
     <v-data-table
       :headers="headers"
-      :items= companies
+      :items="companies"
       :single-expand="singleExpand"
       :expanded.sync="expanded"
       class="elevation-1"
     >
       <template v-slot:[`item.actions`]="{ item }">
-        <v-btn
-          v-bind="attrs"
-          v-on="on"
-          color="green white--text'"
-          @click="viewCompanyCodes(item.id, item.company)"
-        >
-          <p class="ma-4 white--text">View Company Codes</p>
-        </v-btn>
+        <div style="display: flex; gap: 10px;">
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+            color="green white--text'"
+            @click="viewCompanyCodes(item.id, item.company)"
+          >
+            <p class="ma-4 white--text">
+              <v-icon small @click="deleteItem(item)">
+                mdi-open-in-app }
+              </v-icon>
+            </p>
+          </v-btn>
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+            color="blue white--text'"
+            
+          >
+            <p class="ma-4 white--text">
+              <v-icon small @click="deleteItem(item)" color="white">
+                mdi-pencil }
+              </v-icon>
+            </p>
+          </v-btn>
+             <v-btn
+            v-bind="attrs"
+            v-on="on"
+            color="red white--'"
+            
+          >
+            <p class="ma-4 white--text">
+              <v-icon small @click="deleteItem(item)" color="white">
+                 mdi-delete }
+              </v-icon>
+            </p>
+          </v-btn>
+        </div>
       </template>
     </v-data-table>
   </v-container>
 </template>
 <script>
 import CreateComp from "../admin/CreateCompany.vue";
- import { mapState } from "vuex";
+import { mapState } from "vuex";
 export default {
   components: {
     CreateComp,
@@ -74,10 +103,10 @@ export default {
   created() {
     this.$store.dispatch("fetchCompanies");
   },
-   computed: mapState(["companies"]),
+  computed: mapState(["companies"]),
   methods: {
-    closeDialog(dialog){
-      return this.dialog = dialog;
+    closeDialog(dialog) {
+      return (this.dialog = dialog);
     },
     //    createCompany() {
     //   this.$router.push(`/admin/dashboard/companies/create`);
@@ -103,8 +132,6 @@ export default {
       localStorage.setItem("company_name", company_name);
       this.$router.push(`/admin/dashboard/company_codes/` + id);
     },
- 
-   
   },
 
   mounted() {

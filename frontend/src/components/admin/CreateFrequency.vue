@@ -28,20 +28,20 @@
       ></v-text-field>
 
       <v-select
-        label="Code"
+        label="Unit"
         v-model="select"
-        :items="codes"
+        :items="headers"
         required
       ></v-select>
 
       <v-select
-        label="Parent"
-        v-model="select"
-        :items="parent_id"
+        label="Quantity"
+        v-model="select_"
+        :items= "headers"
         required
       ></v-select>
 
-      <v-btn class="green white--text mb-4 mr-10">save code</v-btn>
+      <v-btn class="green white--text mb-4 mr-10" @click="submit()">save code</v-btn>
       <v-btn class="red white--text mb-4">clear</v-btn>
       <v-btn
         class="blue white--text mb-4"
@@ -56,21 +56,38 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: "freq",
   props: {
-    method: { type: Function },
+    method: { 
+
+      submit() {
+
+      }
+     },
   },
   data: () => ({
     dialog: false,
-    code: "",
-    serial_no: "",
-    description: "",
-    code_details: "",
-    codes: ["NSE01", "NSE02", "NSE03", "NSE04"],
-    parent_id: ["1", "2", "3", "4","5"],
-    picker: "",
+    headers : [
+
+      {
+        label: "Unit",
+        value: "frequencies.unit",
+       
+      },
+       {
+        label: "quantity",
+        value: "frequencies.qty",
+      
+      },
+    ]
   }),
+  computed: mapState(["frequencies"]),
+  created() {
+       this.$store.dispatch("fetchFrequencies");
+  }
+
 };
 </script>
 <style>

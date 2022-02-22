@@ -24,7 +24,6 @@
       :loading="loading"
       style="margin-top: 10px"
     >
-     <v-icon small >delete</v-icon>
    
     </v-data-table>
   </v-card>
@@ -75,11 +74,11 @@ export default {
         value: "not_complied",
         class: "font-weight-bold green white--text text-uppercase",
       },
-      // {
-      //   text: "actions",
-      //   value: "actions",
-      //   class: "font-weight-bold green white--text text-uppercase",
-      // },
+      {
+        text: "actions",
+        value: "actions",
+        class: "font-weight-bold green white--text text-uppercase",
+      },
     ],
 
     loading: true,

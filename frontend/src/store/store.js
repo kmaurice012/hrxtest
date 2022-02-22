@@ -50,6 +50,7 @@ export default new Vuex.Store({
           console.log("There was an error:", error.response);
         });
     },
+    
     fetchCompliances({ commit }) {
       AdminApi.getComplinces()
         .then((response) => {
@@ -81,6 +82,15 @@ export default new Vuex.Store({
         AdminApi.getFrequencies()
           .then((response) => {
             commit("SET_FREQUENCIES", response.data);
+          })
+          .catch((error) => {
+            console.log("There was an error:", error.response);
+          });
+      },
+      deleteFrequencies({ commit }) {
+        AdminApi.deleteFrequencies()
+          .then((response) => {
+            commit("DELETE_FREQUENCIES", response.data);
           })
           .catch((error) => {
             console.log("There was an error:", error.response);

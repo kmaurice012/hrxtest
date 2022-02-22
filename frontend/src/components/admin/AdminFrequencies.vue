@@ -40,29 +40,22 @@
          
       </v-toolbar>
     </template>
-    <template v-slot:item.actions="{ item }">
+    <template v-slot:item.actions="{ item}">
       <v-icon
         small
         class="mr-2"
-        @click="editItem(item)"
+        @click="editItem(item.id)"
       >
         mdi-pencil
       </v-icon>
       <v-icon
         small
-        @click="deleteItem(item)"
+        @click="deleteItem(item.id)"
       >
         mdi-delete
       </v-icon>
     </template>
-    <template v-slot:no-data>
-      <v-btn
-        color="primary"
-        @click="initialize"
-      >
-        Reset
-      </v-btn>
-    </template>
+  
   </v-data-table>
    </v-container>
 </template>
@@ -99,26 +92,14 @@ export default {
         text: "Actions",
         value: "actions",
         sortable: false,
-        class: " pa-18 mr-2 font-weight-bold green white--text text-uppercase",
+        class: " font-weight-bold green white--text text-uppercase",
          width: "5%",
       },
       ],
-      desserts: [],
-      editedIndex: -1,
-      editedItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
-      },
-      defaultItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
-      },
+    
+      
+     
+   
     }),
   computed: mapState(["frequencies"]),
 
@@ -146,19 +127,17 @@ export default {
       },
 
       editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.frequencies.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
       deleteItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialogDelete = true
+      console.log(item.id,);
       },
 
       deleteItemConfirm () {
-        this.desserts.splice(this.editedIndex, 1)
+        this.frequencies.splice(this.editedIndex, 1)
         this.closeDelete()
       },
 
@@ -180,9 +159,9 @@ export default {
 
       save () {
         if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+          Object.assign(this.frequencies[this.editedIndex], this.editedItem)
         } else {
-          this.desserts.push(this.editedItem)
+          this.frequencies.push(this.editedItem)
         }
         this.close()
       },
