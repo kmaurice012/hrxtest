@@ -40,21 +40,25 @@
          
       </v-toolbar>
     </template>
-    <template v-slot:item.actions="{ item}">
-      <v-icon
-        small
-        class="mr-2"
-        @click="editItem(item.id)"
-      >
-        mdi-pencil
-      </v-icon>
-      <v-icon
-        small
-        @click="deleteItem(item.id)"
-      >
-        mdi-delete
-      </v-icon>
-    </template>
+      <template v-slot:item.actions="{ item }">
+        <div style="display: flex; gap: 15px;">
+
+          <v-btn v-bind="attrs" v-on="on" color="blue white--text'">
+          <p class="ma-4 white--text">
+            <v-icon small @click="deleteItem(item)" color="white">
+              mdi-pencil }
+            </v-icon>
+          </p>
+        </v-btn>
+        <v-btn v-bind="attrs" v-on="on" color="red white--text'">
+          <p class="ma-4 white--text">
+            <v-icon small @click="deleteItem(item)" color="white">
+              mdi-delete }
+            </v-icon>
+          </p>
+        </v-btn>
+        </div>
+      </template>
   
   </v-data-table>
    </v-container>

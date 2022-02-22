@@ -1,7 +1,7 @@
 <template>
   <v-card class="ma-4">
     <div class="d-flex">
-        <v-card-title primary-title class="text-h4 #303b4b--text">
+      <v-card-title primary-title class="text-h4 #303b4b--text">
         List of Codes
       </v-card-title>
       <v-spacer></v-spacer>
@@ -20,11 +20,29 @@
     </div>
     <v-data-table
       :headers="headers"
-      :items= compliances
+      :items="compliances"
       :loading="loading"
       style="margin-top: 10px"
     >
-   
+      <template v-slot:item.actions="{ item }">
+        <div style="display: flex; gap: 15px;">
+
+          <v-btn v-bind="attrs" v-on="on" color="blue white--text'">
+          <p class="ma-4 white--text">
+            <v-icon small @click="deleteItem(item)" color="white">
+              mdi-pencil }
+            </v-icon>
+          </p>
+        </v-btn>
+        <v-btn v-bind="attrs" v-on="on" color="red white--text'">
+          <p class="ma-4 white--text">
+            <v-icon small @click="deleteItem(item)" color="white">
+              mdi-delete }
+            </v-icon>
+          </p>
+        </v-btn>
+        </div>
+      </template>
     </v-data-table>
   </v-card>
 </template>
