@@ -18,7 +18,6 @@ class RegulatorVerificationsSeeder extends Seeder
             'rct_id' => 1,
             'id_users' => 1,
             'cmp_id' => 1,
-            'comments' => 'this is a comment',
             'action_date' => now()->toDateTimeString(),
         ]);
     }

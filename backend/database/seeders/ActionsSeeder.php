@@ -15,15 +15,15 @@ class ActionsSeeder extends Seeder
     public function run()
     {
         Actions::insert([
-            'parent_id' => 1,
+            // 'parent_id' => 1,
             'cmp_id' => 1,
             'id_user' => 1,
             'rus_id' => 1,
             'action_type' => 'comment',
             'comment' => 'This is a comment in actions',
-            'verify_comment' => '',
-            'reject_comment' => '',
-            'rework_comment' => '',
+            // 'verify_comment' => '',
+            // 'reject_comment' => '',
+            // 'rework_comment' => '',
         ]);
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrgUsers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -17,17 +19,16 @@ class UserController extends Controller
     {
         try {
 
-            $credentials = [
-                'username' => $request->username,
-                'password' => bcrypt($request->password),
-            ];
+            $admin = User::where('username', '=', $request->username)->first();
+            $user = OrgUsers::where('username', '=', $request->username)->first();
 
-            $admin = User::where($credentials)->first();
-            $user = User::where($credentials)->first();
+            $admin = $admin ? Hash::check($request->password, $admin->password) : false;
+            $user = $user ?  Hash::check($request->password, $user->password) : false;
 
             if ($admin) {
-                Auth::login($admin);
-                $token = $admin->createToken('auth_token')->plainTextToken;
+                $user = User::where('username', '=', $request->username)->first();
+                Auth::login($user);
+                $token = $user->createToken('auth_token')->plainTextToken;
 
                 // response
                 $response = [
@@ -37,11 +38,12 @@ class UserController extends Controller
                         'access_token' => $token,
                         'token_type' => 'Bearer',
                     ],
-                    'user' => $admin,
+                    'user' => $user,
                     'role' => 'admin'
                 ];
                 return response()->json($response, 200);
             } elseif ($user) {
+                $user = OrgUsers::where('username', '=', $request->username)->first();
                 Auth::login($user);
                 $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -56,6 +58,9 @@ class UserController extends Controller
                     'user' => $user,
                     'role' => 'user'
                 ];
+
+
+                return response()->json($response, 200);
             } else {
 
                 $response = [

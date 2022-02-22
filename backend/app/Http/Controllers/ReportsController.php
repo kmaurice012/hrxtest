@@ -69,20 +69,13 @@ class ReportsController extends Controller
     public function getCompanyCodeReports(Request $request)
     {
         try {
-            // $complied = Codes::leftJoin('rpr_events', 'rpr_codes.id', '=', 'rpr_events.cds_id')
-            //     ->leftJoin('rpr_org_codes', 'rpr_codes.id', '=', 'rpr_org_codes.cds_id')
-            //     ->leftJoin('rpr_code_compliances', 'rpr_events.id', '=', 'rpr_code_compliances.rev_id')
-            //     ->where('rpr_code_compliances.complied', '=', 'complied')
-            //     ->where('rpr_codes.id', '=', $request->id)
-            //     ->where('rpr_org_codes.ror_id', '=', $request->org_id)
-            //     ->get()->count();
 
             $complied = DB::table('rpr_organizations')->leftJoin('rpr_org_users', 'rpr_organizations.id', '=', 'rpr_org_users.ror_id')
                 ->leftJoin('rpr_user_codes', 'rpr_org_users.id', '=', 'rpr_user_codes.rus_id')
                 ->leftJoin('rpr_code_compliances', 'rpr_user_codes.id', '=', 'rpr_code_compliances.rcd_id')
                 ->leftJoin('rpr_events', 'rpr_code_compliances.rev_id', '=', 'rpr_events.id')
                 ->leftJoin('rpr_codes', 'rpr_events.cds_id', '=', 'rpr_codes.id')
-                ->where('rpr_code_compliances.complied', '=', 'complied')
+                ->where('rpr_code_compliances.complied', '=', 'Y')
                 ->where('rpr_codes.id', '=', $request->id)
                 ->where('rpr_organizations.id', '=', $request->org_id)
                 ->get()->count();
@@ -92,7 +85,7 @@ class ReportsController extends Controller
                 ->leftJoin('rpr_code_compliances', 'rpr_user_codes.id', '=', 'rpr_code_compliances.rcd_id')
                 ->leftJoin('rpr_events', 'rpr_code_compliances.rev_id', '=', 'rpr_events.id')
                 ->leftJoin('rpr_codes', 'rpr_events.cds_id', '=', 'rpr_codes.id')
-                ->where('rpr_code_compliances.complied', '=', 'not complied')
+                ->where('rpr_code_compliances.complied', '=', 'N')
                 ->where('rpr_codes.id', '=', $request->id)
                 ->where('rpr_organizations.id', '=', $request->org_id)
                 ->get()->count();
@@ -125,13 +118,13 @@ class ReportsController extends Controller
         try {
             $complied = DB::table('rpr_codes')->leftJoin('rpr_events', 'rpr_codes.id', '=', 'rpr_events.cds_id')
                 ->leftJoin('rpr_code_compliances', 'rpr_events.id', '=', 'rpr_code_compliances.rev_id')
-                ->where('rpr_code_compliances.complied', '=', 'complied')
+                ->where('rpr_code_compliances.complied', '=', 'Y')
                 ->where('rpr_codes.id', '=', $request->id)
                 ->get()->count();
 
             $notComplied = DB::table('rpr_codes')->leftJoin('rpr_events', 'rpr_codes.id', '=', 'rpr_events.cds_id')
                 ->leftJoin('rpr_code_compliances', 'rpr_events.id', '=', 'rpr_code_compliances.rev_id')
-                ->where('rpr_code_compliances.complied', '=', 'not complied')
+                ->where('rpr_code_compliances.complied', '=', 'N')
                 ->where('rpr_codes.id', '=', $request->id)
                 ->get()->count();
 

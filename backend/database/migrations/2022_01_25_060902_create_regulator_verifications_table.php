@@ -18,7 +18,6 @@ class CreateRegulatorVerificationsTable extends Migration
             $table->unsignedBigInteger('rct_id');
             $table->integer('id_users');
             $table->unsignedBigInteger('cmp_id')->unique();
-            $table->string('comments');
             $table->timestamp('action_date');
             $table->timestamps();
 
