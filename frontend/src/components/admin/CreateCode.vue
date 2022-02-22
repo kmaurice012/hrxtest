@@ -1,5 +1,5 @@
 <template>
-  <v-card class="overflow-x-hidden overflow-y-hidden" style="height: 850px">
+  <v-card class="overflow-x-hidden" style="height: 850px">
     <v-card-title
       primary-title
       class="
@@ -31,11 +31,12 @@
         v-model="serial_no"
         required
       ></v-text-field>
-      <v-text-field
+      <v-textarea
         label="Description"
         v-model="description"
         required
-      ></v-text-field>
+        :counter="200"
+      ></v-textarea>
 
       <v-select
         label="Select Frequency"
@@ -55,14 +56,15 @@
         </v-row>
         <v-col cols="12" sm="6" class="my-2 px-1">
           <div>
-            <v-text-field
+            <v-textarea
               label="Code Details"
               v-model="code_details"
               textarea
               multi-line
-            ></v-text-field>
+             :counter="200"
+            ></v-textarea>
 
-            <div class="d-flex" style="margin-top: 170px">
+            <div class="d-flex" style="margin-top: 2px">
               <v-btn class="green white--text mb-4 mr-10">save code</v-btn>
               <v-btn class="red white--text mb-4">clear</v-btn>
               <v-btn
@@ -85,7 +87,9 @@
 export default {
   name: "build",
   props: {
-    method: { type: Function },
+    method: {
+      type: Function,
+    },
   },
   data: () => ({
     dialog: false,

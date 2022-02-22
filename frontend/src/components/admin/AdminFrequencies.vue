@@ -43,16 +43,16 @@
       <template v-slot:item.actions="{ item }">
         <div style="display: flex; gap: 15px;">
 
-          <v-btn v-bind="attrs" v-on="on" color="blue white--text'">
+          <v-btn v-bind="attrs" v-on="on" color="blue white--text'" @click="editItem(item)">
           <p class="ma-4 white--text">
-            <v-icon small @click="deleteItem(item)" color="white">
+            <v-icon small color="white">
               mdi-pencil }
             </v-icon>
           </p>
         </v-btn>
-        <v-btn v-bind="attrs" v-on="on" color="red white--text'">
+        <v-btn v-bind="attrs" v-on="on" color="red white--text'" @click="deleteItem(item)">
           <p class="ma-4 white--text">
-            <v-icon small @click="deleteItem(item)" color="white">
+            <v-icon small  color="white">
               mdi-delete }
             </v-icon>
           </p>
@@ -100,7 +100,7 @@ export default {
          width: "5%",
       },
       ],
-    
+       desserts: [],
       
      
    
@@ -128,6 +128,9 @@ export default {
         this.frequencies = [
         
         ]
+      },
+       closeDialog(){
+         this.dialog = false
       },
 
       editItem (item) {

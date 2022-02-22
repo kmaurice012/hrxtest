@@ -15,10 +15,7 @@
             Create Company
             <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
           </v-btn>
-          <v-spacer></v-spacer>
         </template>
-        <v-spacer></v-spacer>
-
         <CreateComp :method="closeDialog" />
       </v-dialog>
     </div>
@@ -80,6 +77,8 @@ export default {
     CreateComp,
   },
   data: () => ({
+    dialog: false,
+     dialogDelete: false,
     expanded: [],
     singleExpand: false,
     headers: [
@@ -100,13 +99,14 @@ export default {
     compliancePeriod: "",
     complianceDue: "",
   }),
+    computed: mapState(["companies"]),
   created() {
     this.$store.dispatch("fetchCompanies");
   },
-  computed: mapState(["companies"]),
+
   methods: {
-    closeDialog(dialog) {
-      return (this.dialog = dialog);
+    closeDialog() {
+       this.dialog = false
     },
     //    createCompany() {
     //   this.$router.push(`/admin/dashboard/companies/create`);

@@ -36,13 +36,13 @@
 
       <v-select
         label="Quantity"
-        v-model="select_"
+        v-model="qty"
         :items= "headers"
         required
       ></v-select>
 
       <v-btn class="green white--text mb-4 mr-10" @click="submit()">save code</v-btn>
-      <v-btn class="red white--text mb-4">clear</v-btn>
+      <v-btn class="red white--text mb-4"  @click="resetInput()">clear</v-btn>
       <v-btn
         class="blue white--text mb-4"
         style="margin-left: 24px"
@@ -61,7 +61,7 @@ export default {
   name: "freq",
   props: {
     method: { 
-
+type: Function,
       submit() {
 
       }
@@ -81,24 +81,25 @@ export default {
         value: "frequencies.qty",
       
       },
-    ]
+    ],
+  return :{
+       code: "",
+    select: "",
+    qty: ""
+  }
   }),
   computed: mapState(["frequencies"]),
   created() {
        this.$store.dispatch("fetchFrequencies");
-  }
+  },
+  methods: {
+     resetInput(event) {
+      event.preventDefault(),
+            //process...             
+            event.target.reset()
+    },
+  },
 
 };
 </script>
-<style>
-/* Hide scrollbar for Chrome, Safari and Opera */
-.dbox::-webkit-scrollbar {
-  display: none !important;
-}
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.dbox {
-  -ms-overflow-style: none !important; /* IE and Edge */
-  scrollbar-width: none !important; /* Firefox */
-}
-</style>

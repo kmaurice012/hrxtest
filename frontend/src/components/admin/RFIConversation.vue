@@ -1,8 +1,24 @@
 <template>
-  <v-card class="pa-4">
-    <v-card-title class="green white--text text-h6">
-      Request for Information</v-card-title
+  <v-card >
+     <v-card-title
+      primary-title
+      class="
+        green
+        
+        white--text
+        text-h4
+        d-flex
+        flex-row
+        justify-space-between
+      "
     >
+      <div> Request for Information</div>
+      <div>
+        <v-btn class="mx-2" small fab dark color="white" @click="method(false)">
+          <v-icon dark small color="green"> mdi-close</v-icon>
+        </v-btn>
+      </div>
+    </v-card-title>
 
     <v-container grid-list-xs class=" pl-14 pr-16 mr-4" elevation-5>
       <div class="d-flex mt-2">
@@ -58,7 +74,18 @@
           textarea
           multi-line
         ></v-textarea>
-        <v-btn class="pa-4 green white--text rounded-lg">Send Message</v-btn>
+        <div style="display: flex; gap: 75px;">
+            <v-btn class="pa-4 green white--text rounded-lg">Send Message</v-btn>
+         <v-btn
+          class="blue white--text mb-4"
+          style="margin-left: 24px"
+           @click="method(false)"
+         
+        >
+          Close
+        </v-btn>
+        </div>
+      
       </v-form>
     </v-container>
   </v-card>
@@ -67,6 +94,8 @@
 export default {
   name: "chat",
   data: () => ({}),
-  methods: {},
+   props: {
+    method: { type: Function },
+  },
 };
 </script>

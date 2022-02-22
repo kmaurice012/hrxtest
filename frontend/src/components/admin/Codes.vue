@@ -55,6 +55,7 @@ export default {
   },
   data: () => ({
     dialog: false,
+     dialogDelete: false,
     headers: [
       {
         text: "name",
@@ -99,17 +100,76 @@ export default {
       },
     ],
 
-    loading: true,
-    company_name: "",
-    todayDate: "",
+    
+     desserts: [],
+      
   }),
+   computed: mapState(["compliances"]),
   created() {
     this.$store.dispatch("fetchCompliances");
   },
-  computed: mapState(["compliances"]),
+ 
   methods: {
     trimText: function (text) {
       return text.subtring(0, 100);
+    },  closeDialog(){
+         this.dialog = false
+      },
+
+      watch: {
+      dialog (val) {
+        val || this.close()
+      },
+      dialogDelete (val) {
+        val || this.closeDelete()
+      },
+       initialize () {
+        this.frequencies = [
+        
+        ]
+      },
+
+      editItem (item) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialog = true
+      },
+
+      deleteItem (item) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialogDelete = true
+      },
+
+      deleteItemConfirm () {
+        this.desserts.splice(this.editedIndex, 1)
+        this.closeDelete()
+      },
+
+      close () {
+        this.dialog = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
+
+      closeDelete () {
+        this.dialogDelete = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
+
+      save () {
+        if (this.editedIndex > -1) {
+          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+        } else {
+          this.desserts.push(this.editedItem)
+        }
+        this.close()
+      },
     },
     // showCompanies(type,id) {
     //   localStorage.setItem("compliance_type", type)
@@ -117,9 +177,7 @@ export default {
     //   this.$router.push(`/admin/dashboard/compliance_period`);
     //   return true;
     // },
-    closeDialog(dialog) {
-      return (this.dialog = dialog);
-    },
+   
     // viewCompliances(title, id) {
     //   localStorage.setItem("compliance_code_title", title);
     //   localStorage.setItem("compliance_id_form", id);
@@ -150,15 +208,3 @@ export default {
   // created() {},
 };
 </script>
-<style>
-/* Hide scrollbar for Chrome, Safari and Opera */
-.dbox::-webkit-scrollbar {
-  display: none !important;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.dbox {
-  -ms-overflow-style: none !important; /* IE and Edge */
-  scrollbar-width: none !important; /* Firefox */
-}
-</style>

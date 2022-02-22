@@ -24,7 +24,7 @@
                 <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
               </v-btn>
             </template>
-            <Freq  :method="closeDialog" />
+            <Role  :method="closeDialog" />
           </v-dialog>
              <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
@@ -44,16 +44,16 @@
        <template v-slot:item.actions="{ item }">
         <div style="display: flex; gap: 15px;">
 
-          <v-btn v-bind="attrs" v-on="on" color="blue white--text'">
+          <v-btn v-bind="attrs" v-on="on" color="blue white--text'" @click="editItem(item)">
           <p class="ma-4 white--text">
-            <v-icon small @click="deleteItem(item)" color="white">
+            <v-icon small color="white">
               mdi-pencil }
             </v-icon>
           </p>
         </v-btn>
-        <v-btn v-bind="attrs" v-on="on" color="red white--text'">
+        <v-btn v-bind="attrs" v-on="on" color="red white--text'" @click="deleteItem(item)">
           <p class="ma-4 white--text">
-            <v-icon small @click="deleteItem(item)" color="white">
+            <v-icon small  color="white">
               mdi-delete }
             </v-icon>
           </p>
@@ -73,11 +73,11 @@
 </template>
 
 <script>
-import Freq from "../admin/CreateFrequency.vue";
+import Role from "../admin/CreateRole.vue";
 import { mapState } from "vuex";
 export default {
   components: {
-    Freq,
+    Role,
   },
     data: () => ({
       dialog: false,
@@ -101,21 +101,13 @@ export default {
          width: "5%",
       },
       ],
-      desserts: [],
+    
       editedIndex: -1,
       editedItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+     
       },
       defaultItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        
       },
     }),
  computed: mapState(["roles"]),
@@ -137,6 +129,9 @@ export default {
 
 
     methods: {
+      closeDialog(){
+         this.dialog = false
+      },
       initialize () {
         this.frequencies = [
         
@@ -144,19 +139,19 @@ export default {
       },
 
       editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.roles.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
       deleteItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.roles.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialogDelete = true
       },
 
       deleteItemConfirm () {
-        this.desserts.splice(this.editedIndex, 1)
+        this.roles.splice(this.editedIndex, 1)
         this.closeDelete()
       },
 
@@ -178,9 +173,9 @@ export default {
 
       save () {
         if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+          Object.assign(this.roles[this.editedIndex], this.editedItem)
         } else {
-          this.desserts.push(this.editedItem)
+          this.roles.push(this.editedItem)
         }
         this.close()
       },

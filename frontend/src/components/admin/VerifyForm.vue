@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <v-card-text class="green white--text text-h6">
-          <span class="text-uppercase">{{ userCompany.company }}</span> - {{ complianceDetails.title }} -  for the period {{ compliancePeriod }}</v-card-text
-        >
+      <span class="text-uppercase">{{ userCompany.company }}</span> -
+      {{ complianceDetails.title }} - for the period
+      {{ compliancePeriod }}</v-card-text
+    >
     <v-card class="ma-2">
-      <v-row no-gutters>
-        
-      </v-row>
+      <v-row no-gutters> </v-row>
       <v-row class="ml-6">
         <v-col cols="4">
           <v-card class="pa-2 mt-2">
@@ -50,14 +50,16 @@
                     color="red"
                   >
                     <v-icon
-                  class="mt-2 mb-2"
-                  v-bind:color="
-                    userCompany.file_type == 'mdi-file-pdf-box' ? 'red' : 'blue'
-                  "
-                  large
-                  @click="viewFile()"
-                  >{{ userCompany.file_type }}</v-icon
-                ></v-btn
+                      class="mt-2 mb-2"
+                      v-bind:color="
+                        userCompany.file_type == 'mdi-file-pdf-box'
+                          ? 'red'
+                          : 'blue'
+                      "
+                      large
+                      @click="viewFile()"
+                      >{{ userCompany.file_type }}</v-icon
+                    ></v-btn
                   >
                 </template>
                 <span>View File</span>
@@ -68,8 +70,8 @@
         <v-col cols="6" class="mb-10">
           <v-text-field label="Reasons" name="name" textarea></v-text-field>
 
-<v-spacer></v-spacer>
-<v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
           <v-btn
             class="ml-10 mr-2 pa-4"
             color="success"
@@ -77,13 +79,27 @@
             large
             @click="upload"
           >
-            <v-icon right dark class="" >mdi-checkbox-marked-circle</v-icon>
+            <v-icon right dark class="">mdi-checkbox-marked-circle</v-icon>
             <v-text primary-title class="pa-2 text-subtitle-2"> Verify </v-text>
           </v-btn>
-          <v-btn class="mr-2 pa-4" color="blue" dark large @click="requestInfo()">
-            <v-icon right dark class="">mdi-information</v-icon>
-            <v-text primary-title class="pa-2 text-subtitle-2"> Request Info </v-text>
-          </v-btn>
+          <v-dialog v-model="dialog" max-width="500px" max-height="750px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                class="mr-2 pa-4"
+                color="blue"
+                dark
+                large
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon right dark class="">mdi-information</v-icon>
+                <v-text primary-title class="pa-2 text-subtitle-2">
+                  Request Info
+                </v-text>
+              </v-btn>
+            </template>
+            <Chat :method="closeDialog" />
+          </v-dialog>
           <v-btn class="mr-2 pa-4" color="error" dark large @click="upload">
             <v-icon right dark class="">mdi-close-octagon</v-icon>
             <v-text primary-title class="pa-2 text-subtitle-2"> Reject </v-text>
@@ -95,10 +111,14 @@
   </v-container>
 </template>
 <script>
+import Chat from "../admin/RFIConversation.vue";
 import { validationMixin } from "vuelidate";
 import { required, maxLength, email } from "vuelidate/lib/validators";
 
 export default {
+  components: {
+    Chat,
+  },
   mixins: [validationMixin],
   validations: {
     name: { required, maxLength: maxLength(10) },
@@ -107,6 +127,7 @@ export default {
     checkbox: { required },
   },
   data: () => ({
+    dialog: false,
     name: "",
     email: "",
     select: null,
@@ -115,39 +136,43 @@ export default {
     compliances: [
       {
         id: 184,
-        code:'NSE03',
-        frequency: 'Daily',
-        serial_number: 'Serial.03',
+        code: "NSE03",
+        frequency: "Daily",
+        serial_number: "Serial.03",
         title: "Listing Rules",
         date: "28-Jan-2022 17:00",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
+        details:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. ",
       },
       {
         id: 185,
-        code:'NSE02',
-        frequency: 'Quarterly',
-        serial_number: 'Serial.02',
+        code: "NSE02",
+        frequency: "Quarterly",
+        serial_number: "Serial.02",
         title: "Late Submission of Audited Annual Accounts",
         date: "31-Jan-2022 15:00",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
+        details:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. ",
       },
       {
         id: 186,
-        code:'NSE01',
-        frequency: 'Bi-Annually',
-        serial_number: 'Serial.01',
+        code: "NSE01",
+        frequency: "Bi-Annually",
+        serial_number: "Serial.01",
         title: "Annual financial statements",
         date: "12-Feb-2022 23:59",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
+        details:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. ",
       },
       {
         id: 187,
-        code:'NSE04',
-        frequency: 'Weekly',
-        serial_number: 'Serial.04',
+        code: "NSE04",
+        frequency: "Weekly",
+        serial_number: "Serial.04",
         title: "Trading hours",
         date: "28-Mar-2022 23:59",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. "
+        details:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Purus in massa tempor nec feugiat nisl pretium fusce. Id neque aliquam vestibulum morbi blandit cursus risus. ",
       },
     ],
     userCompliances: [
@@ -181,7 +206,7 @@ export default {
       {
         id: 4,
         company: "Nation Media Group Plc.",
-        complied_date: '10-Feb-2022 13:25',
+        complied_date: "10-Feb-2022 13:25",
         file: "Listing Rules_Nation.docx",
         file_type: "mdi-file-word",
         status: "Complied Late",
@@ -258,6 +283,9 @@ export default {
     },
   },
   methods: {
+    closeDialog(){
+      this.dialog = false
+    },
     submit() {
       this.v.touch();
     },
@@ -274,8 +302,7 @@ export default {
       );
       this.compliancePeriod = localStorage.getItem("compliance_period");
       this.userCompany = this.userCompliances.find(
-        (element) =>
-          element.id == localStorage.getItem("company_id")
+        (element) => element.id == localStorage.getItem("company_id")
       );
     },
     viewFile() {
@@ -283,7 +310,7 @@ export default {
     },
     requestInfo() {
       this.$router.push(`/admin/dashboard/request-info-conversation`);
-    }
+    },
   },
   mounted() {
     this.getComplianceDetails();

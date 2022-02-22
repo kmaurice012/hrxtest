@@ -61,7 +61,7 @@
         <v-btn
           class="blue white--text mb-4"
           style="margin-left: 24px"
-          text
+           @click="method(false)"
          
         >
           Close
