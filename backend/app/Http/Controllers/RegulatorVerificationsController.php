@@ -83,15 +83,15 @@ class RegulatorVerificationsController extends Controller
 
             $model = new RegulatorVerifications();
 
-            $complianceVerrificationExists = $model::where('cmp_id', '=', $request->cmp_id)->exists();
+            // $complianceVerrificationExists = $model::where('cmp_id', '=', $request->cmp_id)->exists();
 
-            if ($complianceVerrificationExists) {
-                $data = [
-                    'success' => false,
-                    'message' => 'Compliance verification status already exists'
-                ];
-                return response()->json($data, 409);
-            }
+            // if ($complianceVerrificationExists) {
+            //     $data = [
+            //         'success' => false,
+            //         'message' => 'Compliance verification status already exists'
+            //     ];
+            //     return response()->json($data, 409);
+            // }
             $model->rct_id = $request->rct_id;
             $model->id_users = $request->id_users ?? auth()->user()->id; //logged in user
             $model->cmp_id = $request->cmp_id;
@@ -102,7 +102,7 @@ class RegulatorVerificationsController extends Controller
             //if an action is verify/reject - update compliance
             $updateCompliance = $request->action_type != 'comment' || $request->action_type != 'rework' ? $this->updateComplianceVerification($request->action_type, $request->cmp_id) : true;
 
-            $addActions = $updateCompliance ? $this->addActions($request, $model->id) : false;
+            $addActions = $updateCompliance ? $this->addActions($request) : false;
             if ($updateCompliance && $addActions) {
                 DB::commit();
                 //Update Compliance - if its verification and/or added an action succesfully
@@ -183,6 +183,8 @@ class RegulatorVerificationsController extends Controller
                 return response()->json($data, 401);
             }
 
+            DB::beginTransaction();
+
             $model = RegulatorVerifications::find($id);
 
             if ($model) {
@@ -193,11 +195,13 @@ class RegulatorVerificationsController extends Controller
 
                 $model->save();
 
+
                 //if an action is verify/reject - update compliance
                 $updateCompliance = $request->action_type != 'comment' || $request->action_type != 'rework' ? $this->updateComplianceVerification($request->action_type, $request->cmp_id) : true;
 
-                $addActions = $updateCompliance ? $this->addActions($request, $model->id) : false;
+                $addActions = $updateCompliance ? $this->addActions($request) : false;
                 if ($updateCompliance && $addActions) {
+                    DB::commit();
                     //Update Compliance - if its verification and/or added an action succesfully
                     $data = [
                         'success' => true,
@@ -207,6 +211,7 @@ class RegulatorVerificationsController extends Controller
 
                     return response()->json($data, 201);
                 } else {
+                    DB::rollBack();
                     $data = [
                         'success' => false,
                         'message' => 'An error occured while updating compliance verification'
@@ -278,8 +283,14 @@ class RegulatorVerificationsController extends Controller
                 ->where('rpr_code_compliances.id', '=', $request->cmp_id)
                 ->first()->org_user_id;
 
+            $findParentAction = Actions::where('cmp_id', '=', $request->cmp_id)
+                ->where('action_type', '=', $request->action_type)
+                ->whereNull('parent_id')
+                ->first();
 
-            $model->parent_id = $request->parent_id ?? null;
+            $action_parent_id = $findParentAction ? $findParentAction->id : null;
+
+            $model->parent_id = $action_parent_id;
             $model->cmp_id = $request->cmp_id;
             $model->id_user = auth()->user()->id;
             $model->rus_id = $org_user;

@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', 'UserController@login');
 Route::post('logout', 'UserController@logout');
+
 Route::middleware('auth:sanctum')->group(function () {
+
     Route::apiResource('organizations', 'OrganizationsController');
     Route::apiResource('codes', 'CodesController');
     Route::apiResource('roles', 'RolesController');
