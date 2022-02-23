@@ -1,0 +1,83 @@
+<template>
+  <v-container>
+    <v-card-title primary-title class="green text-h4 white--text">
+       Reports for the period &nbsp;<span class="">2022-01 to 2022-03</span>
+    </v-card-title>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <bar-chart :chartdata="chartdata" :options="options"> </bar-chart>
+  </v-container>
+</template>
+<script>
+import BarChart from "./Bar.vue";
+export default {
+  components: {
+    BarChart,
+  },
+  data: () => ({
+    chartdata: {
+      labels: [
+        "Jan",
+        "Feb",
+        "Mar",
+      ],
+      datasets: [
+        {
+          label: "Complied in %",
+          borderWidth: 1,
+          backgroundColor: "green",
+          borderColor: "white",
+          data: [75,40,0],
+        },
+        {
+          label: "Not Complied in %",
+          borderWidth: 1,
+          backgroundColor: "crimson",
+          borderColor: "black",
+          data: [25,60,0],
+        },
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+            gridLines: {
+              display: true,
+            },
+          },
+        ],
+        xAxes: [
+          {
+            gridLines: {
+              display: false,
+            },
+            barPercentage: 0.4,
+          },
+        ],
+      },
+      legend: {
+        display: true,
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+    },
+
+    complianceType: "",
+  }),
+
+  methods: {
+    getComplianceType() {
+      this.complianceType = localStorage.getItem("compliance_type");
+      
+    },
+  },
+
+  mounted() {
+    this.getComplianceType();
+  },
+};
+</script>
