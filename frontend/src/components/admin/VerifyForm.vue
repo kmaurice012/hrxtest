@@ -68,42 +68,71 @@
           </v-card>
         </v-col>
         <v-col cols="6" class="mb-10">
-          <v-text-field label="Reasons" name="name" textarea></v-text-field>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
 
-          <v-spacer></v-spacer>
-          <v-spacer></v-spacer>
-          <v-btn
-            class="ml-10 mr-2 pa-4"
-            color="success"
-            dark
-            large
-            @click="upload"
-          >
-            <v-icon right dark class="">mdi-checkbox-marked-circle</v-icon>
-            <v-text primary-title class="pa-2 text-subtitle-2"> Verify </v-text>
-          </v-btn>
-          <v-dialog v-model="dialog" max-width="500px" max-height="750px">
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                class="mr-2 pa-4"
-                color="blue"
-                dark
-                large
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon right dark class="">mdi-information</v-icon>
-                <v-text primary-title class="pa-2 text-subtitle-2">
-                  Request Info
-                </v-text>
-              </v-btn>
-            </template>
-            <Chat :method="closeDialog" />
-          </v-dialog>
-          <v-btn class="mr-2 pa-4" color="error" dark large @click="upload">
-            <v-icon right dark class="">mdi-close-octagon</v-icon>
-            <v-text primary-title class="pa-2 text-subtitle-2"> Reject </v-text>
-          </v-btn>
+          <div style="display: flex">
+            <v-dialog v-model="dialog" max-width="500px" class="overflow-y-hidden">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  class="ml-10 mr-2 pa-4"
+                  color="success"
+                  dark
+                  large
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon right dark class=""
+                    >mdi-checkbox-marked-circle</v-icon
+                  >
+                  <v-text primary-title class="pa-2 text-subtitle-2">
+                    Verify
+                  </v-text>
+                </v-btn>
+                <v-btn
+                  class="mr-2 pa-4"
+                  color="blue"
+                  dark
+                  large
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon right dark class="">mdi-information</v-icon>
+                  <v-text primary-title class="pa-2 text-subtitle-2">
+                    Request Info
+                  </v-text>
+                </v-btn>
+                <v-btn
+                  class="mr-2 pa-4"
+                  color="error"
+                  dark
+                  large
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon right dark class="">mdi-close-octagon</v-icon>
+                  <v-text primary-title class="pa-2 text-subtitle-2">
+                    Reject
+                  </v-text>
+                </v-btn>
+                <v-btn
+                  class="mr-2 pa-4"
+                  color= cyan lighten
+                  dark
+                  large
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon right dark class="">mdi-close-octagon</v-icon>
+                  <v-text primary-title class="pa-2 text-subtitle-2">
+                    Comment
+                  </v-text>
+                </v-btn>
+              </template>
+
+              <Verify :method="closeDialog" />
+            </v-dialog>
+          </div>
         </v-col>
         <v-col cols="6" class="mb-10"> </v-col>
       </v-row>
@@ -111,13 +140,17 @@
   </v-container>
 </template>
 <script>
-import Chat from "../admin/RFIConversation.vue";
+import Verify from "../admin/Verify.vue";
+// import Comment from "../admin/Comment.vue";
+// import Chat from "../admin/RFIConversation.vue";
 import { validationMixin } from "vuelidate";
 import { required, maxLength, email } from "vuelidate/lib/validators";
 
 export default {
   components: {
-    Chat,
+    // Chat,
+    Verify,
+    // Comment,
   },
   mixins: [validationMixin],
   validations: {
@@ -128,6 +161,7 @@ export default {
   },
   data: () => ({
     dialog: false,
+    loading: false,
     name: "",
     email: "",
     select: null,
@@ -283,9 +317,21 @@ export default {
     },
   },
   methods: {
-    closeDialog(){
-      this.dialog = false
+    async remove() {
+      this.loading = true;
+
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      this.loading = false;
     },
+    closeDialog() {
+      this.dialog = false;
+      this.test = false;
+      // this.dialog1 = false;
+      //  this.dialog2 = false;
+      //   this.dialog3 = false;
+    },
+
     submit() {
       this.v.touch();
     },

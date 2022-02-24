@@ -1,10 +1,11 @@
 <template>
-  <v-card class="overflow-y-hidden" >
-     <v-card-title
+  <v-card class="overflow-x-hidden">
+    <v-card-title
       primary-title
       class="
         green
-        
+        font-weight
+        bold
         white--text
         text-h4
         d-flex
@@ -12,15 +13,17 @@
         justify-space-between
       "
     >
-      <div> Request for Information</div>
+      <div>Verify</div>
       <div>
         <v-btn class="mx-2" small fab dark color="white" @click="method(false)">
           <v-icon dark small color="green"> mdi-close</v-icon>
         </v-btn>
       </div>
     </v-card-title>
+ 
+     
 
-    <v-container grid-list-xs class=" pl-14 pr-16 mr-4" elevation-5>
+    <div grid-list-xs class=" pl-14 pr-16 mr-4" elevation-5>
       <div class="d-flex mt-2">
         <v-avatar class="pa-4" color="black" size="25">
           <v-icon dark> mdi-account </v-icon>
@@ -66,40 +69,36 @@
       <div class="pa-4 blue text-no-wrap rounded-lg rounded-tr-0 white--text">
         We have already uploaded files 1.2 and 7.5
       </div>
-  <v-form>
-    <v-container>
-      <v-row>
-        <v-col cols="12">
-          <v-text-field
-            v-model="message"
-            :append-icon="marker ? 'mdi-map-marker' : 'mdi-map-marker-off'"
-            :append-outer-icon="message ? 'mdi-send' : 'mdi-microphone'"
-            :prepend-icon="icon"
-            filled
-            clear-icon="mdi-close-circle"
-            clearable
-            label="Message"
-            type="text"
-            @click:append="toggleMarker"
-            @click:append-outer="sendMessage"
-            @click:prepend="changeIcon"
-            @click:clear="clearMessage"
-          ></v-text-field>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-form>
-
-      <!-- <v-form class="mt-10 mb-8 pl-10 pr-10">
-        <v-textarea
-          label="Type a message"
-          name="message"
-          textarea
-          multi-line
-        ></v-textarea>
-        <div style="display: flex; gap: 75px;">
-            <v-btn class="pa-4 green white--text rounded-lg">Send Message</v-btn>
-         <v-btn
+    </div>
+  
+    <form class="ma-8">
+      <v-textarea
+        label="Description"
+        v-model="desc"
+        :counter="10"
+        required
+      clear-icon="mdi-close-circle"
+       clearable
+       
+        :type="show1 ? 'text' : 'password'"
+         @click:append="show1 = !show1"
+         
+      ></v-textarea>
+      <v-text-field
+        label="Password"
+        v-model="pass"
+        clear-icon="mdi-close-circle"
+       clearable
+        :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show1 ? 'text' : 'password'"
+         @click:append="show1 = !show1"
+           
+        required
+      ></v-text-field>
+      <div class="mt-6 d-flex">
+        <v-btn class="green white--text mb-4 mr-10">submit</v-btn>
+        <v-btn class="red white--text mb-4"   @click:append="show1 = !show1">clear</v-btn>
+        <v-btn
           class="blue white--text mb-4"
           style="margin-left: 24px"
            @click="method(false)"
@@ -107,66 +106,65 @@
         >
           Close
         </v-btn>
-        </div>
-      
-      </v-form> -->
-    </v-container>
+      </div>
+    </form>
   </v-card>
 </template>
 <script>
 export default {
-  name: "chat",
+  name: "verify",
     props: {
     method: { type: Function },
   },
+
   data: () => ({
-
-  dialog: false,
-        password: 'Password',
-      show: false,
-      message: 'Hey!',
-      marker: true,
-      iconIndex: 0,
-      icons: [
-        'mdi-emoticon',
-        'mdi-emoticon-cool',
-        'mdi-emoticon-dead',
-        'mdi-emoticon-excited',
-        'mdi-emoticon-happy',
-        'mdi-emoticon-neutral',
-        'mdi-emoticon-sad',
-        'mdi-emoticon-tongue',
-      ],
+    dialogs: false,
+    head:[],
+    return : {
+        show1: false,},
+    name: "",
+    primary_color: "",
+    secondary1: "",
+    secondary2: "",
+    secondary3: "",
+    codes: [
+      {
+        id: 1,
+        name: "Listing Rules",
+      },
+      {
+        id: 2,
+        name: "Late Submission of Audited Annual Accounts",
+      },
+      {
+        id: 3,
+        name: "Annual financial statements",
+      },
+      {
+        id: 4,
+        name: "Trading hours",
+      },
+    ],
+    selects: "",
+    codeselects: [],
   }),
+  methods: {
+    /**
+     * Add checkbox values elese delete
+     */
+   clear(){
+     this.desc = ""
+   },
 
-    computed: {
-      icon () {
-        return this.icons[this.iconIndex]
-      },
+    addCodeSelects(id) {
+      if (!this.codeselects.find((element) => element == id)) {
+        this.codeselects.push(id);
+      } else {
+        let index = this.codeselects.indexOf(id);
+        this.codeselects.splice(index, 1);
+      }
+      console.log(this.selects);
     },
-
-    methods: {
-      toggleMarker () {
-        this.marker = !this.marker
-      },
-      sendMessage () {
-        this.resetIcon()
-        this.clearMessage()
-      },
-      clearMessage () {
-        this.message = ''
-      },
-      resetIcon () {
-        this.iconIndex = 0
-      },
-      changeIcon () {
-        this.iconIndex === this.icons.length - 1
-          ? this.iconIndex = 0
-          : this.iconIndex++
-      },
-    },
- 
-
+  },
 };
-
 </script>

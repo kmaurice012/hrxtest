@@ -3,8 +3,9 @@
   <v-data-table
     :headers="headers"
     :items="frequencies"
-    sort-by="calories"
-    class="elevation-1"
+  :single-expand="singleExpand"
+      :expanded.sync="expanded"
+      class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar

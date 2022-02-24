@@ -24,7 +24,7 @@
                 <v-icon class="ml-2" color="white">mdi-plus-box</v-icon>
               </v-btn>
             </template>
-            <Role  :method="closeDialog" />
+            <Role  items={item} :method="closeDialog" />
           </v-dialog>
              <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
@@ -133,7 +133,7 @@ export default {
          this.dialog = false
       },
       initialize () {
-        this.frequencies = [
+        this.roles = [
         
         ]
       },

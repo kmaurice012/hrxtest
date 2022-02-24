@@ -102,11 +102,11 @@ const routes = [{
         name: 'Admin Verify Compliance',
         component: () => import('../components/admin/VerifyForm.vue'),
       },
-      {
-        path: 'request-info-conversation',
-        name: 'Request for More Info Page',
-        component: () => import('../components/admin/RFIConversation.vue'),
-      },
+      // {
+      //   path: 'request-info-conversation',
+      //   name: 'Request for More Info Page',
+      //   component: () => import('../components/admin/RFIConversation.vue'),
+      // },
       {
         path: 'user-report',
         name: 'Company Reports',
