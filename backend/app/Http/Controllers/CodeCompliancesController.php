@@ -71,7 +71,6 @@ class CodeCompliancesController extends Controller
             $model->rcd_id = $request->rcd_id;
             $model->rev_id = $request->rev_id;
             $model->remarks = $request->remarks;
-            $model->complied = 'not complied';
             $model->from_date = now()->toDateTimeString();
 
             $model->save();
@@ -183,35 +182,44 @@ class CodeCompliancesController extends Controller
 
             $model = CodeCompliances::find($id);
 
-            $model->rcd_id = $request->rcd_id;
-            $model->rev_id = $request->rev_id;
-            $model->remarks = $request->remarks;
-            $model->complied = $request->complied;;
-            $model->from_date = now()->toDateTimeString();
+            if ($model) {
+                $model->rcd_id = $request->rcd_id;
+                $model->rev_id = $request->rev_id;
+                $model->remarks = $request->remarks;
+                $model->from_date = now()->toDateTimeString();
 
-            $model->save();
+                $model->save();
 
 
-            $saveDocuments = $this->updateStoredDocuments($request, $model->id, $request->doc_id);
-            if ($saveDocuments) {
-                DB::commit();
+                $saveDocuments = $this->updateStoredDocuments($request, $model->id, $request->doc_id);
+                if ($saveDocuments) {
+                    DB::commit();
 
-                $data = [
+                    $data = [
                     'success' => true,
                     'message' => 'Compliance details updated succesfully'
                 ];
 
 
-                return response()->json($data, 201);
-            } else {
-                DB::rollBack();
-                $data = [
+                    return response()->json($data, 201);
+                } else {
+                    DB::rollBack();
+                    $data = [
                     'success' => false,
                     'message' => 'An error occured while updating compliance documents'
                 ];
 
 
-                return response()->json($data, 500);
+                    return response()->json($data, 500);
+                }
+            } else {
+                $data = [
+                    'success' => false,
+                    'message' => 'Compliance not found'
+                ];
+
+
+                return response()->json($data, 404);
             }
         } catch (\Throwable $th) {
             logger($th);

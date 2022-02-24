@@ -11,9 +11,14 @@ class RegulatorVerifications extends Model
 
     protected $table = 'rpr_regulator_verifications';
 
-    public function code_compliances()
+    public function compliances()
     {
         return $this->belongsTo(CodeCompliances::class, 'cmp_id', 'id');
+    }
+
+    public function code_compliances()
+    {
+        return $this->compliances()->with('documents');
     }
 
     public function user()

@@ -17,7 +17,7 @@ class CreateCodeCompliancesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('rcd_id');
             $table->unsignedBigInteger('rev_id');
-            $table->string('complied')->nullable();
+            $table->char('complied', 1)->default('N');
             $table->timestamp('reviewed_date')->nullable();
             $table->timestamp('from_date');
             $table->timestamp('end_date')->nullable();

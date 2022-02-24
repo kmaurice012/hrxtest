@@ -230,42 +230,51 @@ class CodesController extends Controller
 
             DB::beginTransaction();
             $model = Codes::find($code);
-
-            $model->fr_id = $request->fr_id;
-            $model->code = $request->code;
-            $model->serial_number = $request->serial_number;
-            $model->description = $request->description;
-            $model->color_code = $request->color_code ?? null;
-
-            $model->save();
-
             if ($model) {
+                $model->fr_id = $request->fr_id;
+                $model->code = $request->code;
+                $model->serial_number = $request->serial_number;
+                $model->description = $request->description;
+                $model->color_code = $request->color_code ?? null;
 
-                //add code details
-                $assignCode = $request->code_details ? $this->updateCodeDetails($request, $model->id, $request->code_details_id) : true;
+                $model->save();
 
-                // $model->org_codes()->save($model, ['cds_id' => $request->code, 'start_date' =>now()->toDateTimeString()]);
-                if ($assignCode) {
+                if ($model) {
 
-                    DB::commit();
-                    $data = [
-                        'success' => true,
-                        'message' => 'Code updated succesfully'
-                    ];
+                    //add code details
+                    $assignCode = $request->code_details ? $this->updateCodeDetails($request, $model->id, $request->code_details_id) : true;
 
+                    // $model->org_codes()->save($model, ['cds_id' => $request->code, 'start_date' =>now()->toDateTimeString()]);
+                    if ($assignCode) {
 
-                    return response()->json($data, 201);
-                } else {
-                    DB::rollBack();
-
-                    $data = [
-                        'success' => false,
-                        'message' => 'An error occured while updating code details'
-                    ];
+                        DB::commit();
+                        $data = [
+                            'success' => true,
+                            'message' => 'Code updated succesfully'
+                        ];
 
 
-                    return response()->json($data, 500);
+                        return response()->json($data, 201);
+                    } else {
+                        DB::rollBack();
+
+                        $data = [
+                            'success' => false,
+                            'message' => 'An error occured while updating code details'
+                        ];
+
+
+                        return response()->json($data, 500);
+                    }
                 }
+            } else {
+                $data = [
+                    'success' => false,
+                    'message' => 'Code not found'
+                ];
+
+
+                return response()->json($data, 404);
             }
         } catch (\Throwable $th) {
             logger($th);

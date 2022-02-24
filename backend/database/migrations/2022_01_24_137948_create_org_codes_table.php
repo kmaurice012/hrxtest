@@ -17,6 +17,7 @@ class CreateOrgCodesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('cds_id');
             $table->unsignedBigInteger('ror_id');
+            $table->unsignedBigInteger('prd_id');
             $table->timestamp('due_date');
             $table->timestamp('start_date');
             $table->timestamp('end_date')->nullable();
@@ -24,6 +25,7 @@ class CreateOrgCodesTable extends Migration
 
             $table->foreign('cds_id')->references('id')->on('rpr_codes')->onDelete('cascade');
             $table->foreign('ror_id')->references('id')->on('rpr_organizations')->onDelete('cascade');
+            $table->foreign('prd_id')->references('id')->on('rpr_periods')->onDelete('cascade');
         });
     }
 
