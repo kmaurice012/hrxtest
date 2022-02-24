@@ -4,6 +4,8 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import Vuelidate from 'vuelidate'
 import store from './store/store'
+import DatetimePicker from 'vuetify-datetime-picker'
+Vue.use(DatetimePicker)
 Vue.use(Vuelidate);
 Vue.config.productionTip = false
 import { validationMixin } from "vuelidate";

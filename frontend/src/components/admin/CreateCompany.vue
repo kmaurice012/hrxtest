@@ -28,16 +28,49 @@
         :counter="10"
         required
       ></v-text-field>
-      <v-text-field
-        label="Join Date"
-        v-model="primary_color"
-        required
-      ></v-text-field>
+      <h5>Event Period</h5>
+<v-datetime-picker label="Select Start Date and time" v-model="datetime"> </v-datetime-picker>
+<v-datetime-picker label="Select Ending Date and time" v-model="datetime"> </v-datetime-picker>
+      <!-- <v-row>
+        <v-col cols="11" sm="5">
+          <v-menu
+            ref="menu"
+            v-model="menu2"
+            :close-on-content-click="false"
+            :nudge-right="40"
+            :return-value.sync="time"
+            transition="scale-transition"
+            offset-y
+            max-width="290px"
+            min-width="290px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="time"
+                label="Pick Date"
+                prepend-icon="mdi-clock-time-four-outline"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker v-model="picker"></v-date-picker>
+          </v-menu>
+        </v-col> -->
+        <!-- <v-spacer></v-spacer>
+        
+      </v-row> -->
+
+      <v-radio-group v-model="select" label="Organisation Type">
+        <v-radio color="green" label="Company" value="all"></v-radio>
+        <v-radio color="green" label="Stock Broker" value="select"></v-radio>
+      </v-radio-group>
       <!-- radio -->
       <v-radio-group v-model="selects">
         <v-radio color="green" label="All Codes" value="all"></v-radio>
         <v-radio color="green" label="Select Codes" value="select"></v-radio>
       </v-radio-group>
+      <div label="Period"></div>
       <v-card v-if="selects != '' && selects != 'all'">
         <v-checkbox
           class="ml-12"
@@ -61,8 +94,7 @@
         <v-btn
           class="blue white--text mb-4"
           style="margin-left: 24px"
-           @click="method(false)"
-         
+          @click="method(false)"
         >
           Close
         </v-btn>
@@ -73,7 +105,7 @@
 <script>
 export default {
   name: "createComp",
-    props: {
+  props: {
     method: { type: Function },
   },
 

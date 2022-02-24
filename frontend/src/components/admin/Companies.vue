@@ -9,7 +9,7 @@
         List of Companies
       </v-card-title>
       <v-spacer></v-spacer>
-      <v-dialog v-model="dialog" max-width="700px" max-height="950px">
+      <v-dialog v-model="dialog" max-width="900px" max-height="950px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn color="green" dark v-bind="attrs" v-on="on">
             Create Company
