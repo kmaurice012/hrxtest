@@ -258,6 +258,7 @@ class RegulatorVerificationsController extends Controller
             $model = CodeCompliances::find($id);
 
             $model->complied = $action == 'verify' ? 'Y' : 'N'; //Y, N
+            $model->reviewed_date = now()->toDateTimeString();
             $model->save();
 
             return true;
