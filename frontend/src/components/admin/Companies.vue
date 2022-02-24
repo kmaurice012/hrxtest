@@ -87,6 +87,21 @@ export default {
         value: "company",
         class: "font-weight-bold green white--text text-uppercase",
       },
+        {
+        text: "period name",
+        value: "",
+        class: "font-weight-bold green white--text text-uppercase",
+      },
+        {
+        text: "start date",
+        value: "",
+        class: "font-weight-bold green white--text text-uppercase",
+      },
+         {
+        text: "end date",
+        value: "",
+        class: "font-weight-bold green white--text text-uppercase",
+      },
       {
         text: "actions",
         value: "actions",
