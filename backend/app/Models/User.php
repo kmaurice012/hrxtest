@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(RegulatorVerifications::class, 'cmp_id', 'id');
     }
+
+    public function actions()
+    {
+        return $this->hasMany(Actions::class, 'cmp_id', 'id');
+    }
 }

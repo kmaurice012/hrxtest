@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             EventsSeeder::class,
             OrgTypeSeeder::class,
             OrganizationSeeder::class,
+            PeriodsSeeder::class,
             OrgCodesSeeder::class,
             OrgUsersSeeder::class,
             RolesSeeder::class,
@@ -31,7 +32,7 @@ class DatabaseSeeder extends Seeder
             CompliancesSeeder::class,
             DocumentsSeeder::class,
             RegulatorVerificationsSeeder::class,
-            PeriodsSeeder::class,
+            ActionsSeeder::class,
 
         ]);
     }

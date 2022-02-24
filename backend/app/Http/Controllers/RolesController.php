@@ -158,23 +158,33 @@ class RolesController extends Controller
 
             $model = Roles::find($id);
 
-            if ($request->parent_id) {
-                $model->parent_id = $request->parent_id;
+            if ($model) {
+                if ($request->parent_id) {
+                    $model->parent_id = $request->parent_id;
+                }
+
+                $model->cds_id = $request->cds_id;
+                $model->role = $request->role;
+                $model->start_date = now()->toDateTimeString();
+                $model->end_date = $request->end_date ?? null;
+
+                $model->save();
+                $data = [
+                    'success' => true,
+                    'message' => 'Role updated succesfully'
+                ];
+
+
+                return response()->json($data, 201);
+            } else {
+                $data = [
+                    'success' => false,
+                    'message' => 'Role not found'
+                ];
+
+
+                return response()->json($data, 404);
             }
-
-            $model->cds_id = $request->cds_id;
-            $model->role = $request->role;
-            $model->start_date = now()->toDateTimeString();
-            $model->end_date = $request->end_date ?? null;
-
-            $model->save();
-            $data = [
-                'success' => true,
-                'message' => 'Role updated succesfully'
-            ];
-
-
-            return response()->json($data, 201);
         } catch (\Throwable $th) {
             logger($th);
 
