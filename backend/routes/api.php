@@ -26,6 +26,7 @@ Route::post('logout', 'UserController@logout');
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('organizations', 'OrganizationsController');
+    Route::get('organization/codes/{org_id}', 'OrganizationsController@getOrganizationCodes');
     Route::apiResource('codes', 'CodesController');
     Route::apiResource('roles', 'RolesController');
     Route::apiResource('frequencies', 'FrequencyController');
@@ -33,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('organization-compliances', 'CodeCompliancesController@orgCompliances');
     Route::apiResource('verifications', 'RegulatorVerificationsController');
     Route::apiResource('events', 'EventsController');
-    Route::post('organization-events/{org_id}', 'EventsController@OrgEvents');
+    Route::get('organization-events/{org_id}', 'EventsController@OrgEvents');
     Route::prefix('reports')->group(function () {
 
         Route::prefix('admin')->group(function () {
