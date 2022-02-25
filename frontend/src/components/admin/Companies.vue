@@ -21,7 +21,7 @@
     </div>
     <v-data-table
       :headers="headers"
-      :items="companies"
+      :items="organizations"
       :single-expand="singleExpand"
       :expanded.sync="expanded"
       class="elevation-1"
@@ -32,7 +32,7 @@
             v-bind="attrs"
             v-on="on"
             color="green white--text'"
-            @click="viewCompanyCodes(item.id, item.company)"
+            @click="viewCompanyCodes(item.id, item.organization)"
           >
             <p class="ma-4 white--text">
               <v-icon small @click="deleteItem(item)">
@@ -84,22 +84,22 @@ export default {
     headers: [
       {
         text: "company name",
-        value: "company",
+        value: "organization_name",
         class: "font-weight-bold green white--text text-uppercase",
       },
         {
         text: "period name",
-        value: "",
+        value: `periods[0].period_name`,
         class: "font-weight-bold green white--text text-uppercase",
       },
         {
-        text: "start date",
-        value: "",
+        text: "period start date",
+        value: "periods[0].period_start_date",
         class: "font-weight-bold green white--text text-uppercase",
       },
          {
-        text: "end date",
-        value: "",
+        text: "period end date",
+        value: "periods[0].period_end_date",
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
@@ -114,9 +114,9 @@ export default {
     compliancePeriod: "",
     complianceDue: "",
   }),
-    computed: mapState(["companies"]),
+    computed: mapState(["organizations"]),
   created() {
-    this.$store.dispatch("fetchCompanies");
+    this.$store.dispatch("fetchOrganizations");
   },
 
   methods: {
@@ -142,12 +142,13 @@ export default {
     // openReports() {
     //   this.$router.push(`/admin/dashboard/user-report`);
     // }
-    viewCompanyCodes(id, company_name) {
-      localStorage.setItem("company_id", id);
-      localStorage.setItem("company_name", company_name);
+    viewCompanyCodes(id,  organization_name) {
+      localStorage.setItem(" organization_id", id);
+      localStorage.setItem(" organization_name",  organization_name);
       this.$router.push(`/admin/dashboard/company_codes/` + id);
     },
   },
+
 
   mounted() {
     // this.getComplianceDetails();

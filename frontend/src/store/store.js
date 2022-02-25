@@ -13,8 +13,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     events: [],
-    compliances: [],
-    companies: [],
+    codes: [],
+    organizations: [],
     usercomps: [],
     frequencies: [],
     roles: []
@@ -23,11 +23,11 @@ export default new Vuex.Store({
     SET_EVENT(state, events) {
       state.events = [...events];
     },
-    SET_COMPLIANCES(state, compliances) {
-      state.compliances = [...compliances];
+    SET_CODES(state, codes) {
+      state.codes = [...codes];
     },
-    SET_COMPANIES(state, companies) {
-        state.companies = [...companies];
+    SET_ORGANIZATIONS(state, organizations){
+        state.organizations = [...organizations]
       },
       SET_USERCOMPS(state, usercomps) {
         state.usercomps = [...usercomps];
@@ -44,26 +44,26 @@ export default new Vuex.Store({
     fetchEvents({ commit }) {
       AdminApi.getEvents()
         .then((response) => {
-          commit("SET_EVENT", response.data);
+          commit("SET_EVENT", response.data.data);
         })
         .catch((error) => {
           console.log("There was an error:", error.response);
         });
     },
     
-    fetchCompliances({ commit }) {
-      AdminApi.getComplinces()
+    fetchCodes({ commit }) {
+      AdminApi.getCodes()
         .then((response) => {
-          commit("SET_COMPLIANCES", response.data);
+          commit("SET_CODES", response.data.data);
         })
         .catch((error) => {
           console.log("There was an error:", error.response);
         });
     },
-    fetchCompanies({ commit }) {
-        AdminApi.getCompanies()
+    fetchOrganizations({ commit }) {
+        AdminApi.getOrganizations()
           .then((response) => {
-            commit("SET_COMPANIES", response.data);
+            commit("SET_ORGANIZATIONS", response.data.data);
           })
           .catch((error) => {
             console.log("There was an error:", error.response);
@@ -72,7 +72,7 @@ export default new Vuex.Store({
       fetchUsercomps({ commit }) {
         AdminApi.getUsercomps()
           .then((response) => {
-            commit("SET_USERCOMPS", response.data);
+            commit("SET_USERCOMPS", response.data.data);
           })
           .catch((error) => {
             console.log("There was an error:", error.response);
@@ -81,7 +81,7 @@ export default new Vuex.Store({
       fetchFrequencies({ commit }) {
         AdminApi.getFrequencies()
           .then((response) => {
-            commit("SET_FREQUENCIES", response.data);
+            commit("SET_FREQUENCIES", response.data.data);
           })
           .catch((error) => {
             console.log("There was an error:", error.response);
@@ -90,7 +90,7 @@ export default new Vuex.Store({
       deleteFrequencies({ commit }) {
         AdminApi.deleteFrequencies()
           .then((response) => {
-            commit("DELETE_FREQUENCIES", response.data);
+            commit("DELETE_FREQUENCIES", response.data.data);
           })
           .catch((error) => {
             console.log("There was an error:", error.response);
@@ -99,7 +99,7 @@ export default new Vuex.Store({
       fetchRoles({ commit }) {
         AdminApi.getRoles()
           .then((response) => {
-            commit("SET_ROLES", response.data);
+            commit("SET_ROLES", response.data.data);
           })
           .catch((error) => {
             console.log("There was an error:", error.response);
@@ -107,3 +107,4 @@ export default new Vuex.Store({
       },
   },
 });
+

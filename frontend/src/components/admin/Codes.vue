@@ -20,7 +20,7 @@
     </div>
     <v-data-table
       :headers="headers"
-      :items="compliances"
+      :items="codes"
       :loading="loading"
       style="margin-top: 10px"
     >
@@ -59,17 +59,17 @@ export default {
     headers: [
       {
         text: "name",
-        value: "title",
+        value: "description",
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
-        text: "compliance code",
+        text: "code",
         value: "code",
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
         text: "frequency",
-        value: "frequency",
+        value: "frequency.frequency",
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
@@ -78,21 +78,12 @@ export default {
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
-        text: "date due",
-        value: "date",
+        text: "due date",
+        value: "org_codes[0].due_date",
         class: "font-weight-bold green white--text text-uppercase",
         width: "15%",
       },
-      {
-        text: "complied",
-        value: "complied",
-        class: "font-weight-bold green white--text text-uppercase",
-      },
-      {
-        text: "not complied",
-        value: "not_complied",
-        class: "font-weight-bold green white--text text-uppercase",
-      },
+    
       {
         text: "actions",
         value: "actions",
@@ -104,9 +95,9 @@ export default {
      desserts: [],
       
   }),
-   computed: mapState(["compliances"]),
+   computed: mapState(["codes"]),
   created() {
-    this.$store.dispatch("fetchCompliances");
+    this.$store.dispatch("fetchCodes");
   },
  
   methods: {
@@ -116,7 +107,6 @@ export default {
          this.dialog = false
       },
 
-      watch: {
       dialog (val) {
         val || this.close()
       },
@@ -170,7 +160,7 @@ export default {
         }
         this.close()
       },
-    },
+    
     // showCompanies(type,id) {
     //   localStorage.setItem("compliance_type", type)
     //   localStorage.setItem("compliance_id_form", id)
@@ -193,7 +183,7 @@ export default {
         })
         .replace(/ /g, "-");
 
-      this.compliances.find((element) => element.id == 184).date = formatDate;
+      this.codes.find((element) => element.id == 184).date = formatDate;
     },
 
     createCode() {

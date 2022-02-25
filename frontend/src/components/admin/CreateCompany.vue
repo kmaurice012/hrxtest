@@ -28,8 +28,9 @@
         :counter="10"
         required
       ></v-text-field>
-      <h5>Event Period</h5>
+      <h5>Start Period</h5>
 <v-datetime-picker label="Select Start Date and time" v-model="datetime"> </v-datetime-picker>
+<h5>End Period</h5>
 <v-datetime-picker label="Select Ending Date and time" v-model="datetime"> </v-datetime-picker>
       <!-- <v-row>
         <v-col cols="11" sm="5">

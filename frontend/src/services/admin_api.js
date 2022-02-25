@@ -9,22 +9,23 @@ import axios from "axios";
 //
 
 const apiClient = axios.create({
-  baseURL: `http://localhost:3000`,
-  withCredentials: false, // This is the default
+  baseURL: `http://127.0.0.1:8000/api`,
+  credentials: true,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
+    'Authorization': 'Bearer 1|wzCYsfpPzRQNk70dNxWgWhL904T4AF34NKKxDife'
   },
 });
   export default {
     getEvents() {
       return apiClient.get('/events')
     },
-    getComplinces() {
-      return apiClient.get('/compliances')
+    getCodes() {
+      return apiClient.get('/codes')
     },
-    getCompanies() {
-      return apiClient.get('/companies')
+    getOrganizations() {
+      return apiClient.get('/organizations')
     },
     getUsercomps() {
       return apiClient.get('/userCompliances')
@@ -34,8 +35,7 @@ const apiClient = axios.create({
     },
     getRoles() {
       return apiClient.get('/roles')
-    }
-
+    },
   }
 
 
