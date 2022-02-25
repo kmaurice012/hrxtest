@@ -484,4 +484,43 @@ class OrganizationsController extends Controller
             return false;
         }
     }
+
+    /**
+     * Get Organization Codes
+     * @param int $org_id
+     * @return \Illuminate\Http\Response
+     */
+    public function getOrganizationCodes($org_id)
+    {
+        try {
+            $models = DB::table('rpr_organizations')
+                ->select(
+                    'rpr_codes.description',
+                    'rpr_codes.code',
+                    'rpr_codes_frequency.frequency',
+                    'rpr_codes.serial_number',
+                    'rpr_org_codes.due_date',
+                    )
+                ->leftJoin('rpr_org_codes', 'rpr_organizations.id', '=', 'rpr_org_codes.ror_id')
+                ->leftJoin('rpr_codes', 'rpr_org_codes.cds_id', '=', 'rpr_codes.id')
+                ->leftJoin('rpr_codes_frequency', 'rpr_codes.fr_id', '=', 'rpr_codes_frequency.id')
+                ->where('rpr_organizations.id', '=', $org_id)
+                ->get();
+
+            $data = [
+                'success' => true,
+                'data' => $models
+            ];
+
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            logger($th);
+
+            $data = [
+                'success' => false,
+                'message' => 'An error occured while getting organization codes'
+            ];
+            return response()->json($data, 500);
+        }
+    }
 }

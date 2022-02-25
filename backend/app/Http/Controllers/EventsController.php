@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Events;
+use App\Models\Organizations;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -249,6 +250,43 @@ class EventsController extends Controller
             $data = [
                 'success' => false,
                 'message' => 'An error occured while getting events, please try again'
+            ];
+            return response()->json($data, 500);
+        }
+    }
+
+    /**
+     * Generate Code Events for an organization
+     */
+    public function generateOrganizationEvents(Request $request)
+    {
+        try {
+            $rules = [
+
+                'org_id' => 'required|integer',
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                $data = [
+                    'success' => false,
+                    'message' => $validator->errors()->first()
+                ];
+                return response()->json($data, 422);
+            }
+
+
+            $modelOrg = DB::table('rpr_organizations')
+            ->leftJoin('rpr_org_codes', 'rpr_organizations.id', '=', 'rpr_org_codes.ror_id')
+            // ->leftJoin('rpr_')
+            ;
+
+        } catch (\Throwable $th) {
+            logger($th);
+            $data = [
+                'success' => false,
+                'message' => 'An error occured while generating organization events'
             ];
             return response()->json($data, 500);
         }
