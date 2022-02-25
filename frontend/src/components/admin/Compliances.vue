@@ -1,11 +1,11 @@
 <template>
   <v-card class="ma-4">
     <v-card-title primary-title class="text-h4 green--text">
-      List of {{company_name}} Codes
+      List of {{organization_name}} Codes
 
       <v-spacer></v-spacer>
     </v-card-title>
-    <v-data-table :headers="headers" :items= compliances :loading="loading">
+    <v-data-table :headers="headers" :items= codes :loading="loading">
       <template v-slot:[`item.actions`]="{ item }">
             <v-btn
               v-bind="attrs"
@@ -31,17 +31,17 @@ export default {
     headers: [
       {
         text: "name",
-        value: "title",
+        value: "description",
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
-        text: "compliance code",
+        text: "code",
         value: "code",
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
         text: "frequency",
-        value: "frequency",
+        value: "frequency.frequency",
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
@@ -50,21 +50,21 @@ export default {
         class: "font-weight-bold green white--text text-uppercase",
       },
       {
-        text: "date due",
+        text: "due date",
         value: "date",
         class: "font-weight-bold green white--text text-uppercase",
         width: "15%"
       },
-      {
-        text: "complied",
-        value: "complied",
-        class: "font-weight-bold green white--text text-uppercase",
-      },
-      {
-        text: "not complied",
-        value: "not_complied",
-        class: "font-weight-bold green white--text text-uppercase",
-      },
+      // {
+      //   text: "complied",
+      //   value: "complied",
+      //   class: "font-weight-bold green white--text text-uppercase",
+      // },
+      // {
+      //   text: "not complied",
+      //   value: "not_complied",
+      //   class: "font-weight-bold green white--text text-uppercase",
+      // },
       {
         text: "actions",
         value: "actions",
@@ -73,12 +73,12 @@ export default {
     ],
   
     loading: true,
-    company_name: ""
+     organization_name: ""
   }),
+    computed: mapState(["codes"]),
   created() {
-    this.$store.dispatch("fetchCompliances");
+    this.$store.dispatch("fetchCodes");
   },
-  computed: mapState(["compliances"]),
   methods: {
     trimText: function (text) {
       return text.subtring(0, 100);
@@ -96,9 +96,12 @@ export default {
     }
 
   },
+  
   mounted() {
     this.loading = false;
-    this.company_name = localStorage.getItem("company_name");
+    this. organization_name = localStorage.getItem("organization_name");
+   
   },
+ 
 };
 </script>
