@@ -50,7 +50,6 @@ class RegulatorVerificationsController extends Controller
         try {
             $rules = [
                 'rct_id' => 'required|integer',
-                'id_users' => 'required|integer',
                 'cmp_id' => 'required|integer|exists:rpr_code_compliances,id',
                 'action_type' => 'required|string',
                 'comments' => 'sometimes|string',
@@ -83,17 +82,8 @@ class RegulatorVerificationsController extends Controller
 
             $model = new RegulatorVerifications();
 
-            // $complianceVerrificationExists = $model::where('cmp_id', '=', $request->cmp_id)->exists();
-
-            // if ($complianceVerrificationExists) {
-            //     $data = [
-            //         'success' => false,
-            //         'message' => 'Compliance verification status already exists'
-            //     ];
-            //     return response()->json($data, 409);
-            // }
             $model->rct_id = $request->rct_id;
-            $model->id_users = $request->id_users ?? auth()->user()->id; //logged in user
+            $model->id_users = auth()->user()->id; //logged in user
             $model->cmp_id = $request->cmp_id;
             $model->action_date = now()->toDateTimeString();
 
@@ -155,7 +145,6 @@ class RegulatorVerificationsController extends Controller
         try {
             $rules = [
                 'rct_id' => 'required|integer',
-                'id_users' => 'required|integer',
                 'cmp_id' => 'required|integer|exists:rpr_code_compliances,id',
                 'action_type' => 'required|string',
                 'comments' => 'sometimes|string',
@@ -174,7 +163,8 @@ class RegulatorVerificationsController extends Controller
             }
 
             //check user - enter password
-            $isUser = User::find(auth()->user()->id)->password == bcrypt($request->password) ? true : false;
+            $userPassword = User::where('id', auth()->user()->id)->first()->password;
+            $isUser =  Hash::check($request->password, $userPassword) ? true : false;
             if (!$isUser) {
                 $data = [
                     'success' => false,
@@ -189,7 +179,7 @@ class RegulatorVerificationsController extends Controller
 
             if ($model) {
                 $model->rct_id = $request->rct_id;
-                $model->id_users = $request->id_users;
+                $model->id_users = auth()->user()->id; //logged in user
                 $model->cmp_id = $request->cmp_id;
                 $model->action_date = now()->toDateTimeString();
 
@@ -197,7 +187,8 @@ class RegulatorVerificationsController extends Controller
 
 
                 //if an action is verify/reject - update compliance
-                $updateCompliance = $request->action_type != 'comment' || $request->action_type != 'rework' ? $this->updateComplianceVerification($request->action_type, $request->cmp_id) : true;
+                $updateCompliance = $request->action_type != 'comment' || $request->action_type != 'rework' ?
+                    $this->updateComplianceVerification($request->action_type, $request->cmp_id) : true;
 
                 $addActions = $updateCompliance ? $this->addActions($request) : false;
                 if ($updateCompliance && $addActions) {
@@ -251,6 +242,8 @@ class RegulatorVerificationsController extends Controller
 
     /**
      * Update Compliance Verification
+     * @param string $action action on the compliance - comment | verify | 
+     * @param int $id
      */
     public function updateComplianceVerification($action, $id)
     {
@@ -271,6 +264,8 @@ class RegulatorVerificationsController extends Controller
 
     /**
      * Add Actions
+     * @param  \Illuminate\Http\Request  $request
+     * @return true|false 
      */
     public function addActions(Request $request)
     {
